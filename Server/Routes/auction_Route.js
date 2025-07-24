@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/create',isAuthenticated,isAuthorized('Auctioneer'),trackCommissionStatus,addAuctionItem);
 router.get('/getAll',getAllItems);
 router.get('/myitems',isAuthenticated,isAuthorized("Auctioneer"),getMyAuction);
-router.get('/auction/:id',isAuthenticated,getItemDetail);
+router.get('/item/:id',isAuthenticated,getItemDetail);
 router.delete('/item/delete/:id',isAuthenticated,isAuthorized("Auctioneer"),removeAuctionItem);
 router.put('/republish/item/:id',isAuthenticated,isAuthorized("Auctioneer"),republishAuctionItem);
 

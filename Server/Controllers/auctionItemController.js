@@ -120,7 +120,7 @@ export const getItemDetail = catchAsyncErrors(async(req,res,next)=>{
         return next(new errorHandler("Auction Item not found.",400))
     }
 
-    const bidders = auctionItem.bids.sort((a,b)=>b.bid - a.bid)
+    const bidders = auctionItem.bids.sort((a,b)=>b.amount - a.amount)
     res.status(200).json({
         success:true,
         auctionItem,

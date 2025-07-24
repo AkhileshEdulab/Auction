@@ -13,7 +13,7 @@ const UpcommingAuction = () => {
   }) || [];
   
   return (
-    <section className="py-10 px-6 md:px-20 bg-white min-h-screen">
+    <section className="py-10 px-6 md:px-20 bg-white ">
       <h2 className="text-3xl font-bold mb-8 text-gray-800">
         ⏳ Today's Starting Auctions
       </h2>

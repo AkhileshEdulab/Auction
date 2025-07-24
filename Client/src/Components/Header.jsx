@@ -53,7 +53,7 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-4">
             <Link to={'/how to bid'} className="rounded-full border-1 px-4 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">HOW TO BID</Link>
-            <Link to={'/how to bid'} className="rounded-full border-1 px-4 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">SELL YOUR ITEM</Link>
+            <Link to={'/how to sell'} className="rounded-full border-1 px-4 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">SELL YOUR ITEM</Link>
             <Divider orientation="vertical" flexItem />
             
            <div className="fontSize={18}relative inline-block text-right">
@@ -169,7 +169,6 @@ const Header = () => {
               All Auction
             </NavLink>
           </li>
-
           {/* Role-based options */}
           {isAuthenticated && user?.role === 'Auctioneer' && (
             <>

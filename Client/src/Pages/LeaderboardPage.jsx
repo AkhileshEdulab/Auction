@@ -106,7 +106,7 @@ const LeaderboardPage = () => {
           </thead>
           <tbody>
             {bidders.slice(0,10).map((bidder,index) => (
-              <tr key={bidder._id} className="border-t hover:bg-gray-50">
+              <tr key={index._id} className="border-t hover:bg-gray-50">
                 <td className="px-4 py-3">{bidder.rank}</td>
                 <td className="px-4 py-3 flex items-center gap-3">
                   <img
