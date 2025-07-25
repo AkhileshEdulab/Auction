@@ -25,7 +25,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             startTime,
             endTime,
             category,
-            candition
+            condition
         } = req.body;
         if( !title||
             !description||
@@ -33,7 +33,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             !startTime||
             !endTime||
             !category||
-            !candition
+            !condition
         ){
             return next(new errorHandler("Please Provide All Fields.",400))
         }
@@ -73,7 +73,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             startTime,
             endTime,
             category,
-            candition,
+            condition,
             image:{
                 public_id:cloudinaryResponse.public_id,
                 url:cloudinaryResponse.secure_url,

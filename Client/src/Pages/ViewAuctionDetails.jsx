@@ -355,7 +355,6 @@ const ViewAuctionDetails = () => {
 
   const handleBid = () => {
    
-    console.log("Bid submitted: ", amount);
     const formData = new FormData();
     formData.append ('amount',amount);
      dispatch(postBid(id,formData));
@@ -411,6 +410,18 @@ const ViewAuctionDetails = () => {
           </div>
 
           <hr className="my-4 border-gray-300" />
+          <p className="text-lg font-medium mt-2">
+            Category:{' '}
+            <span className="text-red-500 font-semibold">
+              {auctionDetails?.category}
+            </span>
+          </p>
+          <p className="text-lg font-medium mt-2">
+            Condition:{' '}
+            <span className="text-red-500 font-semibold">
+              {auctionDetails?.condition}
+            </span>
+          </p>
           <p className="text-lg font-medium mt-2">
             Minimum Bid:{' '}
             <span className="text-red-500 font-semibold">

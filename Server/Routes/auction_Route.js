@@ -7,6 +7,8 @@ import { trackCommissionStatus } from '../Middleware/trackComssion.js';
 const router = express.Router();
 
 router.post('/create',isAuthenticated,isAuthorized('Auctioneer'),trackCommissionStatus,addAuctionItem);
+
+
 router.get('/getAll',getAllItems);
 router.get('/myitems',isAuthenticated,isAuthorized("Auctioneer"),getMyAuction);
 router.get('/item/:id',isAuthenticated,getItemDetail);

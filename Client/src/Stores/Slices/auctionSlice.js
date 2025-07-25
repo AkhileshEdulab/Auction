@@ -60,6 +60,23 @@ const auctionSlice = createSlice({
           state.myAuction = []
         },
 
+        deleteAuctionRequest(state,action){
+          state.loading = true
+        },
+        deleteAuctionSuccess(state,action){
+          state.loading = false
+        },deleteAuctionFailed(state,action){
+          state.loading = false
+        },
+        republishAuctionRequest(state,action){
+          state.loading = true
+        },
+        republishAuctionSuccess(state,action){
+          state.loading = false
+        },
+        republishAuctionFailed(state,action){
+          state.loading = false
+        },
         resetAuction(state,action){
             state.loading = false,
             state.allAuction = state.allAuction,
@@ -118,6 +135,7 @@ export const createAuction = (data) => async (dispatch) => {
   dispatch(auctionSlice.actions.createAuctionRequest());
 
   try {
+   
     const response = await axios.post(
       'http://localhost:5000/api/v1/auction/create',
       data,
@@ -129,11 +147,9 @@ export const createAuction = (data) => async (dispatch) => {
       }
     );
 
-    const message = response?.data?.message || 'Auction created successfully';
-
     dispatch(auctionSlice.actions.createAuctionSuccess(message));
-    toast.success(message);
-
+    toast.success(response?.data?.message || 'Auction created successfully');
+    dispatch(getAllAuction())
     dispatch(auctionSlice.actions.resetAuction());
   } catch (error) {
     const errorMessage =
@@ -159,4 +175,40 @@ export const getMyAuction = () => async (dispatch) => {
     dispatch(auctionSlice.actions.myAuctionFailed());
   }
 };
+
+export const republishAuctionItems =(id,data)=>async(dispatch)=>{
+  dispatch(auctionSlice.actions.republishAuctionRequest());
+  try {
+    const response = await axios.put(`http://localhost:5000/api/v1/auction/republish/item/${id}`,data,
+      {withCredentials:true,headers:{"Content-Type":"application/json"}});
+    dispatch(auctionSlice.actions.republishAuctionSuccess());
+    toast.success(response.data.message);
+    dispatch(getAllAuction());
+    dispatch(getMyAuction());
+    dispatch(auctionSlice.actions.resetAuction())
+  } catch (error) {
+    dispatch(auctionSlice.actions.republishAuctionFailed());
+    toast.error(error.response.data.message)
+    console.error(error.response.data.message)
+    dispatch(auctionSlice.actions.resetAuction())
+  }
+}
+
+export const deleteAuctionItems =(id)=>async(dispatch)=>{
+  dispatch(auctionSlice.actions.deleteAuctionRequest());
+  try {
+    const response = await axios.delete(`http://localhost:5000/api/v1/auction/item/delete/${id}`,
+      {withCredentials:true,});
+    dispatch(auctionSlice.actions.deleteAuctionSuccess());
+    toast.success(response.data.message);
+    dispatch(getAllAuction());
+    dispatch(getMyAuction());
+    dispatch(auctionSlice.actions.resetAuction())
+  } catch (error) {
+    dispatch(auctionSlice.actions.deleteAuctionFailed());
+    toast.error(error.response.data.message)
+    console.error(error.response.data.message)
+    dispatch(auctionSlice.actions.resetAuction())
+  }
+}
 export default auctionSlice.reducer;

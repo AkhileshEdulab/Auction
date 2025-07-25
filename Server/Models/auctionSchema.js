@@ -16,7 +16,7 @@ startTime: {
   required: true,
 },
     category :String,
-    candition:{
+    condition:{
         type:String,
         enum:["New","Used"]
     },

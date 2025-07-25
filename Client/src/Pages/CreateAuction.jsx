@@ -71,21 +71,25 @@ const CreateAuction = () => {
   };
 
   const handleCreateAuction = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-   
-    const formData = new FormData();
-    formData.append('image', image);
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('startingBid', startingBid);
-    formData.append('condition', condition);
-    formData.append('startTime', startTime);
-    formData.append('endTime', startTime);
-    formData.append('category', category);
+  if (!title || !description || !image || !category || !condition || !startingBid || !startTime || !endTime) {
+    alert('Please fill all fields.');
+    return;
+  }
 
-    dispatch(createAuction(formData));
-  };
+  const formData = new FormData();
+  formData.append('image', image);
+  formData.append('title', title);
+  formData.append('description', description);
+  formData.append('startingBid', parseFloat(startingBid));
+  formData.append('condition', condition);
+  formData.append('startTime', new Date(startTime).toISOString());
+  formData.append('endTime', new Date(endTime).toISOString());
+  formData.append('category', category);
+  dispatch(createAuction(formData));
+};
+
 
   useEffect(() => {
     if (!isAuthenticated || user.role !== 'Auctioneer') {
