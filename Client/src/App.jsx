@@ -18,6 +18,7 @@ import AuctionItem from './Pages/AuctionItem';
 import CreateAuction from './Pages/CreateAuction';
 import ViewMyAuction from './Pages/ViewMyAuction';
 import ViewAuctionDetails from './Pages/ViewAuctionDetails';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
       <Route path='/create-auction' element={<CreateAuction/>}/>
       <Route path='/view-auction' element={<ViewMyAuction/>}/>
       <Route path='/auction/details/:id' element={<ViewAuctionDetails/>}/>
+      <Route path='/dashboard' element={<Dashboard/>}/>
 
       {/* Fallback route for unmatched URLs */}
         <Route path="*" element={<div className="p-4 text-center text-red-600 font-semibold">404 - Page Not Found</div>} />

@@ -151,9 +151,11 @@ export const deletePaymentProof = (id)=>async(dispatch)=>{
 }
 
 export const getSinglePaymentProof = (id)=>async(dispatch)=>{
-    dispatch(superAdminSlice.actions.deleteAuctionRequest())
+    dispatch(superAdminSlice.actions.singlePaymentProofRequest())
+    
     try {
-        const response = await axios.get(`http://localhost:5000/api/v1/superAdmin/paymentProof/${id}`)
+        const response = await axios.get(`http://localhost:5000/api/v1/superAdmin/paymentProof/${id}`,
+        )
         dispatch(superAdminSlice.actions.singlePaymentProofSuccess(response.data.paymentProofDetail));
     } catch (error) {
         dispatch(superAdminSlice.actions.singlePaymentProofFailed())
@@ -161,6 +163,8 @@ export const getSinglePaymentProof = (id)=>async(dispatch)=>{
         toast.error(error.response.data.message)
     }
 }
+
+
 export const getAllPaymentProof = () => async (dispatch) => {
     dispatch(superAdminSlice.actions.paymentProofRequest());
     try {
