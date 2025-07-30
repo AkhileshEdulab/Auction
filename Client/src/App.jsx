@@ -19,6 +19,7 @@ import CreateAuction from './Pages/CreateAuction';
 import ViewMyAuction from './Pages/ViewMyAuction';
 import ViewAuctionDetails from './Pages/ViewAuctionDetails';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import Footer from './Components/Footer';
 
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
       {/* Fallback route for unmatched URLs */}
         <Route path="*" element={<div className="p-4 text-center text-red-600 font-semibold">404 - Page Not Found</div>} />
     </Routes>
+    <Footer/>
     <ToastContainer
        position="top-right"             // Top-right corner of the screen
        autoClose={3000}                 // Closes toast after 3 seconds

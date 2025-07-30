@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdOutlineSupportAgent } from "react-icons/md";
 import { AiOutlineMail } from 'react-icons/ai';
 import { MdAccessTime } from 'react-icons/md';
@@ -26,8 +26,45 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [selected, setSelected] = useState("Language");
-
   const languages = ["English", "Hindi"];
+  
+const { allAuction } = useSelector((state) => state.auction);
+
+  // Utility function to format day and time range
+  const formatDayTimeRange = (startIso, endIso) => {
+    if (!startIso || !endIso) return 'Invalid time';
+
+    const startDate = new Date(startIso);
+    const endDate = new Date(endIso);
+
+    // Format day as short weekday name like Mon, Tue, etc.
+    const dayFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'short' });
+    // Format time in 24h format, hh:mm
+    const timeFormatter = new Intl.DateTimeFormat('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    });
+
+    const startDay = dayFormatter.format(startDate); 
+    const endDay = dayFormatter.format(endDate);     
+    const startTime = timeFormatter.format(startDate); 
+    const endTime = timeFormatter.format(endDate);     
+
+    return `${startDay}–${endDay}: ${startTime}–${endTime}`;
+  };
+
+  const startTimeUTC = allAuction?.[0]?.startTime;
+  const endTimeUTC = allAuction?.[0]?.endTime;
+
+  const auctionTimeInfo = formatDayTimeRange(startTimeUTC, endTimeUTC);
+
+//   const formatTime = (isoTime) => {
+//   const date = new Date(isoTime);
+//   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+// };
+// const startTimeFormatted = formatTime(allAuction?.[0]?.startTime);
+// const endTimeFormatted = formatTime(allAuction?.[0]?.endTime);
 
   const handleSelect = (lang) => {
     setSelected(lang);
@@ -49,11 +86,11 @@ const Header = () => {
             <span className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>contact@example.com</span>
             <Divider orientation="vertical" flexItem />
             <MdAccessTime fontSize={18}/>
-            <span className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>Mon-Fri: 10:00–18:00</span>
+            <span className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>{auctionTimeInfo}</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link to={'/how to bid'} className="rounded-full border-1 px-4 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">HOW TO BID</Link>
-            <Link to={'/how to sell'} className="rounded-full border-1 px-4 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">SELL YOUR ITEM</Link>
+            <Link to={'/how to bid'} className="rounded-full border-1 px-2 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">HOW TO BID</Link>
+            <Link to={'/how to sell'} className="rounded-full border-1 px-2 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">SELL YOUR ITEM</Link>
             <Divider orientation="vertical" flexItem />
             
            <div className="fontSize={18}relative inline-block text-right">

@@ -9,8 +9,7 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
      if(!req.files ||Object.keys(req.files).length===0){
             return next (new errorHandler("Profile image are required.",400))
         };
-        console.log(req.files);
-        
+
         const {profileImage} = req.files;
         const allowFormates = ['image/jpg','image/jpeg','image/webp','image/png'];
         if(!allowFormates.includes(profileImage.mimetype)){
@@ -87,8 +86,8 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
             }
           },
          })
+
          generateToken(user,'User Register Successfully.',201,res)
-         
 })
 
 export const login = catchAsyncErrors(async (req, res, next) => {

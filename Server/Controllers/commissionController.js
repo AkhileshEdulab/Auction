@@ -7,17 +7,41 @@ import {v2 as cloudinary} from 'cloudinary';
 import { Auction } from "../Models/auctionSchema.js";
 
 
-export  const calculateCommission = async(auctionId)=>{
+// export  const calculateCommission = async(auctionId)=>{
         
-const auction = await Auction.findById({auctionId});
-if(!mongoose.Types.ObjectId.isValid(auctionId)){
-    return next(new errorHandler("Invalid ID formate.",404))
-}
+// const auction = await Auction.findById({auctionId});
+// if(!mongoose.Types.ObjectId.isValid(auctionId)){
+//     return next(new errorHandler("Invalid Auction ID formate.",400))
+// }
+
+//     const commissionRate = 0.05;
+//     const commission = auction.currentBid * commissionRate;
+//     return commission;
+// } ;
+
+
+export const calculateCommission = async (auctionId, next) => {
+  try {
+    // Validate ObjectId before querying
+    if (!mongoose.Types.ObjectId.isValid(auctionId)) {
+      return next(new errorHandler("Invalid Auction ID format.", 400));
+    }
+
+    // Correct usage of findById
+    const auction = await Auction.findById(auctionId);
+
+    if (!auction) {
+      return next(new errorHandler("Auction not found.", 404));
+    }
 
     const commissionRate = 0.05;
     const commission = auction.currentBid * commissionRate;
     return commission;
-} ;
+  } catch (error) {
+    console.error("Error in calculateCommission:", error);
+    return next(new errorHandler("Server error during commission calculation", 500));
+  }
+};
 
 export const proofOfCommission = catchAsyncErrors(async(req , res , next )=>{
     if(!req.files||Object.keys(req.files).length===0){

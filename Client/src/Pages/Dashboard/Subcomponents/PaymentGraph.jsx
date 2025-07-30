@@ -59,7 +59,7 @@ const PaymentGraph = () => {
     scales:{
       y:{
           beginAtZero:true,
-          max:50000,
+          max:50,
             ticks:{
                 callback:function(value){
                     return value.toLocaleString()

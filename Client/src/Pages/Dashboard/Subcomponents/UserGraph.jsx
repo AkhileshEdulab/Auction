@@ -64,7 +64,7 @@ const UserGraph = () => {
         scales:{
           y:{
               beginAtZero:true,
-              max:50,
+              max:5,
                 ticks:{
                     callback:function(value){
                         return value.toLocaleString()

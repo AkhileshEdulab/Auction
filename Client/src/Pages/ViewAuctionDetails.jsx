@@ -349,7 +349,7 @@ const ViewAuctionDetails = () => {
   const navigateTo = useNavigate();
 
   const { loading, auctionDetails, auctionBidder } = useSelector((state) => state.auction);
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated ,user} = useSelector((state) => state.user);
 
   const [amount, setAmount] = useState(0);
 
@@ -362,7 +362,7 @@ const ViewAuctionDetails = () => {
   };
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || user.role === "Bidder") {
       navigateTo('/');
       return;
     }

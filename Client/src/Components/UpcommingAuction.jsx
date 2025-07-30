@@ -14,12 +14,12 @@ const UpcommingAuction = () => {
   
   return (
     <section className="py-10 px-6 md:px-20 bg-white ">
-      <h2 className="text-3xl font-bold mb-8 text-gray-800">
-        ⏳ Today's Starting Auctions
+      <h2 className="text-2xl font-bold mb-8 text-gray-800 ">
+        Today's Starting Auctions
       </h2>
 
       {auctionStartToday.length === 0 ? (
-        <p className="text-gray-600 text-lg">No auctions are starting today.</p>
+        <p className="text-gray-600 text-lg text-center">No auctions are starting today.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {auctionStartToday.map((auction) => (

@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 import { catchAsyncErrors } from "../Middleware/catchAsyncError.js";
 import errorHandler from "../Middleware/errorHandler.js";
-import { Auction } from "../Models/auctionSchema.js";
 import {v2 as cloudinary} from 'cloudinary'
-import userModel from "../Models/user_Model.js";
-import { Bid } from "../Models/bidSchema.js";
+ import userModel from "../Models/user_Model.js";
 
+import { Bid } from "../Models/bidSchema.js";
+import { Auction } from "../Models/auctionSchema.js";
+
+// import { Auction } from "../models/auctionSchema.js";
+// import { Bid } from "../models/bidSchema.js";
 export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
     if(!req.files || Object.keys(req.files).length===0){
         return next(new errorHandler("Auction Image are required.",400))
@@ -27,6 +30,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             category,
             condition
         } = req.body;
+
         if( !title||
             !description||
             !startingBid||
@@ -68,8 +72,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
           const auctionItem = await Auction.create({
             title,
             description,
-            // startingBid,
-            startingBid: Number(startingBid.replace(/,/g, '')),
+            startingBid,
             startTime,
             endTime,
             category,
@@ -86,12 +89,8 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             auctionItem
         })
         } catch (error) {
-            console.error("Auction creation error:", error);
-            return res.status(500).json({
-            message:" failed to create Auction.",
-            success:false,
-            
-        })
+            return next(
+            new errorHandler(error.message || "Failed to Create Auction.",500))
         }
        
 })

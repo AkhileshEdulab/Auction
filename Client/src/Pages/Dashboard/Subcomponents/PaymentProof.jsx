@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {Link} from 'react-router-dom'
 import {
   deletePaymentProof,
   getSinglePaymentProof,
@@ -31,8 +32,8 @@ const PaymentProof = () => {
   return (
     <div className='overflow-x-auto'>
       <table className='min-w-full bg-white mt-5'>
-        <thead className='bg-gray-500  text-white'>
-          <tr>
+        <thead className='bg-gray-700 text-left text-white'>
+          <tr className=''>
             <th className='py-2 px-4'>User ID</th>
             <th className='py-2 px-4'>Status</th>
             <th className='py-2 px-4'>Actions</th>
@@ -42,10 +43,10 @@ const PaymentProof = () => {
           {paymentProofs.length > 0 ? (
             paymentProofs.map((element, index) => {
                return (
-                <tr key={index} className='border-t'>
-                <td className='py-2 px-4 text-center'>{element.userId}</td>
-                <td className='py-2 px-4 text-center'>{element.status}</td>
-                <td className='py-2 px-4 text-center space-x-2'>
+                <tr key={index} className='border-t  text-left text-white'>
+                <td className='py-2 px-4 text-blue-500'>{element.userId}</td>
+                <td className='py-2 px-4'>{element.status}</td>
+                <td className='py-2 px-4 space-x-2'>
                   <button
                     onClick={() => handlePaymentProofDetails(element._id)}
                     className='bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-600 transition-all duration-700 '
@@ -71,27 +72,6 @@ const PaymentProof = () => {
           )}
         </tbody>
       </table>
-
-      {/* {openDrawer && singlePaymentProof && (
-        <div className='fixed top-0 right-0 w-80 h-full bg-white shadow-lg p-4 overflow-y-auto z-50'>
-          <h2 className='text-xl font-bold mb-4'>Payment Proof Details</h2>
-          <p><strong>User ID:</strong> {singlePaymentProof.userId}</p>
-          <p><strong>Status:</strong> {singlePaymentProof.status}</p>
-          {singlePaymentProof.proofImageUrl && (
-            <img
-              src={singlePaymentProof.proofImageUrl}
-              alt="Proof"
-              className='w-full mt-2 border rounded'
-            />
-          )}
-          <button
-            onClick={() => setOpenDrawer(false)}
-            className='mt-4 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800'
-          >
-            Close
-          </button>
-        </div>
-      )} */}
       <Drawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
     </div>
   );
@@ -106,15 +86,15 @@ export default PaymentProof;
   const { singlePaymentProof, loading } = useSelector(state => state.superAdmin);
   const [amount, setAmount] = useState(singlePaymentProof?.amount || '');
   const [status, setStatus] = useState(singlePaymentProof?.status || '');
-
+    
   const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     if (singlePaymentProof) {
-//       setAmount(singlePaymentProof.amount || '');
-//       setStatus(singlePaymentProof.status || '');
-//     }
-//   }, [singlePaymentProof]);
+  useEffect(() => {
+    if (singlePaymentProof) {
+      setAmount(singlePaymentProof.amount || '');
+      setStatus(singlePaymentProof.status || '');
+    }
+  }, [singlePaymentProof]);
 
   const handlePaymentProofUpdate = () => {
     dispatch(updatePaymentProof(singlePaymentProof._id, status, amount));
@@ -134,18 +114,17 @@ export default PaymentProof;
         }`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b">
-          <h2 className="text-xl font-semibold text-gray-700">Update Payment Proof</h2>
+          <h2 className="text-xl text-center font-semibold text-red-700">Update Payment Proof</h2>
           <button
             onClick={() => setOpenDrawer(false)}
             className="text-2xl text-gray-500 hover:text-red-600 font-bold"
           >
             &times;
           </button>
-          <p>You can update payment and amount.</p>
         </div>
-
+         <p className='mt-2 px-5'>You can update payment and amount.</p>
         <div className="px-5 py-4 space-y-4">
-          <div>
+          <div className=' flex flex-col gap-1'>
             <label className="block text-sm font-medium text-gray-700">User ID</label>
             <input
               type="text"
@@ -156,7 +135,7 @@ export default PaymentProof;
             />
           </div>
 
-          <div>
+          <div className=' flex flex-col gap-1'>
             <label className="block text-sm font-medium text-gray-700">Amount</label>
             <input
               type="number"
@@ -166,21 +145,21 @@ export default PaymentProof;
             />
           </div>
 
-          <div>
+          <div className=' flex flex-col gap-1'>
             <label className="block text-sm font-medium text-gray-700">Status</label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full border px-3 py-2 rounded focus:outline-none"
             >
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Rejected</option>
-              <option value="settled">Settled</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Sattled">Sattled</option>
             </select>
           </div>
 
-          <div>
+          <div className=' flex flex-col gap-1'>
             <label className="block text-sm font-medium text-gray-700">Comment</label>
             <textarea
                 rows={5}
@@ -190,34 +169,27 @@ export default PaymentProof;
               className="w-full border px-3 py-2 rounded bg-gray-100 focus:outline-none"
             />
           </div>
+          <Link to={singlePaymentProof?.proof?.url || ""} className="bg-[#D6482B]
+           flex justify-center w-full
+            py-1 rounded-md text-white 
+            font-semibold text-md transition-all
+             duration-300 hover:bg-[#b8381e]">
+               Payment Proof (SS)
+          </Link>
 
-          {singlePaymentProof?.proof?.url || "" && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Payment Proof (SS)</label>
-              <a
-                href={singlePaymentProof.proof.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-500 underline"
-              >
-                View Proof Image
-              </a>
-            </div>
-          )}
-
-          <div className="flex justify-end gap-3 mt-4">
+          <div className="flex justify-end gap-3 mt-8">
            
             <button
               onClick={handlePaymentProofUpdate}
               disabled={loading}
-              className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 disabled:opacity-50"
+              className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 disabled:opacity-50 cursor-pointer transition-all duration-700"
             >
               {loading ? 'Updating Payment Proof...' : 'Update Payment Proof'}
             </button>
 
              <button
               onClick={() => setOpenDrawer(false)}
-              className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+              className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 cursor-pointer hover:text-white transition-all duration-700"
             >
               Cancel
             </button>

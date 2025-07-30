@@ -41,6 +41,8 @@ export const getPaymentProofDetail = catchAsyncErrors(async(req,res,next)=>{
         success:true,
        paymentProofDetail
     })
+    
+
 })
 
 export const updateProofStatus = catchAsyncErrors(async(req,res,next)=>{
@@ -113,7 +115,6 @@ export const fetchAllUsers = catchAsyncErrors(async (req, res, next) => {
     }
   ]);
 
-  console.log("Grouped users: ", users);
 
   const bidders = users.filter((user) => user.role === "Bidder");
   const auctioneers = users.filter((user) => user.role === "Auctioneer");

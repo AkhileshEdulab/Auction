@@ -53,7 +53,7 @@ const CreateAuction = () => {
   const [category, setCategory] = useState('');
   const [condition, setCondition] = useState('');
 
-  const { loading } = useSelector((state) => state.auction);
+  const { loading,success  } = useSelector((state) => state.auction);
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -82,10 +82,10 @@ const CreateAuction = () => {
   formData.append('image', image);
   formData.append('title', title);
   formData.append('description', description);
-  formData.append('startingBid', parseFloat(startingBid));
+  formData.append('startingBid',startingBid);
   formData.append('condition', condition);
-  formData.append('startTime', new Date(startTime).toISOString());
-  formData.append('endTime', new Date(endTime).toISOString());
+  formData.append('startTime',startTime);
+  formData.append('endTime', endTime);
   formData.append('category', category);
   dispatch(createAuction(formData));
 };
@@ -95,7 +95,13 @@ const CreateAuction = () => {
     if (!isAuthenticated || user.role !== 'Auctioneer') {
       navigateTo('/');
     }
+   
   }, [isAuthenticated, user, navigateTo]);
+  useEffect(() => {
+  if (success) {
+    navigateTo('/');
+  }
+}, [success, navigateTo]);
 
   return (
     <section className="w-full min-h-screen flex justify-center items-center bg-gray-100 px-6 py-10">
@@ -165,17 +171,18 @@ const CreateAuction = () => {
             <div className="grid grid-cols-1 mt-4 md:grid-cols-2 gap-4">
               <DateTimePicker
                 format={'EEE MMMM d, yyyy h:mm aa'}
+               
                 label="Start Time"
                 value={startTime}
-                onChange={(newValue) => setStartTime(newValue)}
-                renderInput={(params) => <TextField {...params} fullWidth />}
+                onChange={(data) => setStartTime(data)}
+                slotProps={{ textField: { fullWidth: true } }}
               />
               <DateTimePicker
                 format={'EEE MMMM d, yyyy h:mm aa'}
                 label="End Time"
                 value={endTime}
-                onChange={(newValue) => setEndTime(newValue)}
-                renderInput={(params) => <TextField {...params} fullWidth />}
+                onChange={(data) => setEndTime(data)}
+                slotProps={{ textField: { fullWidth: true } }}
               />
 
              

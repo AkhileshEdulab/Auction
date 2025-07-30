@@ -142,12 +142,12 @@ export const createAuction = (data) => async (dispatch) => {
       {
         withCredentials: true,
         headers: {
-          "Content-Type": "multipart/form-data", // ✅ fixed typo
+          "Content-Type": "multipart/form-data",
         },
       }
     );
 
-    dispatch(auctionSlice.actions.createAuctionSuccess(message));
+    dispatch(auctionSlice.actions.createAuctionSuccess());
     toast.success(response?.data?.message || 'Auction created successfully');
     dispatch(getAllAuction())
     dispatch(auctionSlice.actions.resetAuction());

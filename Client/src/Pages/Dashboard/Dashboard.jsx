@@ -7,16 +7,26 @@ import PaymentGraph from './Subcomponents/PaymentGraph';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../Components/SubComponents/Spinner';
 import { clearAllSuperAdminErrors, fetchAllUser, getAllPaymentProof, monthlyRevenue } from '../../Stores/Slices/superAdminSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const {loading} = useSelector(state=>state.superAdmin);
     const dispatch = useDispatch();
 
+   
     useEffect(()=>{
         dispatch(monthlyRevenue())
         dispatch(getAllPaymentProof())
         dispatch(fetchAllUser())
         dispatch(clearAllSuperAdminErrors())
+    },[])
+
+     const {user,isAuthenticated} = useSelector(state=>state.user)
+    const navigateTo = useNavigate();
+    useEffect(()=>{
+      if(!isAuthenticated || user.role !== "Super Admin"){
+        navigateTo('/')
+      }
     },[])
   return (
    <>
@@ -118,7 +128,7 @@ const Dashboard = () => {
         <PaymentProof/>
       </div>
       <div className='mt-6'>
-        <h3 className='text-2xl font-semibold text-gray-800'>Delete Auction Item</h3>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Manage Auctions</h2>
         <AuctionItemDelete/>
       </div>
     </div>

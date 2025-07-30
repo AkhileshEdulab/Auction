@@ -45,18 +45,18 @@ export const userSchema =new mongoose.Schema({
         enum:["Auctioneer","Bidder","Super Admin"]
     },
     unpaidCommission:{
-        type:String,
+        type:Number,
         default:0
     },
 
     auctionWon:{
-        type:String,
+        type:Number,
         default:0
     },
 
     
    moneySpent:{
-        type:String,
+        type:Number,
         default:0
     },
 
