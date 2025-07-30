@@ -27,6 +27,7 @@
 //    }
 // }
 
+ import nodeMailer from "nodemailer";
 export const sendEmail = async ({ email, subject, message }) => {
   try {
     const transporter = nodeMailer.createTransport({
