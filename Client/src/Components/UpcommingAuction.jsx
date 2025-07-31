@@ -21,7 +21,7 @@ const UpcommingAuction = () => {
       {auctionStartToday.length === 0 ? (
         <p className="text-gray-600 text-lg text-center">No auctions are starting today.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {auctionStartToday.map((auction) => (
             <div
               key={auction._id}
@@ -32,7 +32,7 @@ const UpcommingAuction = () => {
                 <img
                   src={auction.image.url}
                   alt={auction.title}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
+                  className="w-full h-56 object-cover rounded-lg mb-2"
                 />
               ) : (
                 <div className="w-full h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-sm">
