@@ -22,6 +22,9 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Footer from './Components/Footer';
 
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(()=>{

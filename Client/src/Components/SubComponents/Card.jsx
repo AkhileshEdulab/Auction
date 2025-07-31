@@ -131,38 +131,44 @@ const Card = ({ imgSrc, title, startTime, endTime, statingBid,id }) => {
   };
 
   return (
-    <Link
-     to={`/auction/item/${id}`}
-      className="flex flex-col bg-white rounded-md p-4 shadow-md hover:shadow-lg transition duration-300 max-w-sm"
-    >
-      <img
-        src={imgSrc}
-        alt={title}
-        className="w-full aspect-[4/3] object-contain rounded-md mb-4"
-      />
+  <Link
+  to={`/auction/item/${id}`}
+  className="flex flex-col bg-white rounded-lg p-4 border border-gray-200 hover:shadow-md transition duration-300 w-full h-full max-w-sm min-h-[400px]"
+>
+  <div className="w-full h-48 flex items-center justify-center mb-4">
+    <img
+      src={imgSrc}
+      alt={title}
+      className="max-h-full max-w-full object-contain rounded-md"
+    />
+  </div>
 
-      <div className="px-2 pt-2 pb-2">
-        <h5 className="text-gray-800 text-lg font-semibold mb-2">{title}</h5>
+  <div className="flex flex-col justify-between flex-grow px-2 pt-2 pb-2">
+    <h5 className="text-gray-800 text-lg font-semibold mb-2 line-clamp-2">
+      {title}
+    </h5>
 
-        {statingBid && (
-          <p className="text-sm text-gray-600 mb-1">
-            Starting Bid:{' '}
-            <span className="text-red-500 font-bold">${statingBid}</span>
-          </p>
-        )}
+    {statingBid && (
+      <p className="text-sm text-gray-600 mb-1">
+        Starting Bid:{' '}
+        <span className="text-red-500 font-bold">${statingBid}</span>
+      </p>
+    )}
 
-        <p className="text-sm text-gray-700">
-          {timeLeft?.type}{' '}
-          {Object.keys(timeLeft).length > 1 ? (
-            <span className="text-gray-400 font-semibold">
-              {formatTimeLeft(timeLeft)}
-            </span>
-          ) : (
-            <span className="text-red-400 font-medium">Time's up</span>
-          )}
-        </p>
-      </div>
-    </Link>
+    <p className="text-sm text-gray-700 mt-auto">
+      {timeLeft?.type}{' '}
+      {Object.keys(timeLeft).length > 1 ? (
+        <span className="text-gray-400 font-semibold">
+          {formatTimeLeft(timeLeft)}
+        </span>
+      ) : (
+        <span className="text-red-400 font-medium">Time's up</span>
+      )}
+    </p>
+  </div>
+</Link>
+
+
   );
 };
 
