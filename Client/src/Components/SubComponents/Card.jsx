@@ -138,7 +138,7 @@ const Card = ({ imgSrc, title, startTime, endTime, statingBid,id }) => {
       <img
         src={imgSrc}
         alt={title}
-        className="w-full aspect-[4/3] object-cover rounded-md mb-4"
+        className="w-full aspect-[4/3] object-contain rounded-md mb-4"
       />
 
       <div className="px-2 pt-2 pb-2">
