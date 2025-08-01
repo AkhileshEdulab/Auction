@@ -25,6 +25,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isdropdown, setDropdown] = useState(false);
   const [selected, setSelected] = useState("Language");
   const languages = ["English", "Hindi"];
   
@@ -37,9 +38,7 @@ const { allAuction } = useSelector((state) => state.auction);
     const startDate = new Date(startIso);
     const endDate = new Date(endIso);
 
-    // Format day as short weekday name like Mon, Tue, etc.
     const dayFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'short' });
-    // Format time in 24h format, hh:mm
     const timeFormatter = new Intl.DateTimeFormat('en-US', {
       hour: '2-digit',
       minute: '2-digit',
@@ -58,13 +57,6 @@ const { allAuction } = useSelector((state) => state.auction);
   const endTimeUTC = allAuction?.[0]?.endTime;
 
   const auctionTimeInfo = formatDayTimeRange(startTimeUTC, endTimeUTC);
-
-//   const formatTime = (isoTime) => {
-//   const date = new Date(isoTime);
-//   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-// };
-// const startTimeFormatted = formatTime(allAuction?.[0]?.startTime);
-// const endTimeFormatted = formatTime(allAuction?.[0]?.endTime);
 
   const handleSelect = (lang) => {
     setSelected(lang);
@@ -251,22 +243,22 @@ const { allAuction } = useSelector((state) => state.auction);
             <NavLink to="/contact-us" className={({ isActive }) =>
               `px-2 py-1 transition-all duration-[700ms] ease-in-out ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}>Contact</NavLink>
 
-     <div className="relative " onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
+     <div className="relative " onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)} >
       <div
       className="px-2 py-1 gap-2 hover:text-red-500 transition-all duration-[700ms] ease-in-out  flex items-center cursor-pointer "
-      onClick={() => setIsHovered(!isHovered)}
+      onClick={() => setDropdown(!isdropdown)}
     >
       More..
        <FaAngleDown
           className={`ml-1 transition-all duration-[700ms] ease-in-out transform ${
-            isHovered ? 'rotate-180' : 'rotate-0'
+            isdropdown ? 'rotate-180' : 'rotate-0'
           }`}
         />
     </div>
       {/* Dropdown */}
       <div
         className={`absolute left-0 top-full mt-2 w-48 bg-white shadow-md rounded transition-all duration-1000 ease-in-out z-50
-        ${isHovered ? 'opacity-100 visible' : 'opacity-0 invisible'}
+        ${isdropdown ? 'opacity-100 visible' : 'opacity-0 invisible'}
       `}
       >
         <ul className="flex flex-col text-black text-sm py-2">
@@ -340,6 +332,9 @@ const { allAuction } = useSelector((state) => state.auction);
               <NavLink to="/dashboard" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'><RxDashboard />Dashboard</NavLink>
             )}
             <NavLink to="/about-us" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>About</NavLink>
+            <NavLink to="/contact-us" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>Contact</NavLink>
+            <NavLink to="/how to bid" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>How To Bid</NavLink>
+            <NavLink to="/how to sell" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>How To Sell</NavLink>
             <NavLink to="/how-it-works" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'><SiGooglesearchconsole/>How It Works</NavLink>
             <NavLink to="/faq" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'><FaQuestionCircle />FAQ</NavLink>
             {!isAuthenticated ? (
