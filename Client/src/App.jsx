@@ -24,6 +24,7 @@ import Footer from './Components/Footer';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import HowToBid from './Components/SubComponents/HowToBid';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const App = () => {
       <Route path='/view-auction' element={<ViewMyAuction/>}/>
       <Route path='/auction/details/:id' element={<ViewAuctionDetails/>}/>
       <Route path='/dashboard' element={<Dashboard/>}/>
+      <Route path='/how to bid' element={<HowToBid/>}/>
 
       {/* Fallback route for unmatched URLs */}
         <Route path="*" element={<div className="p-4 text-center text-red-600 font-semibold">404 - Page Not Found</div>} />

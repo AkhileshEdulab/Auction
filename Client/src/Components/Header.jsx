@@ -149,12 +149,6 @@ const { allAuction } = useSelector((state) => state.auction);
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-6 items-center text-lg text-slate-700 font-semibold">
            
-              {/* <NavLink to="/auctions" className={({ isActive }) =>
-              `px-2 py-1 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`} >Auctions
-              </NavLink> */}
-
-
-
     <div
       className="relative "
       onMouseEnter={() => setIsHovered(true)}
@@ -254,11 +248,68 @@ const { allAuction } = useSelector((state) => state.auction);
             <NavLink to="/about-us" className={({ isActive }) =>
               `px-2 py-1 transition-all duration-[700ms] ease-in-out ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}>About</NavLink>
 
-            <NavLink to="/how-it-works" className={({ isActive }) =>
-              `px-2 py-1 transition-all duration-[700ms] ease-in-out ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}>How It Works</NavLink>
-              <NavLink to="/faq" className={({ isActive }) =>
-              `px-2 py-1 transition-all duration-[700ms] ease-in-out ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}>FAQ</NavLink>
-          
+            <NavLink to="/contact-us" className={({ isActive }) =>
+              `px-2 py-1 transition-all duration-[700ms] ease-in-out ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}>Contact</NavLink>
+
+     <div className="relative " onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
+      <div
+      className="px-2 py-1 gap-2 hover:text-red-500 transition-all duration-[700ms] ease-in-out  flex items-center cursor-pointer "
+      onClick={() => setIsHovered(!isHovered)}
+    >
+      More..
+       <FaAngleDown
+          className={`ml-1 transition-all duration-[700ms] ease-in-out transform ${
+            isHovered ? 'rotate-180' : 'rotate-0'
+          }`}
+        />
+    </div>
+      {/* Dropdown */}
+      <div
+        className={`absolute left-0 top-full mt-2 w-48 bg-white shadow-md rounded transition-all duration-1000 ease-in-out z-50
+        ${isHovered ? 'opacity-100 visible' : 'opacity-0 invisible'}
+      `}
+      >
+        <ul className="flex flex-col text-black text-sm py-2">
+          <li>
+            <NavLink
+              to="/how-it-works"
+              className={({ isActive }) =>
+              ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
+             
+            >
+              How Its Work
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/how-to-sell" className={({ isActive }) =>
+              ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
+             
+            >
+             How To Sell
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/how to bid"  className={({ isActive }) =>
+              ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
+             
+            >
+              How To Bid
+            </NavLink>
+          </li>
+          <li>
+                <NavLink
+                  to="/faq" className={({ isActive }) =>
+              ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
+             
+                >
+                  FAQ
+                </NavLink>
+              </li>
+        </ul>
+      </div>
+    </div>
           </div>
 
           <div className="hidden md:flex">
