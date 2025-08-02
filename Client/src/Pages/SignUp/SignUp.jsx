@@ -23,7 +23,7 @@ const VisuallyHiddenInput = styled('input')({
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthentiicated,loading } = useSelector((state) => state.user);
+  const { isAuthenticated,loading } = useSelector((state) => state.user);
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -77,10 +77,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (isAuthentiicated) {
-      navigate('/login');
+    if (isAuthenticated) {
+      navigate('/');
     }
-  }, [dispatch,isAuthentiicated,loading]);
+  }, [dispatch,isAuthenticated,loading]);
 
   return (
     <section className="min-h-screen bg-gray-100">

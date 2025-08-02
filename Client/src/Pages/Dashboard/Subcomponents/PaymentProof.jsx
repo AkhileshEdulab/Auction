@@ -43,9 +43,9 @@ const PaymentProof = () => {
           {paymentProofs.length > 0 ? (
             paymentProofs.map((element, index) => {
                return (
-                <tr key={index} className='border-t  text-left text-white'>
+                <tr key={index} className='border-t  text-left '>
                 <td className='py-2 px-4 text-blue-500'>{element.userId}</td>
-                <td className='py-2 px-4'>{element.status}</td>
+                <td className='py-2 px-4 '>{element.status}</td>
                 <td className='py-2 px-4 space-x-2'>
                   <button
                     onClick={() => handlePaymentProofDetails(element._id)}
