@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
@@ -23,7 +22,7 @@ const Features = () => {
 
   const sliderSettings = {
     dots: false,
-    arrows: false, // We're using custom arrows
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,

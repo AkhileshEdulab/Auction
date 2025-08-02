@@ -42,6 +42,7 @@ const SignUp = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    console.log("Selected file type:", file.type);
     if (!file) return;
 
     const reader = new FileReader();
@@ -152,6 +153,7 @@ const SignUp = () => {
               >
           Upload Photo
           <VisuallyHiddenInput
+            accept=".jpg,.jpeg,.png,.webp,.avif"
             type="file"
             onChange={handleImageChange}
             multiple

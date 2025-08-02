@@ -19,6 +19,7 @@ import ProfileMenu from './SubComponents/ProfileMenu'
 import { LiaLanguageSolid } from "react-icons/lia";
 import { logout } from '../Stores/Slices/userSlices';
 import { FaAngleDown,} from "react-icons/fa6";
+import { IoIosContact } from "react-icons/io";
 
 const Header = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -332,7 +333,7 @@ const { allAuction } = useSelector((state) => state.auction);
               <NavLink to="/dashboard" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'><RxDashboard />Dashboard</NavLink>
             )}
             <NavLink to="/about-us" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>About</NavLink>
-            <NavLink to="/contact-us" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>Contact</NavLink>
+            <NavLink to="/contact-us" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'><IoIosContact />Contact</NavLink>
             <NavLink to="/how to bid" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>How To Bid</NavLink>
             <NavLink to="/how to sell" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'>< BsFillInfoSquareFill/>How To Sell</NavLink>
             <NavLink to="/how-it-works" onClick={() => setMenuOpen(false)} className='flex gap-2 items-center'><SiGooglesearchconsole/>How It Works</NavLink>
