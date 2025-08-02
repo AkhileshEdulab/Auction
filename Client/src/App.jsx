@@ -27,6 +27,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import HowToBid from './Components/SubComponents/HowToBid';
 import Contact from './Components/Contact';
 import HowToSell from './Components/SubComponents/HowToSell';
+import UserProfile from './Components/UserProfile';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ const App = () => {
       <Route path='/how to bid' element={<HowToBid/>}/>
       <Route path='/how-to-sell' element={<HowToSell/>}/>
       <Route path='/contact-us' element={<Contact/>}/>
+      <Route path='/user-profile' element={<UserProfile/>}/>
 
 
       {/* Fallback route for unmatched URLs */}

@@ -15,6 +15,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Stores/Slices/userSlices';
+import { Link } from 'react-router-dom';
 
 export default function ProfileMenu() {
   const dispatch = useDispatch();
@@ -48,10 +49,10 @@ export default function ProfileMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
            <Avatar
-  src={user?.profileImage?.url || "/default-avatar.png"}
-  alt={user?.userName || "User"}
-  sx={{ width: 32, height: 32 }}
-/>
+           src={user?.profileImage?.url || "/default-avatar.png"}
+           alt={user?.userName || "User"}
+           sx={{ width: 32, height: 32 }}
+           />
           </IconButton>
         </Tooltip>
       </Box>
@@ -92,15 +93,15 @@ export default function ProfileMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose} component={Link} to="/user-profile">
          <Avatar
-  src={user?.profileImage?.url || "/default-avatar.png"}
-  alt={user?.userName || "User"}
-  sx={{ width: 32, height: 32 }}
-/> Profile
+           src={user?.profileImage?.url || "/default-avatar.png"}
+           alt={user?.userName || "User"}
+           sx={{ width: 32, height: 32 }}
+         /> <p className='flex flex-col'><span className='font-semibold text-sm'>{user?.userName}</span> <span className='text-sm text-gray-600'>{user?.email}</span></p>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar src={user?.image} /> My account
+        <MenuItem  onClick={handleClose} component={Link} to='/user-profile'>
+          <Avatar src={user?.image} />My account
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
