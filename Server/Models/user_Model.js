@@ -18,8 +18,8 @@ export const userSchema =new mongoose.Schema({
     },
     phone:{
         type:String,
-        minLength:[10,"Password content accept only 10 digit."],
-        maxLength:[10,"Password content accept only 10 digit."],
+        minLength:[10,"phone content accept only 10 digit."],
+        maxLength:[10,"Phone content accept only 10 digit."],
         match: [/^\d{10}$/, "Phone number must contain exactly 10 digits."]
     },
     profileImage:{
