@@ -104,7 +104,8 @@ export const endedAuctionCron = () => {
                 const commissionAmount = await calculateCommission(auction._id);
                 console.log("Commission calculated:", commissionAmount);
                 auction.commissionCalculated = true;
-
+                auction.isActive = false; // ✅ Mark auction ended
+                await auction.save();
                 const highestBidder = await Bid.findOne({
                     auctionItem: auction._id,
                     amount: auction.currentBid,
@@ -135,6 +136,10 @@ export const endedAuctionCron = () => {
                     await bidder.save();
                     // ✅ Fix ends here
 
+                    if (typeof auctioneer.unpaidCommission !== 'number') {
+                        auctioneer.unpaidCommission = parseFloat(auctioneer.unpaidCommission) || 0;
+                        await auctioneer.save();
+                    }
                     await userModel.findByIdAndUpdate(auctioneer._id, {
                         $inc: {
                             unpaidCommission: commissionAmount,
@@ -142,7 +147,15 @@ export const endedAuctionCron = () => {
                     }, { new: true });
 
                     const subject = `Congratulation! You won the auction for ${auction.title}`;
-                    const message = `Dear ${bidder.userName},\n\nCongratulation! You have won the auction for ${auction.title}.\n\nBefore proceeding with payment, please contact your auctioneer:\n\nEmail: ${auctioneer.email}\n\nPayment Methods:\n\n1. **Bank Transfer**\n- Account Name: ${auctioneer.paymentMethods.bankTransfer.bankAccountName}\n- Account Number: ${auctioneer.paymentMethods.bankTransfer.bankAccountNumber}\n- Bank: ${auctioneer.paymentMethods.bankTransfer.bankName}\n\n2. **Raserpaise**\n- Account: ${auctioneer.paymentMethods.easyPaisa.easyPaisaAccountNumber}\n\n3. **PayPal**\n- Email: ${auctioneer.paymentMethods.payPal.paypalEmail}\n\n4. **Cash on Delivery (COD)**\n- 20% upfront payment required via any method above\n- 80% due upon delivery\n\nFor questions, contact your auctioneer: ${auctioneer.email}\n\nPlease complete your payment by [Payment Due Date]. Once we confirm the payment, the item will be shipped.\n\nThank you for participating!\n\nBest regards,\nEdulab Auction Team`;
+                    const message = `Dear ${bidder.userName},\n\nCongratulation! You have won the auction for
+                     ${auction.title}.\n\nBefore proceeding with payment, please contact your auctioneer:\n\nEmail: 
+                     ${auctioneer.email}\n\nPayment Methods:\n\n1. **Bank Transfer**\n- Account Name: 
+                     ${auctioneer.paymentMethods.bankTransfer.bankAccountName}\n- Account Number: 
+                     ${auctioneer.paymentMethods.bankTransfer.bankAccountNumber}\n- Bank:
+                     ${auctioneer.paymentMethods.bankTransfer.bankName}\n\n2. **Raserpaise**\n- Account: 
+                     ${auctioneer.paymentMethods.easyPaisa.easyPaisaAccountNumber}\n\n3. **PayPal**\n- Email:
+                     ${auctioneer.paymentMethods.payPal.paypalEmail}\n\n4. **Cash on Delivery (COD)**\n- 20% upfront payment required via any method above\n- 80% due upon delivery\n\nFor questions, contact your auctioneer:
+                     ${auctioneer.email}\n\nPlease complete your payment by [Payment Due Date]. Once we confirm the payment, the item will be shipped.\n\nThank you for participating!\n\nBest regards,\nEdulab Auction Team`;
 
                     console.log("Sending email to highest bidder:", bidder.email);
                     await sendEmail({ email: bidder.email, subject, message });

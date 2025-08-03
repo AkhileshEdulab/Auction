@@ -117,6 +117,10 @@ const auctionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
 });
 
 export const Auction = mongoose.model("Auction", auctionSchema);

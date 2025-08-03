@@ -6,6 +6,7 @@ import {v2 as cloudinary} from 'cloudinary'
 
 import { Bid } from "../Models/bidSchema.js";
 import { Auction } from "../Models/auctionSchema.js";
+import { proofOfCommission } from "./commissionController.js";
 
 // import { Auction } from "../models/auctionSchema.js";
 // import { Bid } from "../models/bidSchema.js";
@@ -48,13 +49,22 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             return next(new errorHandler("Auction starting time must be less then ending time.",400))
         }
 
-        const alreadyOneAuctionActive = await Auction.find({
-            createdBy:req.user._id,
-            endTime:{$gt:Date.now()},
-        })
+        // const alreadyOneAuctionActive = await Auction.find({
+        //     createdBy:req.user._id,
+        //     endTime:{$gt:Date.now()},
+        // })
 
-        if(alreadyOneAuctionActive.length>0){
-            return next(new errorHandler(`Already One Auction are Active.`,400))
+        // if(alreadyOneAuctionActive.length>0){
+        //     return next(new errorHandler(`Already One Auction are Active.`,400))
+        // }
+
+        const existingAuction = await Auction.findOne({
+        createdBy: req.user._id,
+        isActive: true,
+        });
+
+        if (existingAuction) {
+          return next(new errorHandler("Already one auction is scheduled or active.", 400));
         }
 
         try {
@@ -67,7 +77,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             console.error("Cloudinary error:",cloudinaryResponse.error||'unknown cloudinary error.')
             return next(new errorHandler("failed to auction image to cloudinary."))
          }
-  console.log("Creating auction item...");
+            console.log("Creating auction item...");
 
           const auctionItem = await Auction.create({
             title,
@@ -84,7 +94,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
              createdBy:req.user._id
         })
         return res.status(200).json({
-            message:`Auction item created and will be listed on auction page at${startTime}`,
+            message:`Auction item created and will be listed on auction page at ${startTime}`,
             success:true,
             auctionItem
         })
