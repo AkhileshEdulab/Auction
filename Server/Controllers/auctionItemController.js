@@ -17,7 +17,7 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
 
      const {image} = req.files;
 
-        const allowFormates = ['image/jpg','image/png','image/webp','image/jpeg']
+        const allowFormates = ['image/jpg','image/png','image/webp','image/jpeg','image/avif']
         if(!allowFormates.includes(image.mimetype)){
         return next(new errorHandler("This Auction Image formate are not supported.",400))
         }

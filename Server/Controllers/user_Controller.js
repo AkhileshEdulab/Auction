@@ -11,10 +11,11 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
         };
 
         const {profileImage} = req.files;
-        const allowFormates = ['image/jpg','image/jpeg','image/webp','image/png'];
+        const allowFormates = ['image/jpg', 'image/jpeg', 'image/webp', 'image/png', 'image/avif'];
         if(!allowFormates.includes(profileImage.mimetype)){
             return next (new errorHandler("image formate not support.",400))
         }
+            console.log("Uploaded mimetype:", req.file?.mimetype);
 
         const {
             userName,
@@ -139,3 +140,5 @@ export const fetchLeaderboard = catchAsyncErrors(async(req,res,next)=>{
         leaderboard,
     })
 });
+
+

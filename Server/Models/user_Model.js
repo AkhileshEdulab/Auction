@@ -59,7 +59,10 @@ export const userSchema =new mongoose.Schema({
         type:Number,
         default:0
     },
-
+   lastBidTime: {
+    type: Date,
+    default: null,
+  },
     createdAt: {
         type: Date,
        default: Date.now
