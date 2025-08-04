@@ -1,149 +1,4 @@
-// // import React, { useEffect, useState } from 'react';
-// // import { FaGreaterThan } from 'react-icons/fa6';
-// // import { useDispatch, useSelector } from 'react-redux';
-// // import { Link, useNavigate, useParams } from 'react-router-dom';
-// // import { getAuctionDetails } from '../Stores/Slices/auctionSlice';
-// // import  Spinner  from '../Components/SubComponents/Spinner';
-// // import { RiAuctionFill } from "react-icons/ri";
 
-// // const AuctionItem = () => {
-// //   const { id } = useParams();
-// //   const { loading, auctionDetails,auctionBidder } = useSelector((state) => state.auction);
-// //   const { isAuthenticated } = useSelector((state) => state.user);
-// //   const navigateTo = useNavigate();
-// //   const dispatch = useDispatch();
-
-// //   const [amount, setAmount] = useState(0);
-// //   const handleBid =()=>{
-// //     console.log("Bids");
-    
-// //   }
-
-// //   useEffect(() => {
-// //     if (!isAuthenticated) {
-// //       navigateTo('/');
-// //     }
-// //     if (id) {
-// //       dispatch(getAuctionDetails(id));
-// //       console.log('Dispatching getAuctionDetails with id:', id);
-// //     }
-// //   }, [isAuthenticated, id, dispatch]);
-
-// //   return (
-// //     <section className="mt-4 px-20 text-2xl">
-// //       <div className="flex items-center gap-2">
-// //         <Link to="/" className="hover:text-red-500 text-center">Home</Link>
-// //         <FaGreaterThan className="text-stone-500" />
-// //         <Link to="/auctions" className="hover:text-red-500 text-center">Auction</Link>
-// //         <FaGreaterThan className="text-stone-500" />
-// //         <h1 className="text-stone-500 text-sm">{auctionDetails?.title}</h1>
-// //       </div>
-
-// //       {loading ? (
-// //         <Spinner />
-// //       ) : (
-// //         <div className='flex w-full justify-between gap-5'>
-// //           <div className='w-[50%]'>
-// //             <div className="flex gap-5">
-// //           <div className="w-full flex flex-col">
-// //             <img
-// //               src={auctionDetails?.image?.url}
-// //               alt={auctionDetails?.title}
-// //               className="w-28 h-28 object-cover overflow-hidden"
-// //             />
-// //           </div>
-// //             <div>
-// //               <h1 className="font-semibold text-[18px]">{auctionDetails?.title}</h1>
-// //               <p className="font-semibold text-[18px]">
-// //                 Minimum Bid:{' '}
-// //                 <span className="text-red-500 text-[18px]">{auctionDetails?.startingBid}</span>
-// //               </p>
-// //             </div>
-// //             </div>
-// //             <hr className="text-stone-400 border-t-2 my-2" />
-// //             <div className="description mb-4">
-// //               <p className="font-semibold">Auction Descriptions</p>
-// //               <ul className="list-disc ml-6 text-sm text-stone-400">
-// //                 {auctionDetails?.description &&
-// //                   auctionDetails.description.split('. ').map((element, index) => (
-// //                     <li key={index} className='text-[18px] my-2'>{element}</li>
-// //                   ))}
-// //               </ul>
-// //             </div>
-// //           </div>
-// //           <div className='w-[50%]'>
-// //             <div className="bg-gray-200 rounded-md p-4 mb-4">
-// //               <h2 className="font-semibold text-2xl mb-2">Top Bidders</h2>
-// //               </div>
-// //                   <div className="">
-// //                     {auctionBidder && auctionBidder.length > 0 &&
-// //               new Date(auctionDetails.startTime) < Date.now() &&
-// //               new Date(auctionDetails.endTime) > new Date() ? (
-// //                 auctionBidder.map((bidder, index) => {
-// //                   return(
-// //                     <div key={index} className="flex items-center justify-between gap-4 mb-2">
-// //                     <div className="flex items-center gap-4">
-// //                       <img
-// //                       src={bidder?.profileImage}
-// //                       alt={bidder?.userName}
-// //                       className="rounded-full h-12 w-12 object-cover my-2 hidden md:block"
-// //                     />
-// //                       <p className='text-[18px]'>{bidder?.userName}</p>
-// //                     </div>
-// //                     <div>
-                    
-// //                       {
-// //                       index === 0 ?(<p className="text-[18px] font-semibold text-green-500">1st</p>
-// //                       ) : index === 1 ?(<p className="text-[18px] font-semibold text-blue-500">2nd</p>
-
-// //                       ) : index === 2 ?(<p className="text-[18px] font-semibold text-yellow-500">3rd</p>
-
-// //                       ) : (
-// //                       <p className="text-[18px] font-semibold text-gray-500">{index + 1}</p>) }
-                      
-// //                     </div>
-// //                   </div>
-// //                   )
-// //                 })
-// //               ) :  Date.now() < new Date(auctionDetails.startTime) ? (
-// //                 <img src="/notStarted.png" alt="notStarted.png" className='w-full max-h-[650px]'/>
-// //               ):( <img src="/auctionEnded" alt="auctionEnded"  className='w-full max-h-[650px]'/>)}
-            
-// //                   </div>
-// //             {/* Optional: Add Bid Input */}
-// //             <div className='flex justify-between'>
-              
-// //               {
-// //                 Date.now()>= new Date(auctionDetails.startTime)&&Date.now()<= new Date(auctionDetails.endTime)?(
-// //                 <>
-// //                 <div className="flex gap-3 flex-col sm-items-center">
-// //                   <p className='text-white'>Submit Bid</p>
-// //                   <input
-// //                 type="number"
-// //                 placeholder="Enter your bid"
-// //                 value={amount}
-// //                 onChange={(e) => setAmount(e.target.value)}
-// //                 className="p-2 border rounded focus:outline-none md text-[20px]"
-                
-// //               />
-// //               <button onClick={handleBid} className="ml-2 bg-red-500 text-white px-4 py-2 rounded">
-// //                <RiAuctionFill/>
-// //               </button>
-// //                 </div>
-// //                 </>
-// //               ): new Date(auctionDetails.startTime) >Date.now()?(
-// //                 <p className='text-white font-semibold text-xl'>Auction is not started yet!</p>
-// //               ):(   <p className='text-white font-semibold text-xl'>Auction has ended!</p>)
-// //               }
-// //             </div>
-// //           </div>
-// //         </div>
-// //       )}
-// //     </section>
-// //   );
-// // };
-
-// // export default AuctionItem;
 
 
 // import React, { useEffect, useState } from 'react';
@@ -352,7 +207,6 @@ const AuctionItem = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
 
   const [amount, setAmount] = useState(0);
-
   const handleBid = () => {
    
     console.log("Bid submitted: ", amount);
@@ -401,14 +255,6 @@ const AuctionItem = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Panel */}
         <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-4">
-          {/* <div className="flex p-4 flex-col gap-4 items-start">
-            <img
-              src={auctionDetails?.image?.url}
-              alt={auctionDetails?.title}
-              className="w-full h-72 rounded object-cover overflow-hidden"
-            />
-            <h1 className="font-bold text-xl">{auctionDetails?.title}</h1>
-          </div> */}
 <div className="flex p-4 flex-col gap-4 items-start">
   <div className="w-full aspect-video overflow-hidden rounded-lg">
     <img
@@ -423,19 +269,25 @@ const AuctionItem = () => {
           <hr className="my-4 border-gray-300" />
           <p className="text-lg font-medium mt-2">
             Category:{' '}
-            <span className="text-red-500 font-semibold">
+            <span className="text-red-500 text-md">
               {auctionDetails?.category}
             </span>
           </p>
           <p className="text-lg font-medium mt-2">
+            CurrentBid:{' '}
+            <span className="text-red-500 text-md">
+              {auctionDetails?.currentBid || auctionDetails?.startingBid}
+            </span>
+          </p>
+          <p className="text-lg font-medium mt-2">
             Condition:{' '}
-            <span className="text-red-500 font-semibold">
+            <span className="text-red-500 text-md">
               {auctionDetails?.condition}
             </span>
           </p>
           <p className="text-lg font-medium mt-2">
             Minimum Bid:{' '}
-            <span className="text-red-500 font-semibold">
+            <span className="text-red-500 text-md">
               ₹{auctionDetails?.startingBid}
             </span>
           </p>
@@ -451,7 +303,7 @@ const AuctionItem = () => {
         </div>
 
         {/* Right Panel */}
-        <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-4">
+        <div className="w-full lg:w-1/2 lg:h-1/2 bg-white shadow-md rounded-lg p-4 ">
           <div className="mb-4 bg-gray-300">
             <h2 className="font-semibold text-2xl p-2">Top Bidders</h2>
           </div>
@@ -479,9 +331,21 @@ const AuctionItem = () => {
                 </div>
               ))
             ) : now < auctionStart ? (
-              <img src="/notStarted.png" alt="Auction Not Started" className="w-full max-h-[400px] object-contain" />
-            ) : (
-              <img src="/auctionEnded.png" alt="Auction Ended" className="w-full max-h-[400px] object-contain" />
+             <div className="flex w-full justify-center">
+    <img
+      src="/notStarted.png"
+      alt="Auction Not Started"
+      className="w-auto max-w-full h-auto max-h-[400px] object-contain"
+    />
+  </div>
+) : (
+  <div className="flex w-full justify-center">
+    <img
+      src="/auctionEnded.png"
+      alt="Auction Ended"
+      className="w-auto max-w-full h-auto max-h-[600px] object-contain"
+    />
+  </div>
             )}
           </div>
 
@@ -511,9 +375,13 @@ const AuctionItem = () => {
             )}
           </div>
         </div>
+
+
       </div>
     </section>
   );
 };
 
 export default AuctionItem;
+
+

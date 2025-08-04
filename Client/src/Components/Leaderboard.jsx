@@ -8,7 +8,7 @@ const Leaderboard = () => {
   const { leaderboard = [], loading } = useSelector((state) => state.user);
 
   return (
-    <div className="px-4 sm:px-10 lg:px-20 py-6">
+    <div className="px-4 sm:px-10 lg:px-16 py-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
           Top 10 Bidders Leaderboard
@@ -56,9 +56,11 @@ const Leaderboard = () => {
                   <td className="text-center px-4 py-3 font-medium text-green-600">
                     ${bidder.moneySpent?.toLocaleString() || '0'}
                   </td>
-                  <td className="text-center px-4 py-3">{bidder.auctionsWon || 0}</td>
+                  <td className="text-center px-4 py-3">{bidder.auctionWon || 0}</td>
                   <td className="text-center px-4 py-3 text-gray-500 text-xs sm:text-sm">
-                    {bidder.lastBid || 'N/A'}
+                   {bidder.lastBidTime
+                     ? new Date(bidder.lastBidTime).toLocaleString()
+                     : 'N/A'}
                   </td>
                 </tr>
               ))

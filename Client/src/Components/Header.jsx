@@ -7,7 +7,7 @@ import { MdAccessTime } from 'react-icons/md';
 import { HiMenu, HiX } from 'react-icons/hi';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { RxDashboard } from "react-icons/rx";
 import { GiThorHammer } from "react-icons/gi";
@@ -32,7 +32,8 @@ const Header = () => {
   
 const { allAuction } = useSelector((state) => state.auction);
 
-  // Utility function to format day and time range
+const dispatch = useDispatch()
+ 
   const formatDayTimeRange = (startIso, endIso) => {
     if (!startIso || !endIso) return 'Invalid time';
 
@@ -341,12 +342,11 @@ const { allAuction } = useSelector((state) => state.auction);
             {!isAuthenticated ? (
               <>
               <Link to="/login" onClick={() => setMenuOpen(false)}>
-                <Button variant="contained" color="error">Login</Button>
+                <Button fullWidth variant="contained" color="error">Login</Button>
               </Link>
               </>
             ) : (
-             
-               <><Button variant="outlined" color="error"onClick={() => setMenuOpen(false)} onChange={ handleLogout}>Logout</Button></>
+               <><Button variant="outlined" color="error" onClick={ handleLogout}>Logout</Button></>
             )}
           </div>
         )}

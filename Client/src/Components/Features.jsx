@@ -19,26 +19,26 @@ const Features = () => {
   }, []);
 
   const handleScrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+const sliderSettings = {
+  dots: false,
+  arrows: false,
+  infinite: allAuction.length > 4,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    { breakpoint: 1024, settings: { slidesToShow: 3 } },
+    { breakpoint: 768, settings: { slidesToShow: 2 } },
+    { breakpoint: 480, settings: { slidesToShow: 1 } },
+  ],
+};
 
-  const sliderSettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
-    ],
-  };
 
   return (
     <section className="relative">
       <div className="my-8 px-4 sm:px-6 lg:px-16">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-800">
             Featured Auctions
           </h1>
 
@@ -58,7 +58,10 @@ const Features = () => {
           </div>
         </div>
 
-        <Slider ref={sliderRef} {...sliderSettings}>
+       {allAuction.length === 0 ? (
+        <p className="text-center text-gray-600 text-lg">No featured auctions available.</p>
+         ) : (
+        <Slider ref={sliderRef} {...sliderSettings} >
           {allAuction.slice(0, 6).map((element) => (
             <div key={element._id} className="px-2 ">
               <Card
@@ -72,6 +75,8 @@ const Features = () => {
             </div>
           ))}
         </Slider>
+       )}
+
       </div>
 
       {/* Scroll To Top Button */}

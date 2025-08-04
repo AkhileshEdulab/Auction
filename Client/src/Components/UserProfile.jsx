@@ -108,8 +108,8 @@ const UserProfile = () => {
             {[
               { name: 'userName', label: 'Name', disabled: true },
               { name: 'email', label: 'Email', disabled: true },
-              { name: 'phone', label: 'Phone' },
-              { name: 'address', label: 'Address' },
+              { name: 'phone', label: 'Phone', disabled:true },
+              { name: 'address', label: 'Address', disabled:true },
               { name: 'role', label: 'Role', disabled: true },
               { name: 'joined', label: 'Joined On', disabled: true },
               { name: 'bio', label: 'Bio', isTextarea: true },
