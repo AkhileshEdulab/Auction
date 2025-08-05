@@ -209,7 +209,6 @@ const AuctionItem = () => {
   const [amount, setAmount] = useState(0);
   const handleBid = () => {
    
-    console.log("Bid submitted: ", amount);
     const formData = new FormData();
     formData.append ('amount',amount);
      dispatch(postBid(id,formData));
@@ -219,14 +218,13 @@ const AuctionItem = () => {
   useEffect(() => {
     if (!isAuthenticated) {
       navigateTo('/');
-      return;
     }
 
     if (id) {
       dispatch(getAuctionDetails(id));
      
     }
-  }, [dispatch, id, isAuthenticated, navigateTo]);
+  }, [ isAuthenticated]);
 
   if (!auctionDetails || !auctionDetails.startTime || !auctionDetails.endTime) {
     return (

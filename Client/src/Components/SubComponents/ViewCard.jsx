@@ -62,15 +62,18 @@ const ViewCard = ({ imgSrc, title, startTime, endTime, statingBid, id }) => {
 
   return (
     <>
-      <div className="flex flex-col bg-white rounded-md p-4 transition duration-300 max-w-sm">
-        <img
-          src={imgSrc}
-          alt={title}
-          className="w-full aspect-[4/3] object-cover rounded-md mb-4"
-        />
+      <div className="flex flex-col bg-white rounded-md  transition duration-300 max-w-sm">
+       
+        <div className="w-full h-[200px] flex justify-center items-center overflow-hidden mb-2">
+         <img
+           src={imgSrc}
+           alt={title}
+           className="object-cover max-h-full"
+         />
+      </div>
 
-        <div className="px-2 pt-2 pb-2">
-          <h5 className="text-gray-800 text-lg font-semibold mb-2">{title}</h5>
+        <div className="">
+          <h5 className="text-gray-800 text-lg font-semibold mb-2 line-clamp-2">{title}</h5>
 
           {statingBid && (
             <p className="text-sm text-gray-600 mb-1">

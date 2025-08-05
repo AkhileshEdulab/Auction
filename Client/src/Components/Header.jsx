@@ -55,10 +55,26 @@ const dispatch = useDispatch()
     return `${startDay}–${endDay}: ${startTime}–${endTime}`;
   };
 
-  const startTimeUTC = allAuction?.[0]?.startTime;
-  const endTimeUTC = allAuction?.[0]?.endTime;
+  // const startTimeUTC = allAuction?.[0]?.startTime;
+  // const endTimeUTC = allAuction?.[0]?.endTime;
 
-  const auctionTimeInfo = formatDayTimeRange(startTimeUTC, endTimeUTC);
+  // const auctionTimeInfo = formatDayTimeRange(startTimeUTC, endTimeUTC);
+
+  // Get current time
+const now = new Date();
+
+// Filter upcoming auctions (future startTime)
+const upcomingAuctions = allAuction?.filter(
+  (auction) => new Date(auction.startTime) > now
+);
+
+// Get the first upcoming auction (soonest one)
+const nextAuction = upcomingAuctions?.[0];
+
+// Extract time info
+const auctionTimeInfo = nextAuction
+  ? formatDayTimeRange(nextAuction.startTime, nextAuction.endTime)
+  : 'No upcoming auctions';
 
   const handleSelect = (lang) => {
     setSelected(lang);
@@ -77,13 +93,13 @@ const dispatch = useDispatch()
             <span className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>Customer support</span>
             <Divider orientation="vertical" flexItem />
             <AiOutlineMail fontSize={18}/>
-            <span className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>contact@example.com</span>
+            <Link to={'/contact-us'} className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>contact@example.com</Link>
             <Divider orientation="vertical" flexItem />
             <MdAccessTime fontSize={18}/>
-            <span className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>{auctionTimeInfo}</span>
+            <Link to={'/upcoming'} className=' font-medium transition-all ease-in-out duration-1000 hover:text-red-500 cursor-pointer'>{auctionTimeInfo}</Link>
           </div>
-          <div className="flex items-center gap-4">
-            <Link to={'/how to bid'} className="rounded-full border-1 px-2 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">HOW TO BID</Link>
+          <div className="flex items-center gap-4 ">
+            <Link to={'/how to bid'} className="rounded-full border-1 px-2 py-1  font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">HOW TO BID</Link>
             <Link to={'/how to sell'} className="rounded-full border-1 px-2 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">SELL YOUR ITEM</Link>
             <Divider orientation="vertical" flexItem />
             
@@ -122,14 +138,14 @@ const dispatch = useDispatch()
 
       {/* Navbar */}
       <nav className="bg-white shadow-md">
-        <div className="max-w-screen-xl mx-auto flex gap-4 justify-between items-center px-4 py-3 md:py-5 md:px-8">
+        <div className="max-w-screen-xl mx-auto flex gap-4 justify-between items-center px-4 py-3 ">
           {/* Logo */}
           <div className="flex justify-between items-center w-full md:w-auto">
            <Link to={'/'}>
             <img
-              src="https://autobid.modeltheme.com/wp-content/themes/autobid/images/logo-autobid.svg"
+              src="logo.png"
               alt="Logo"
-              className="h-14"
+              className="h-10 p-2 lg:h-16"
             />
            </Link>
             <button
@@ -266,7 +282,7 @@ const dispatch = useDispatch()
         <ul className="flex flex-col text-black text-sm py-2">
           <li>
             <NavLink
-              to="/how-it-works"
+              to="/how it works"
               className={({ isActive }) =>
               ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
              
@@ -276,7 +292,7 @@ const dispatch = useDispatch()
           </li>
           <li>
             <NavLink
-              to="/how-to-sell" className={({ isActive }) =>
+              to="/how to sell" className={({ isActive }) =>
               ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
              
             >

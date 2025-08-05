@@ -183,7 +183,7 @@ const ViewMyAuction = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {myAuction && myAuction.length > 0 ? (
             myAuction.map((element) => (
               <div

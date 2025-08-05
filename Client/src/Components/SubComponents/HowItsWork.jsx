@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { IoIosCreate } from "react-icons/io";
-
 import {
   FaUser,
   FaGavel,
@@ -9,51 +6,59 @@ import {
   FaDollarSign,
   FaFileInvoice,
   FaRedo,
-  FaTrophy,
 } from 'react-icons/fa';
+
 const steps = [
   {
     step: '01',
-    title: 'Registration',
+    title: 'User Registration',
     description:
-      'Sabse pehle, platform par apne account ko register karein. Isme aapko apna naam, email or password and etc dena hoga. Registration ke baad aap login karke platform ke saare features access kar sakte hain.',
-     icon: <FaUser />,
-    },
+      'Users must register or log in to perform operations such as posting auctions, bidding on items, accessing the dashboard, and sending payment proof.',
+    icon: <FaUser />,
+  },
   {
     step: '02',
     title: 'Role Selection',
     description:
-      'Registration ke baad, aapko apni role select karni hogi. Aapko **Auctioneer** ka role select karna hoga. Auctioneer ke role se aap items ko auction mein add kar sakte hain.',
-   icon: <FaGavel />,
-    },
+      'Users can register as either a "Bidder" or "Auctioneer." Bidders can bid on items, while Auctioneers can post items.',
+    icon: <FaGavel />,
+  },
   {
     step: '03',
-    title: 'Creating or Republish Auction',
-    description:
-      'Apne items ka auction create karne ke liye, aapko **title, description, price, or images and etc** upload karni hoti hain. Agar aapke item par auction already hai aur aapko republish karna hai, toh wo bhi kar sakte hain.',
-   icon: <IoIosCreate  />,},
-  {
-    step: '04',
     title: 'Winning Bid Notification',
     description:
-      'Jab auction ka time khatam ho jayega, **jo highest bidder hoga**, usi ko auction jeetne ki notification milegi. Aapko winner ko payment details bhejni hoti hain.',
-  icon: <FaTrophy />, },
+      "After winning an item, the highest bidder will receive an email with the Auctioneer's payment method information, including bank transfer, Easypaisa, and PayPal.",
+    icon: <FaEnvelope />,
+  },
+  {
+    step: '04',
+    title: 'Commission Payment',
+    description:
+      'If the Bidder pays, the Auctioneer must pay 5% of that payment to the platform. Failure to pay results in being unable to post new items, and a legal notice will be sent.',
+    icon: <FaDollarSign />,
+  },
   {
     step: '05',
-    title: 'Commission Payment (5% Fee)',
+    title: 'Proof of Payment',
     description:
-      'Agar auction jeeta gaya hai, toh auctioneer ko **5% commission** platform ka dena hoga, and aapko **payment ka screenshot** dena hoga. Admin payment verify karne ke baad hi aap apna next auction create ya republish kar sakte hain.',
-   icon: <FaFileInvoice />,},
- 
+      'The platform receives payment proof as a screenshot and the total amount sent. Once approved by the Administrator, the unpaid commission of the Auctioneer will be adjusted accordingly.',
+    icon: <FaFileInvoice />,
+  },
+  {
+    step: '06',
+    title: 'Reposting Items',
+    description:
+      'If the Bidder does not pay, the Auctioneer can republish the item without any additional cost.',
+    icon: <FaRedo />,
+  },
 ];
 
-
-const HowToSell = () => {
+const HowItWorks = () => {
   return (
     <section className="bg-white py-20 px-4 md:px-16">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          How <span className="italic text-red-400">Sell</span> Your Items
+          How <span className="italic text-red-400">Online Auction</span> Works
         </h2>
       </div>
 
@@ -99,6 +104,7 @@ const HowToSell = () => {
     </div>
   );
 })}
+
       </div>
       <div className="flex flex-col md:flex-row w-full justify-between px-4 py-4 md:px-20 gap-5">
         {/* Card 1 */}
@@ -129,4 +135,4 @@ const HowToSell = () => {
   );
 };
 
-export default HowToSell;
+export default HowItWorks;

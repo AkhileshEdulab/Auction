@@ -28,6 +28,7 @@ import HowToBid from './Components/SubComponents/HowToBid';
 import Contact from './Components/Contact';
 import HowToSell from './Components/SubComponents/HowToSell';
 import UserProfile from './Components/UserProfile';
+import HowItWorks from './Components/SubComponents/HowItsWork';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,8 @@ const App = () => {
       <Route path='/auction/details/:id' element={<ViewAuctionDetails/>}/>
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/how to bid' element={<HowToBid/>}/>
-      <Route path='/how-to-sell' element={<HowToSell/>}/>
+      <Route path='/how to sell' element={<HowToSell/>}/>
+      <Route path='/how it works' element={<HowItWorks/>}/>
       <Route path='/contact-us' element={<Contact/>}/>
       <Route path='/user-profile' element={<UserProfile/>}/>
 
