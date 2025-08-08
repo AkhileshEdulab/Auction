@@ -99,7 +99,7 @@ const FAQ = () => {
     <>
       <div className="px-4 md:px-30 py-12 w-full">
         <h2 className="text-3xl font-bold mb-10 text-center">
-          Frequently Asked <em className="italic text-gray-500">Questions</em>
+          Frequently Asked <em className="italic text-red-600">Questions</em>
         </h2>
 
         <Box
@@ -114,9 +114,8 @@ const FAQ = () => {
         >
           <Tabs
             orientation={isMobile ? 'horizontal' : 'vertical'}
-            variant={isMobile ? 'scrollable' : 'standard'}
-            scrollButtons={isMobile ? 'auto' : false}
-            allowScrollButtonsMobile
+             variant="standard"
+             scrollButtons={isMobile ? 'auto' : false}
             value={value}
             onChange={handleTabChange}
             aria-label="FAQ categories"
@@ -133,7 +132,7 @@ const FAQ = () => {
               borderColor: 'divider',
               height: isMobile ? '100%' : 420,
               backgroundColor: '#fef3c7',
-              overflowY: 'auto',
+              overflowY: 'hidden',
               overflowX: 'hidden',
               minWidth: isMobile ? '100%' : '300px',
               mb: isMobile ? 2 : 0,
