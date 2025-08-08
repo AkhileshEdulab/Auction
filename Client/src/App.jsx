@@ -28,6 +28,7 @@ import Contact from './Components/Contact';
 import HowToSell from './Components/SubComponents/HowToSell';
 import UserProfile from './Components/UserProfile';
 import HowItWorks from './Components/SubComponents/HowItsWork';
+import NotFoundPage from './Pages/NotFoundPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const App = () => {
 
 
       {/* Fallback route for unmatched URLs */}
-        <Route path="*" element={<div className="p-4 text-center text-red-600 font-semibold">404 - Page Not Found</div>} />
+        <Route path="*" element={<NotFoundPage/>} />
     </Routes>
     <Footer/>
     <ToastContainer
