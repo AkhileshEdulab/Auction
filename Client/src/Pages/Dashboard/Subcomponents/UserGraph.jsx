@@ -30,20 +30,7 @@ ChartJS.register(
 const UserGraph = () => {
     const {totalAuctioneers,totalBidders} = useSelector(state=>state.superAdmin);
      const chartData = {
-        labels: [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ],
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         datasets: [
           {
             label: 'Number of Bidder',
@@ -64,7 +51,7 @@ const UserGraph = () => {
         scales:{
           y:{
               beginAtZero:true,
-              max:5,
+              max:10,
                 ticks:{
                     callback:function(value){
                         return value.toLocaleString()
@@ -79,9 +66,28 @@ const UserGraph = () => {
             }
         }
       };
-  return (
-   <Line data={chartData} options={options}/>
-  )
+  return (<>
+  <div className="w-full h-96 sm:h-[28rem] md:h-[36rem] relative">
+  <Line
+    data={chartData}
+    options={{
+      ...options,
+      responsive: true,
+      maintainAspectRatio: false,
+    }}
+    // Do NOT set height or width here
+  />
+</div>
+
+<style jsx>{`
+  /* Force the canvas to take full size of parent */
+  div > canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+`}</style>
+  </>
+ )
 }
 
 export default UserGraph;

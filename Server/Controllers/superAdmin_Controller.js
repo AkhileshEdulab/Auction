@@ -145,7 +145,7 @@ export const monthlyRevenue = catchAsyncErrors(async(req,res,next)=>{
         month:{$month:"$createdAt"},
         year:{$year:"$createdAt"},
       },
-     totalAmounts:{$sum:"amount"}
+     totalAmounts: { $sum: "$amount" },
     },
 
   },{
@@ -156,7 +156,7 @@ export const monthlyRevenue = catchAsyncErrors(async(req,res,next)=>{
   const transformDataToMonthlyArray = (payments, totalMonths = 12) => {
     const result = Array(totalMonths).fill(0);
     payments.forEach((payment) => {
-      result[payment.month - 1] = payment.totalAmounts;
+      result[payment._id.month - 1] = payment.totalAmounts;
     });
     return result;
   };
@@ -166,4 +166,3 @@ export const monthlyRevenue = catchAsyncErrors(async(req,res,next)=>{
     totalMonthlyRevenue,
   })
 })
-

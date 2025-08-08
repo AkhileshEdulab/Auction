@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import HomePage from './Pages/HomePage'
 import {BrowserRouter as Router,Routes, Route} from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import Header from './Components/Header';
 import FAQ from './Pages/FAQ';
 import SignIn from './Pages/SignIn/SignIn';
@@ -9,7 +9,7 @@ import SignUp from './Pages/SignUp/SignUp';
 import CommissionProof from './Components/CommissionProof';
 import { useDispatch } from 'react-redux';
 import { featchLeaderboard, fetchUser } from './Stores/Slices/userSlices';
-import { getAllAuction, getAuctionDetails } from './Stores/Slices/auctionSlice';
+import { getAllAuction} from './Stores/Slices/auctionSlice';
 import AboutUs from './Pages/AboutUs';
 import UpcommingAuctionListed from './Components/UpcommingAuctionListed';
 import LeaderboardPage from './Pages/LeaderboardPage';
@@ -17,7 +17,6 @@ import Auctions from './Pages/Auctions';
 import AuctionItem from './Pages/AuctionItem';
 import CreateAuction from './Pages/CreateAuction';
 import ViewMyAuction from './Pages/ViewMyAuction';
-import ViewAuctionDetails from './Pages/ViewAuctionDetails';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Footer from './Components/Footer';
 
@@ -54,7 +53,6 @@ const App = () => {
       <Route path="/auction/item/:id" element={<AuctionItem />} />
       <Route path='/create-auction' element={<CreateAuction/>}/>
       <Route path='/view-auction' element={<ViewMyAuction/>}/>
-      <Route path='/auction/details/:id' element={<ViewAuctionDetails/>}/>
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/how to bid' element={<HowToBid/>}/>
       <Route path='/how to sell' element={<HowToSell/>}/>

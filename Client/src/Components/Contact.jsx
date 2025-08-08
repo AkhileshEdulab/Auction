@@ -47,7 +47,7 @@ const [loading, setLoading] = useState(false);
     });
 };
   return (
-    <div className="flex flex-col md:flex-row gap-10 px-6 md:px-20 py-12 bg-white">
+    <div className="flex flex-col md:flex-row gap-10 px-6 md:px-20 py-12 ">
       <div className="flex flex-col  justify-center gap-8 w-full md:w-1/2">
          <h1 className='font-bold text-2xl'>Contact Me!</h1>
         <div className="bg-white shadow rounded-xl p-2 border border-gray-300">

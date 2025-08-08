@@ -13,7 +13,7 @@ const Auctions = () => {
       ) : (
         <section>
           <div className="my-5 px-4 sm:px-6 md:px-8 lg:px-16">
-            <h1 className="text-2xl font-semibold mb-4">Auctions</h1>
+            <h1 className="text-2xl font-semibold mb-4">All Auctions</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {allAuction.map((element) => (
                 <Card

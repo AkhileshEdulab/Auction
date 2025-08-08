@@ -104,7 +104,7 @@ const CreateAuction = () => {
 }, [success, navigateTo]);
 
   return (
-    <section className="w-full min-h-screen flex justify-center items-center bg-gray-100 px-6 py-10">
+    <section className="w-full min-h-screen flex justify-center items-center px-6 py-10">
       <div className="w-full max-w-3xl bg-white p-8 rounded-xl shadow-md">
         <h1 className="text-3xl font-semibold text-center mb-6">Create Auction</h1>
 

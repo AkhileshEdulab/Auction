@@ -58,7 +58,7 @@ const SignIn = () => {
   }, [isAuthenticated, navigate]);
 
   return (
-    <section className="min-h-screen bg-gray-100">
+    <section className="min-h-screen">
       <div className="flex justify-center items-center px-4 py-8">
         <form
           onSubmit={handleSubmit}

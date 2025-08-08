@@ -16,7 +16,7 @@ import { FaQuestionCircle } from "react-icons/fa";
 import { SiGooglesearchconsole } from "react-icons/si";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 import ProfileMenu from './SubComponents/ProfileMenu'
-import { LiaLanguageSolid } from "react-icons/lia";
+import { LiaSearchSolid } from "react-icons/lia";
 import { logout } from '../Stores/Slices/userSlices';
 import { FaAngleDown,} from "react-icons/fa6";
 import { IoIosContact } from "react-icons/io";
@@ -24,13 +24,10 @@ import { IoIosContact } from "react-icons/io";
 const Header = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isdropdown, setDropdown] = useState(false);
-  const [selected, setSelected] = useState("Language");
-  const languages = ["English", "Hindi"];
-  
-const { allAuction } = useSelector((state) => state.auction);
+  const [showModal, setShowModal] = useState(false);
+  const { allAuction } = useSelector((state) => state.auction);
 
 const dispatch = useDispatch()
  
@@ -76,10 +73,7 @@ const auctionTimeInfo = nextAuction
   ? formatDayTimeRange(nextAuction.startTime, nextAuction.endTime)
   : 'No upcoming auctions';
 
-  const handleSelect = (lang) => {
-    setSelected(lang);
-    setOpen(false);
-  };
+  
  const handleLogout = () => {
    dispatch(logout()); 
  };
@@ -103,33 +97,45 @@ const auctionTimeInfo = nextAuction
             <Link to={'/how to sell'} className="rounded-full border-1 px-2 py-1 font-medium hover:bg-red-500 hover:text-white transition-all ease-in-out duration-1000 ">SELL YOUR ITEM</Link>
             <Divider orientation="vertical" flexItem />
             
-           <div className="fontSize={18}relative inline-block text-right">
+           <div className="fontSize={18}relative inline-block ">
+     
+      {/* Search Button */}
       <button
-        onClick={() => setOpen(!open)}
-        className="inline-flex justify-between items-center font-medium w-40 px-4 py-2 bg-white border border-gray-300 rounded-md  hover:bg-gray-50 transition-all"
+        onClick={() => setShowModal(true)}
+        className="inline-flex justify-between items-center font-medium w-40 px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-all"
       >
-         < LiaLanguageSolid fontSize={18}/>
-        {selected}
-       
+        <LiaSearchSolid fontSize={18} className="mr-2" />
+        Search
       </button>
 
+      {/* Modal Backdrop & Box */}
       <div
-        className={`origin-top-left absolute z-10 w-40 mt-2 shadow-lg bg-white  transition-all duration-200 transform ${
-          open ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-[#080808c4] bg-opacity-50 transition-opacity duration-700 ${
+          showModal ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ transformOrigin: 'top' }}
       >
-        <ul className="py-1">
-          {languages.map((lang) => (
-            <li
-              key={lang}
-              onClick={() => handleSelect(lang)}
-              className="block px-4 py-2 text-sm text-gray-9 font-medium hover:bg-red-500 hover:text-white cursor-pointer"
-            >
-              {lang}
-            </li>
-          ))}
-        </ul>
+        {/* Modal content */}
+        <div
+          className={`bg-white w-full max-w-md  p-6 rounded-lg border shadow-lg transform transition-all duration-700 ${
+            showModal ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+          }`}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setShowModal(false)}
+            className="absolute top-2 right-3 hover:bg-red-500 text-gray-700 hover:text-white rounded-full text-2xl font-bold px-1.5 transition-all"
+          >
+            &times;
+          </button>
+
+          {/* Modal Body */}
+          <h2 className="text-xl font-semibold mb-4">What are you looking for?</h2>
+          <input
+            type="text"
+            placeholder="Search something..."
+            className="w-full px-4 py-2 border-b focus:outline-none "
+          />
+        </div>
       </div>
     </div>
           </div>
@@ -137,15 +143,15 @@ const auctionTimeInfo = nextAuction
       </header>
 
       {/* Navbar */}
-      <nav className="bg-white shadow-md">
-        <div className="max-w-screen-xl mx-auto flex gap-4 justify-between items-center px-4 py-3 ">
+      <nav className=" shadow">
+        <div className="max-w-screen-xl mx-auto flex gap-4 justify-between items-center px-4 ">
           {/* Logo */}
           <div className="flex justify-between items-center w-full md:w-auto">
            <Link to={'/'}>
             <img
               src="logo.png"
               alt="Logo"
-              className="h-10 p-2 lg:h-16"
+              className="h-10 p-2 lg:h-20"
             />
            </Link>
             <button

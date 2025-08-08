@@ -1,106 +1,81 @@
-import React, { useEffect, useState } from 'react'
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
-
-const images = [
-  "1.jpg",
-  "2.jpg",
-  "3.jpeg",
-  "4.jpg"
-]
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
+import { LuMoveUpLeft, LuMoveUpRight } from "react-icons/lu";
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
+import { Link } from 'react-router-dom';
 
 const HeroSlider = () => {
-
-
-const [slider,setSlider] = useState(0);
-
-const nextSlider = ()=>{
-  setSlider((prevSlide)=>(prevSlide + 1)%images.length)
-}
-const prevSlider = ()=>{
-  setSlider((prevSlide)=>(prevSlide - 1 + images.length)%images.length)
-}
-
-useEffect(()=>{
-  const notinterval = setInterval(nextSlider,5000);
-  return () =>clearInterval(notinterval)
-})
   return (
-   <div className=" ">
-    <div className="flex flex-col md:flex-row gap-8">
-      
-        <div className="relative w-full overflow-hidden group mx-auto rounded-lg ">
-          <button onClick={prevSlider} className='absolute top-1/2 left-4 transform translate-y-1/2 text-white text-3xl cursor-pointer bg-red-500 bg-opacity-50 opacity-0 group-hover:opacity-100 p-2 rounded-full transition-opacity duration-300'>
-            <FaArrowLeft/></button>
+    <div className="relative mt-6 flex flex-col md:flex-row items-center justify-between px-6 lg:px-32 py-4 overflow-hidden ">
+      {/* Left Content */}
+      <div className="w-full md:w-1/2 text-center md:text-left space-y-6 z-20">
+        <p className="text-red-600 font-semibold text-base sm:text-lg">Welcome To <span className='text-2xl font-bold font-serif italic bg-gradient-to-br from-yellow-600 to-slate-900 bg-clip-text text-transparent'> BidMarko</span> Auction</p>
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+        Select, <span className="text-red-600">Our Product </span> At Our Auction.
+        </h1>
+        <p className="text-gray-600 text-sm md:text-base max-w-md mx-auto md:mx-0">
+          Nulla facilisi. Maecenas ac tellus ut ligula interdum convallis. Nullam dapibus on erat in dolor posuere, none hendrerit lectus ornare. Suspendisse sit amet turpina sagittis, ultrices dui et, aliquam.
+        </p>
+        <Link to={'/upcoming'} className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-red-700 transition-all mx-auto md:mx-0 w-fit">
+          Start Exploring <span className="text-lg transition-all duration-200 hover:scale-150 inline-block"> <LuMoveUpRight /></span>
+        </Link>
+      </div>
 
-          <div className="crousel-image">
-            <img src={images[slider]} 
-            alt={`Slider${slider + 1}`} 
-            className='w-full h-[300px] md:h-[500px] object-cover transition-all ease-in-out duration-700 '
-            />
-          </div> 
-          <button onClick={nextSlider} className='absolute top-1/2 right-4 transform translate-y-1/2 text-white text-3xl p-2 cursor-pointer bg-red-500 rounded-full bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300'><FaArrowRight/></button>
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {images.map((_,item)=>(
-              <button key={item} 
-              onClick={()=>setSlider(item)}
-              className={`w-3 h-3 rounded-full ${slider === item ? "bg-red-500":"bg-gray-400"} cursor-pointer transition-colors duration-300 `}             />
-            ))}
-          </div>
+      {/* Right Content */}
+      <div className="relative w-full md:w-1/2 mt-10 md:mt-0 flex flex-col items-center z-20">
+
+        {/* Background Circle */}
+        <div className="absolute  w-[400px] sm:w-[500px] md:w-[600px] h-[400px] sm:h-[500px] md:h-[600px] bg-[#e2efeb] rounded-full z-0"></div>
+
+        {/* Swiper Image Slider */}
+        <div className="w-full max-w-[320px] sm:max-w-[380px] md:max-w-[500px] relative z-10">
+          <Swiper
+            effect="fade"
+            modules={[EffectFade, Pagination, Autoplay]}
+            pagination={{
+              clickable: true,
+              bulletClass: 'swiper-pagination-bullet custom-bullet',
+              bulletActiveClass: 'swiper-pagination-bullet-active custom-active-bullet',
+            }}
+            autoplay={{ delay: 3000 }}
+            loop={false}
+            fadeEffect={{ crossFade: true }}
+            className="rounded-lg"
+          >
+            <SwiperSlide>
+              <img src="banner.png" alt="bike-1" className="w-full object-contain" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="banner1.png" alt="bike-2" className="w-full object-contain" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="banner2.webp" alt="bike-3" className="w-full object-contain" />
+            </SwiperSlide>
+          </Swiper>
+
+          {/* Swiper Dot Styles */}
+          <style jsx>{`
+            .custom-bullet {
+              background-color: #d1d5db;
+              width: 12px;
+              height: 12px;
+              opacity: 1;
+              margin: 0 4px;
+              border-radius: 9999px;
+            }
+            .custom-active-bullet {
+              background-color: #ef4444;
+            }
+          `}</style>
         </div>
-      
 
-          <div className="flex flex-col  gap-5 md:gap-5">
-  <div className="relative group w-full md:w-[300px]">
-    <div className="relative h-[240px] overflow-hidden rounded-lg">
-      <img
-        src="1.jpg"
-        alt="Samsung Gear VR Camera"
-        className="w-full h-full object-cover group-hover:scale-105 transform-gpu transition-transform duration-700"
-      />
-
-      <div className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-10">
-        <div className="bg-white  opacity-80 text-black flex px-4 py-1  gap-2 rounded-full ">
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold ">175</h1>
-            <p className="text-sm">Days</p>
-          </div>
-          <span>:</span>
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold ">6</h1>
-            <p className="text-sm">Hours</p>
-          </div>
-          <span>:</span>
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold ">8</h1>
-            <p className="text-sm">Minutes</p>
-          </div>
-          <span>:</span>
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold ">45</h1>
-            <p className="text-sm">Seconds</p>
-          </div>
-        </div>
+        {/* Yellow Oval Shadow */}
       </div>
     </div>
-  </div>
-
-  <div className="relative group w-full md:w-[300px]">
-    <div className="relative w-full md:w-[300px] h-[240px] overflow-hidden rounded-lg">
-     <iframe
-             className="w-full h-full"
-             src="https://www.youtube.com/embed/nInHvH6X7zM"
-             title="YouTube video"
-             frameBorder="0"
-             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-             allowFullScreen
-           ></iframe>
-    </div>
-  </div>
-        </div>
-
-    </div>
-   </div>
-  )
-}
+  );
+};
 
 export default HeroSlider;

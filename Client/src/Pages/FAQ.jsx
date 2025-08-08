@@ -97,7 +97,7 @@ const FAQ = () => {
 
   return (
     <>
-      <div className="px-4 md:px-20 py-12 w-full">
+      <div className="px-4 md:px-30 py-12 w-full">
         <h2 className="text-3xl font-bold mb-10 text-center">
           Frequently Asked <em className="italic text-gray-500">Questions</em>
         </h2>
@@ -105,7 +105,7 @@ const FAQ = () => {
         <Box
           sx={{
             flexGrow: 1,
-            bgcolor: 'background.paper',
+            // bgcolor: 'background.paper',
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
             minHeight: 400,
@@ -209,7 +209,7 @@ const FAQ = () => {
         </Box>
       </div>
 
-      <div className="flex flex-col md:flex-row w-full justify-between px-4 py-4 md:px-20 gap-5">
+      <div className="flex flex-col md:flex-row w-full justify-between px-4 py-4 md:px-30 gap-5">
         {/* Card 1 */}
         <div className="relative w-full md:w-[900px] h-36 rounded-lg overflow-hidden">
           <img

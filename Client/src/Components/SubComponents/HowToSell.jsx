@@ -50,7 +50,7 @@ const steps = [
 
 const HowToSell = () => {
   return (
-    <section className="bg-white py-20 px-4 md:px-16">
+    <section className=" py-20 px-4 md:px-16">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
           How <span className="italic text-red-400">Sell</span> Your Items

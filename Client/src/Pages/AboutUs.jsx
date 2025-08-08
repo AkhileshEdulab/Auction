@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ImHammer2 } from "react-icons/im";
-
-import { FaUserCheck, FaGavel, FaWallet } from 'react-icons/fa';
+import { PiGavel } from "react-icons/pi";
+import { PiWalletLight } from "react-icons/pi";
+import { FaRegUser } from 'react-icons/fa';
 import { MdOutlineHowToVote } from 'react-icons/md';
 import { useSelector } from 'react-redux';
- 
 
 const steps = [
   {
     id: '01',
     title: 'Registration',
-    icon: <FaUserCheck className="text-4xl text-emerald-500" />,
+    icon: <FaRegUser className="text-4xl text-red-600" />,
     description: 'Cras cursus faucibus enim id portac et feugiat tortor duis ut egestas.',
     points: [
       'Specific Information',
@@ -21,7 +21,7 @@ const steps = [
   {
     id: '02',
     title: 'Select Product',
-    icon: <MdOutlineHowToVote className="text-4xl text-emerald-500" />,
+    icon: <MdOutlineHowToVote className="text-4xl text-red-600" />,
     description: 'Cras cursus faucibus enim id portac et feugiat tortor duis ut egestas.',
     points: [
       'Search Your Auction',
@@ -32,7 +32,7 @@ const steps = [
   {
     id: '03',
     title: 'Go to Bidding',
-    icon: <FaGavel className="text-4xl text-emerald-500" />,
+    icon: <PiGavel className="text-4xl text-red-600" />,
     description: 'Cras cursus faucibus enim id portac et feugiat tortor duis ut egestas.',
     points: [
       'Choose The Bid Product',
@@ -43,7 +43,7 @@ const steps = [
   {
     id: '04',
     title: 'Make Payment',
-    icon: <FaWallet className="text-4xl text-emerald-500" />,
+    icon: <PiWalletLight  className="text-4xl text-red-600" />,
     description: 'Cras cursus faucibus enim id portac et feugiat tortor duis ut egestas.',
     points: [
       'Specific Information',
@@ -52,36 +52,61 @@ const steps = [
     ],
   },
 ];
+
+const step2 = [
+  {
+    title: 'Our Mission',
+    desc: 'Founded by Akhilesh, BidMarco was born out of a passion for connecting people with unique and valuable items. With years of experience in the auction industry, our team is committed to creating a platform that offers an unparalleled auction experience for users worldwide.',
+  },
+  {
+    title: 'Our Values',
+    desc: [
+      "We prioritize honesty and transparency in all our dealings, ensuring a fair and ethical auction experience for everyone.",
+      "We continually enhance our platform with cutting-edge technology and features to provide users with a seamless and efficient auction process.",
+      "We foster a vibrant community of buyers and sellers who share a passion for finding and offering exceptional items.",
+      "We are committed to providing exceptional customer support and resources to help users navigate the auction process with ease.",
+    ],
+  },
+  {
+    title: 'Our Story',
+    desc: 'Founded by CodeWithZeeshu, PrimeBid was born out of a passion for connecting people with unique and valuable items. With years of experience in the auction industry, our team is committed to creating a platform that offers an unparalleled auction experience for users worldwide.',
+  },
+  {
+    title: 'Join Us',
+    desc: 'Whether you are looking to buy, sell, or simply explore, PrimeBid invites you to join our growing community of auction enthusiasts. Discover new opportunities, uncover hidden gems, and experience the thrill of winning your next great find.',
+  },
+];
 const About = () => {
      const { user, loading } = useSelector(state => state.user);
+      const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
-   <section className="px-4 sm:px-8 md:px-16 lg:px-36 py-16 bg-white">
+   <section className="px-4 sm:px-8 md:px-16 lg:px-30 py-16 ">
   <h2 className="text-3xl md:text-4xl text-center font-bold text-gray-900 mb-16">
-    About <span className="italic text-gray-400">Us</span>
+    About <span className="italic text-red-600">Us</span>
   </h2>
 
   {/* Section 1 */}
   <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
     <div className="flex-1">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-        Who We <span className="italic text-gray-400">Are</span>
+        Who We <span className="italic text-red-600">Are</span>
       </h2>
       <p className="text-gray-600 mb-8 text-base md:text-lg">
-        Welcome to <strong>{user?.userName || "Our Platform"}</strong>, where digital innovation meets strategic excellence...
+        Welcome to <strong className='text-red-600'>{user?.userName || "Our Platform"}</strong>,the ultimate destination for online auctions
+            and bidding excitement. Founded in 2025, we are dedicated to
+            providing a dynamic and user-friendly platform for buyers and
+            sellers to connect, explore, and transact in a secure and seamless
+            environment.
       </p>
 
       {/* Features */}
       <div className="space-y-6">
-        {[
-          { emoji: '📄', title: 'Our Expert Solutions' },
-          { emoji: '🧬', title: 'Trusted Performance' },
-          { emoji: '🌍', title: 'Experience the Difference' },
-        ].map((item, idx) => (
+        {step2.map((item, idx) => (
           <div key={idx} className="flex items-start gap-4">
-            <div className="bg-indigo-100 p-3 rounded-full text-2xl">{item.emoji}</div>
             <div>
               <h4 className="font-semibold text-lg text-gray-900">{item.title}</h4>
-              <p className="text-gray-600">Praesent gravida nunc at tortor cursus...</p>
+              <p className="text-gray-600">{item.desc}</p>
             </div>
           </div>
         ))}
@@ -119,11 +144,11 @@ const About = () => {
 
     <div className="flex-1 space-y-6">
       <h2 className="text-3xl md:text-4xl font-bold">
-        Get In <span className="italic text-gray-400">Know</span>
+        Get In <span className="italic text-red-600">Know</span>
       </h2>
 
       <p className="text-gray-600">
-        Welcome to <strong>{user?.userName || "Our Platform"}</strong>, where digital innovation meets strategic excellence...
+        Welcome to <strong className='text-red-600'>{user?.userName || "Our Platform"}</strong>, where digital innovation meets strategic excellence...
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
@@ -135,7 +160,7 @@ const About = () => {
           "Don't miss Join our exclusive insights",
         ].map((point, idx) => (
           <p key={idx} className="flex items-center gap-2 text-gray-600">
-            ✅ <span>{point}</span>
+            <span>{point}</span>
           </p>
         ))}
       </div>
@@ -143,9 +168,9 @@ const About = () => {
       {/* Stats */}
       <div className="flex flex-wrap gap-6 pt-4">
         {[
-          { icon: '⭐', count: '3.5k', label: 'Customer', sub: 'Total Customer' },
-          { icon: '📦', count: '700k', label: 'Auction', sub: 'Total Product' },
-          { icon: '🔨', count: '5.6k', label: 'Bidder', sub: 'Number Of Bidder' },
+          { icon: '', count: '3.5k', label: 'Customer', sub: 'Total Customer' },
+          { icon: '', count: '700k', label: 'Auction', sub: 'Total Product' },
+          { icon: '', count: '5.6k', label: 'Bidder', sub: 'Number Of Bidder' },
         ].map((stat, idx) => (
           <div key={idx} className="flex items-center gap-2">
             <span className="text-xl">{stat.icon}</span>
@@ -157,7 +182,7 @@ const About = () => {
         ))}
       </div>
 
-      <button className="mt-4 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+      <button className="mt-4 px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition">
         About us More →
       </button>
     </div>
@@ -180,42 +205,59 @@ const About = () => {
     </div>
   </div>
 
-  {/* Steps Section */}
-  <section className="bg-[#f8f4fc] py-20 px-4 sm:px-8 md:px-20 mt-20">
-    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-14">
-      Select <span className="italic text-gray-400">Our Product</span> At Our Auction.
-    </h2>
+  <section className="bg-[#f8f4fc] py-20 px-4 sm:px-8 md:px-20 mt-20 ">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-14">
+        Select <span className="italic text-red-600">Our Product</span> At Our Auction.
+      </h2>
 
-    <div className="relative flex justify-between items-center mb-16 max-w-6xl mx-auto px-4 overflow-x-auto">
-      {steps.map((step, index) => (
-        <div key={index} className="flex flex-col items-center relative min-w-[70px] sm:min-w-[80px]">
-          <div className="bg-gray-700 text-white text-xs sm:text-sm font-semibold px-4 py-1 rounded-full z-10">
-            Step {step.id}
+      {/* Step Indicators */}
+      <div className="relative flex justify-between items-center mb-16 max-w-6xl mx-auto px-4 overflow-hidden hover:overflow-visible">
+        {steps.map((step, index) => (
+          <div key={index} className="flex flex-col items-center relative min-w-[70px] sm:min-w-[80px] z-10">
+            <div
+              className={`transition-all duration-300 px-4 py-1 rounded-full font-semibold text-xs sm:text-sm 
+                ${hoveredIndex === index ? 'bg-red-600 text-white scale-105' : 'bg-gray-700 text-white'}
+              `}
+            >
+              Step {step.id}
+            </div>
+            <div className="w-px h-4 bg-gray-500 mt-1 mb-1"></div>
+            <div
+              className={`h-4 w-4 rounded-full border-4 transition-all duration-300 
+                ${hoveredIndex === index ? 'bg-red-500 border-red-600 scale-110' : 'bg-white border-gray-600'}
+              `}
+            ></div>
           </div>
-          <div className="w-px h-4 bg-gray-500 mt-1 mb-1"></div>
-          <div className="h-4 w-4 bg-white border-4 border-gray-600 rounded-full z-10"></div>
-        </div>
-      ))}
-      <div className="absolute top-[20px] left-0 right-0 border-t border-dashed border-gray-400 z-0"></div>
-    </div>
+        ))}
+        <div className="absolute top-[20px] left-0 right-0 border-t border-dashed border-gray-400 z-0"></div>
+      </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-      {steps.map((step, index) => (
-        <div key={index} className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition">
-          <div className="flex gap-3 mb-4 items-center">
-            {step.icon}
-            <h3 className="text-xl font-bold">{step.title}</h3>
+      {/* Card Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {steps.map((step, index) => (
+          <div
+            key={index}
+            className="group bg-white rounded-xl p-6 shadow hover:shadow-lg transition"
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <div className="flex gap-3 mb-4 items-center">
+              {step.icon}
+              <h3 className="text-xl font-bold">{step.title}</h3>
+            </div>
+            <p className="text-gray-600 text-sm mb-4">{step.description}</p>
+            <ul className="text-sm text-gray-800 space-y-1">
+              {step.points.map((point, i) => (
+                <li key={i}>
+                  <span className="font-semibold mr-1">{`0${i + 1}.`}</span>
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
-          <p className="text-gray-600 text-sm mb-4">{step.description}</p>
-          <ul className="text-sm text-gray-800 space-y-1">
-            {step.points.map((point, i) => (
-              <li key={i}><span className="font-semibold mr-1">{`0${i + 1}.`}</span>{point}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </section>
+        ))}
+      </div>
+    </section>
 </section>
 
   );

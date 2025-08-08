@@ -1,19 +1,112 @@
+// import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {Link} from 'react-router-dom'
+// import {
+//   deletePaymentProof,
+//   getSinglePaymentProof,
+//   updatePaymentProof
+// } from '../../../Stores/Slices/superAdminSlice';
+// import { RiDeleteBin6Line } from "react-icons/ri";
+// import { RxUpdate } from "react-icons/rx";
+
+
+// const PaymentProof = () => {
+//   const { paymentProofs, singlePaymentProof } = useSelector(state => state.superAdmin);
+//   const [openDrawer, setOpenDrawer] = useState(false);
+//   const dispatch = useDispatch();
+
+//   const handlePaymentProofDelete = (id) => {
+//     dispatch(deletePaymentProof(id));
+//   };
+
+//   const handlePaymentProofDetails = (id) => {
+//     dispatch(getSinglePaymentProof(id));
+//   };
+
+//   useEffect(() => {
+//     if (singlePaymentProof && Object.keys(singlePaymentProof).length > 0) {
+//       setOpenDrawer(true);
+//     }
+//   }, [singlePaymentProof]);
+
+//   return (
+
+//     <div className="overflow-x-auto">
+//   <table className="min-w-full bg-white mt-5 border-collapse border border-gray-200">
+//     <thead className="bg-gray-700 text-white text-sm md:text-base">
+//       <tr>
+//         <th className="py-2 px-3 md:px-4 text-left">User ID</th>
+//         <th className="py-2 px-3 md:px-4 text-left">Status</th>
+//         <th className="py-2 px-3 md:px-4 text-left">Actions</th>
+//       </tr>
+//     </thead>
+//     <tbody className="text-gray-700 text-xs md:text-sm">
+//       {paymentProofs.length > 0 ? (
+//         paymentProofs.map((element, index) => (
+//           <tr key={index} className="border-t border-gray-200">
+//             <td className="py-2 px-3 md:px-4 text-blue-500 break-words max-w-[150px]">{element.userId}</td>
+//             <td className="py-2 px-3 md:px-4">{element.status}</td>
+//             <td className="flex py-2 px-3 md:px-4  space-x-2">
+//               <button
+//                 onClick={() => handlePaymentProofDetails(element._id)}
+//                 className="bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-600 transition-all duration-700"
+               
+//               >
+//                 <RxUpdate className="transition-transform hover:scale-125 cursor-pointer" />
+//               </button>
+//               <button
+//                 onClick={() => handlePaymentProofDelete(element._id)}
+//                 className="bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-all duration-700"
+//               >
+//                 <RiDeleteBin6Line className="transition-transform hover:scale-125 cursor-pointer" />
+//               </button>
+//             </td>
+//           </tr>
+//         ))
+//       ) : (
+//         <tr>
+//           <td colSpan={3} className="py-4 text-center text-gray-500 text-sm">
+//             No payment proofs available.
+//           </td>
+//         </tr>
+//       )}
+//     </tbody>
+//   </table>
+//   <Drawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+// </div>
+
+//   );
+// };
+
+// export default PaymentProof;
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import {
   deletePaymentProof,
   getSinglePaymentProof,
-  updatePaymentProof
+  updatePaymentProof,
 } from '../../../Stores/Slices/superAdminSlice';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
-
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const PaymentProof = () => {
   const { paymentProofs, singlePaymentProof } = useSelector(state => state.superAdmin);
   const [openDrawer, setOpenDrawer] = useState(false);
   const dispatch = useDispatch();
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; // Customize as needed
+
+  // Calculate total pages
+  const totalPages = Math.ceil(paymentProofs.length / itemsPerPage);
+
+  // Get current page's payment proofs
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = paymentProofs.slice(startIndex, startIndex + itemsPerPage);
 
   const handlePaymentProofDelete = (id) => {
     dispatch(deletePaymentProof(id));
@@ -29,56 +122,96 @@ const PaymentProof = () => {
     }
   }, [singlePaymentProof]);
 
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
+
   return (
-    <div className='overflow-x-auto'>
-      <table className='min-w-full bg-white mt-5'>
-        <thead className='bg-gray-700 text-left text-white'>
-          <tr className=''>
-            <th className='py-2 px-4'>User ID</th>
-            <th className='py-2 px-4'>Status</th>
-            <th className='py-2 px-4'>Actions</th>
+    <div className="overflow-x-auto">
+      <table className="min-w-full bg-white mt-5 border-collapse border border-gray-200">
+        <thead className="bg-gray-700 text-white text-sm md:text-base">
+          <tr>
+            <th className="py-2 px-3 md:px-4 text-left">User ID</th>
+            <th className="py-2 px-3 md:px-4 text-left">Status</th>
+            <th className="py-2 px-3 md:px-4 text-left">Actions</th>
           </tr>
         </thead>
-        <tbody className='text-gray-700'>
-          {paymentProofs.length > 0 ? (
-            paymentProofs.map((element, index) => {
-               return (
-                <tr key={index} className='border-t  text-left '>
-                <td className='py-2 px-4 text-blue-500'>{element.userId}</td>
-                <td className='py-2 px-4 '>{element.status}</td>
-                <td className='py-2 px-4 space-x-2'>
+        <tbody className="text-gray-700 text-xs md:text-sm">
+          {currentItems.length > 0 ? (
+            currentItems.map((element) => (
+              <tr key={element._id} className="border-t border-gray-200">
+                <td className="py-2 px-3 md:px-4 text-blue-500 break-words max-w-[150px]">{element.userId}</td>
+                <td className="py-2 px-3 md:px-4">{element.status}</td>
+                <td className="flex py-2 px-3 md:px-4 space-x-2">
                   <button
                     onClick={() => handlePaymentProofDetails(element._id)}
-                    className='bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-600 transition-all duration-700 '
+                    className="bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-600 transition-all duration-700"
                   >
-                   <RxUpdate className='transition-all transform hover:scale-125 cursor-pointer'/>
+                    <RxUpdate className="transition-transform hover:scale-125 cursor-pointer" />
                   </button>
                   <button
                     onClick={() => handlePaymentProofDelete(element._id)}
-                    className='bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-all duration-700 '
+                    className="bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-all duration-700"
                   >
-                   <RiDeleteBin6Line className='transition-all transform hover:scale-125 cursor-pointer' />
+                    <RiDeleteBin6Line className="transition-transform hover:scale-125 cursor-pointer" />
                   </button>
                 </td>
               </tr>
-              )}
-            )
+            ))
           ) : (
             <tr>
-              <td colSpan={3} className='py-4 text-center text-gray-500'>
+              <td colSpan={3} className="py-4 text-center text-gray-500 text-sm">
                 No payment proofs available.
               </td>
             </tr>
           )}
         </tbody>
       </table>
-      <Drawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}/>
+
+      {/* Pagination Controls */}
+      {paymentProofs.length > itemsPerPage && (
+        <div className="flex justify-center mt-4 space-x-2 text-sm">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-3 py-1  border-gray-300 hover:bg-gray-100 disabled:opacity-50"
+          >
+           <FaChevronLeft />
+
+          </button>
+
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goToPage(i + 1)}
+              className={`px-3 py-1 rounded border ${
+                currentPage === i + 1
+                  ? "bg-red-600 text-white border-red-600"
+                  : "border-gray-300 hover:bg-gray-100"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1  border-gray-300 hover:bg-gray-100 disabled:opacity-50"
+          >
+            <FaChevronRight />
+
+          </button>
+        </div>
+      )}
+
+      <Drawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
     </div>
   );
 };
 
 export default PaymentProof;
-
 
    
 
@@ -102,15 +235,15 @@ export default PaymentProof;
 
   return (
     <section
-      className={`fixed inset-0 z-50 flex justify-center items-end sm:items-center bg-[#00000087] bg-opacity-50 transition-all duration-300 ${
+      className={`fixed inset-0 z-50 flex  justify-center items-end sm:items-center bg-[#00000087] bg-opacity-50 transition-all duration-700 ${
         openDrawer && singlePaymentProof?.userId ? 'visible opacity-100' : 'invisible opacity-0'
       }`}
     >
       <div
-        className={`w-full sm:max-w-lg bg-white rounded-t-lg sm:rounded-lg shadow-lg transform transition-all duration-300 ${
+        className={`w-full sm:max-w-lg bg-white rounded-t-lg sm:rounded-lg shadow-lg transition-all duration-700 ${
           openDrawer && singlePaymentProof?.userId
             ? 'translate-y-0'
-            : 'translate-y-full sm:translate-y-0 sm:scale-95'
+            : 'translate-y-full '
         }`}
       >
         <div className="flex justify-between items-center px-5 py-4 border-b">

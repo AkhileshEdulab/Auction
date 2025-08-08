@@ -1,8 +1,8 @@
 import React from "react";
-
+import {Link }from 'react-router-dom'
 const Footer = () => {
   return (
-    <footer className="bg-[#e5e4e6] text-gray-800 py-10 px-4 sm:px-8 lg:px-20">
+    <footer className=" border-t text-gray-800 py-10 px-4 sm:px-8 lg:px-20">
       <div className="flex flex-col md:flex-row flex-wrap justify-between gap-10">
         {/* Category */}
         <div>
@@ -25,23 +25,42 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold text-lg mb-4">Company</h3>
           <ul className="space-y-2 text-sm">
-            {["How to Bid", "How To Sell", "About Us", "F.A.Q"].map((item) => (
-              <li key={item}>
-                <a
-                  href="#"
+           
+              <li>
+                <Link to="/How to Bid"
                   className="hover:scale-105 hover:text-red-500 transition-transform duration-200 inline-block"
                 >
-                  {item}
-                </a>
+                 How to Bid
+               </Link>
               </li>
-            ))}
+            <li>
+                <Link to="/How to Bid"
+                  className="hover:scale-105 hover:text-red-500 transition-transform duration-200 inline-block"
+                >
+                 How to Sell
+               </Link>
+              </li>
+               <li>
+                <Link to="/How its work"
+                  className="hover:scale-105 hover:text-red-500 transition-transform duration-200 inline-block"
+                >
+                 How Its Work
+               </Link>
+              </li>
+               <li>
+                <Link to="/faq"
+                  className="hover:scale-105 hover:text-red-500 transition-transform duration-200 inline-block"
+                >
+                 FAQ
+               </Link>
+              </li>
           </ul>
         </div>
 
         {/* Logo & Social */}
         <div className=" md:text-left">
           <h1 className="text-2xl font-bold">
-            AUCTION<span className="bg-black text-white px-1">SYSTEM</span>
+            AUCTION<span className="bg-black text-white px-1">BidMarko</span>
           </h1>
           <p className="text-sm mt-1">Bid High, Win Big, Smile Bigger</p>
           <p className="mt-4 font-medium">Social Just You Connected Us!</p>

@@ -1,39 +1,133 @@
-import React, { useRef } from 'react';
+// import React, { useRef } from 'react';
+// import { useSelector } from 'react-redux';
+// import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+// import Card from './SubComponents/Card';
+
+// const Features = () => {
+//   const { allAuction = [] } = useSelector((state) => state.auction);
+//   const scrollContainerRef = useRef();
+
+//   const scroll = (direction) => {
+//     const container = scrollContainerRef.current;
+//     const scrollAmount = container.offsetWidth;
+
+//     if (direction === 'left') {
+//       container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+//     } else {
+//       container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+//     }
+//   };
+
+//   return (
+//     <section className="relative">
+//       <div className=" my-8 px-5 sm:px-6 lg:px-18">
+//         <div className="flex justify-between items-center mb-4">
+//         <div className="flex flex-col">
+//   <h1 className="text-2xl font-bold text-gray-800">
+//     Featured Auctions
+//   </h1>
+//   <p
+//     className="text-gray-500  text-base mt-2"
+//   >
+//     Explore on the world's best & largest Bidding marketplace with our beautiful Bidding
+//   </p>
+//   <span className="text-gray-500  text-base"> products. We want to be a part of your smile, success and future growth.</span>
+// </div>
+
+//           <div className="flex gap-2">
+//             <button
+//               onClick={() => scroll('left')}
+//               className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
+//             >
+//               <FaArrowLeft />
+//             </button>
+//             <button
+//               onClick={() => scroll('right')}
+//               className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
+//             >
+//               <FaArrowRight />
+//             </button>
+//           </div>
+//         </div>
+
+//         {allAuction.length === 0 ? (
+//           <p className="text-center text-gray-600 text-lg">No featured auctions available.</p>
+//         ) : (
+//           <div
+//             ref={scrollContainerRef}
+//             className="flex overflow-x-auto scroll-smooth space-x-4 hide-scrollbar"
+//           >
+//             {allAuction.slice(0, 10).map((element) => (
+//               <div key={element._id} className=" w-full sm:max-w-[340px] flex-shrink-0">
+//                 <Card
+//                   imgSrc={element.image?.url}
+//                   title={element.title}
+//                   statingBid={element.startingBid}
+//                   startTime={element.startTime}
+//                   endTime={element.endTime}
+//                   id={element._id}
+//                 />
+//               </div>
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Features;
+
+
+
+
+
+import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Card from './SubComponents/Card';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const Features = () => {
   const { allAuction = [] } = useSelector((state) => state.auction);
-  const scrollContainerRef = useRef();
+  const [slidesPerView, setSlidesPerView] = useState(1);
 
-  const scroll = (direction) => {
-    const container = scrollContainerRef.current;
-    const scrollAmount = container.offsetWidth;
-
-    if (direction === 'left') {
-      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    } else {
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  // Refs for custom navigation buttons
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   return (
     <section className="relative">
-      <div className="my-8 px-4 sm:px-6 lg:px-16">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold text-gray-800">
-            Featured Auctions
-          </h1>
+      <div className="my-8 px-5 sm:px-6 lg:px-30">
+        {/* Top Section: Title + Buttons */}
+        <div className="flex justify-between items-start mb-4">
+          {/* Left Side - Title & Description */}
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold text-gray-800">
+              Featured Auctions
+            </h1>
+            <p className="text-gray-500 text-base mt-2">
+              Explore on the world's best & largest Bidding marketplace with our beautiful Bidding
+            </p>
+            <span className="text-gray-500 text-base">
+              Products. We want to be a part of your smile, success and future growth.
+            </span>
+          </div>
+
+          {/* Right Side - Navigation Buttons */}
           <div className="flex gap-2">
             <button
-              onClick={() => scroll('left')}
+              ref={prevRef}
               className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
             >
               <FaArrowLeft />
             </button>
             <button
-              onClick={() => scroll('right')}
+              ref={nextRef}
               className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
             >
               <FaArrowRight />
@@ -41,15 +135,42 @@ const Features = () => {
           </div>
         </div>
 
+        {/* Slide Preview */}
+        <div className="text-sm text-gray-500 mb-2">
+          Showing {Math.min(slidesPerView, allAuction.length)} of {allAuction.length} featured auctions
+        </div>
+
+        {/* Swiper */}
         {allAuction.length === 0 ? (
-          <p className="text-center text-gray-600 text-lg">No featured auctions available.</p>
+          <p className="text-center text-gray-600 text-lg">
+            No featured auctions available.
+          </p>
         ) : (
-          <div
-            ref={scrollContainerRef}
-            className="flex overflow-x-auto scroll-smooth space-x-4 hide-scrollbar"
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={16}
+            onInit={(swiper) => {
+              setSlidesPerView(swiper.params.slidesPerView);
+              // Bind custom navigation refs
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+              swiper.navigation.init();
+              swiper.navigation.update();
+            }}
+            onResize={(swiper) => {
+              setSlidesPerView(swiper.params.slidesPerView);
+            }}
+            breakpoints={{
+              320: { slidesPerView: 1 },
+              640: { slidesPerView: 1.2 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}
+            className="pb-10"
           >
             {allAuction.slice(0, 10).map((element) => (
-              <div key={element._id} className="min-w-[250px] max-w-[300px] flex-shrink-0">
+              <SwiperSlide key={element._id} className="w-full">
                 <Card
                   imgSrc={element.image?.url}
                   title={element.title}
@@ -58,9 +179,9 @@ const Features = () => {
                   endTime={element.endTime}
                   id={element._id}
                 />
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         )}
       </div>
     </section>

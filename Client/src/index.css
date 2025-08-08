@@ -7,3 +7,6 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+body {
+  @apply bg-gradient-to-br from-white via-[#eaf2f5] to-[#c5ece0];
+}
