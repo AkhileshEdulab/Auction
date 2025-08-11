@@ -29,6 +29,7 @@ import HowToSell from './Components/SubComponents/HowToSell';
 import UserProfile from './Components/UserProfile';
 import HowItWorks from './Components/SubComponents/HowItsWork';
 import NotFoundPage from './Pages/NotFoundPage';
+import ScrollToTopButton from './Components/SubComponents/ScrollToTopButton';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,23 +61,21 @@ const App = () => {
       <Route path='/how it works' element={<HowItWorks/>}/>
       <Route path='/contact-us' element={<Contact/>}/>
       <Route path='/user-profile' element={<UserProfile/>}/>
-
-
-      {/* Fallback route for unmatched URLs */}
         <Route path="*" element={<NotFoundPage/>} />
     </Routes>
     <Footer/>
+    <ScrollToTopButton />
     <ToastContainer
-       position="top-right"             // Top-right corner of the screen
-       autoClose={3000}                 // Closes toast after 3 seconds
-       hideProgressBar={false}         // Show progress bar
-       newestOnTop={false}             // Show newest toast at bottom
-       closeOnClick                    // Close on click
-       rtl={false}                     // Right-to-left support (false = LTR)
-       pauseOnFocusLoss                // Pause toast if user switches tab
-       draggable                       // Allow drag to dismiss
-       pauseOnHover                    // Pause timeout on hover
-       theme="light"                   // Options: "light", "dark", "colored"
+       position="top-right"             
+       autoClose={3000}                
+       hideProgressBar={false}         
+       newestOnTop={false}             
+       closeOnClick                    
+       rtl={false}                     
+       pauseOnFocusLoss               
+       draggable                       
+       pauseOnHover                    
+       theme="light"                  
     />
    </Router>
    </>

@@ -63,17 +63,17 @@ const AuctionItem = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Panel */}
         <div className="w-full lg:w-1/2 bg-white shadow-md rounded-lg p-4">
-<div className="flex p-4 flex-col gap-4 items-start">
-  <div className="w-full aspect-video overflow-hidden rounded-lg">
-    <img
-      src={auctionDetails?.image?.url || "/placeholder.png"}
-      alt={auctionDetails?.title || "Auction image"}
-      className="w-full h-full object-contain"
-    />
-  </div>
-  <h1 className="font-bold text-xl">{auctionDetails?.title}</h1>
-</div>
-
+           <div className="flex p-4 flex-col gap-4 items-start">
+             <div className="w-full aspect-video overflow-hidden rounded-lg">
+               <img
+                 src={auctionDetails?.image?.url || "/placeholder.png"}
+                 alt={auctionDetails?.title || "Auction image"}
+                 className="w-full h-full object-contain"
+               />
+             </div>
+             <h1 className="font-bold text-xl">{auctionDetails?.title}</h1>
+           </div>
+           
           <hr className="my-4 border-gray-300" />
           <p className="text-lg font-medium mt-2">
             Category:{' '}
