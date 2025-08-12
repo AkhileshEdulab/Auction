@@ -101,7 +101,6 @@ const CommissionProof = () => {
             label="Comment"
             multiline
             rows={4}
-            defaultValue="Default Value"
            />
           </div>
          

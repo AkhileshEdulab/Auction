@@ -91,7 +91,7 @@ const FAQ = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = ( newValue) => {
     setValue(newValue);
   };
 

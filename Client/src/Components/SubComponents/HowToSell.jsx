@@ -5,10 +5,7 @@ import { IoIosCreate } from "react-icons/io";
 import {
   FaUser,
   FaGavel,
-  FaEnvelope,
-  FaDollarSign,
   FaFileInvoice,
-  FaRedo,
   FaTrophy,
 } from 'react-icons/fa';
 const steps = [

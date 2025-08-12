@@ -60,7 +60,7 @@ const HeroSlider = () => {
           </Swiper>
 
           {/* Swiper Dot Styles */}
-          <style jsx>{`
+          <style >{`
             .custom-bullet {
               background-color: #d1d5db;
               width: 12px;
