@@ -40,13 +40,16 @@ const HeroSlider = () => {
               bulletClass: 'swiper-pagination-bullet custom-bullet',
               bulletActiveClass: 'swiper-pagination-bullet-active custom-active-bullet',
             }}
-            autoplay={{ delay: 3000 }}
+            autoplay={{ delay: 5000 }}
             loop={false}
             fadeEffect={{ crossFade: true }}
             className="rounded-lg"
           >
             <SwiperSlide>
               <img src="banner.png" alt="bike-1" className="w-full object-contain" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="https://static.vecteezy.com/system/resources/previews/057/024/685/non_2x/high-quality-gavel-with-elegant-design-for-legal-professionals-free-png.png" alt="hammer" className="w-full object-contain" />
             </SwiperSlide>
             <SwiperSlide>
               <img src="banner1.png" alt="bike-2" className="w-full object-contain" />
