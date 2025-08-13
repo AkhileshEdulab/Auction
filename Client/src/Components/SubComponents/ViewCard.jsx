@@ -127,6 +127,8 @@ const ViewCard = ({ imgSrc, title, startTime, endTime, statingBid, id }) => {
 };
 
 export default ViewCard;
+
+
 const RepublishAuction = ({ id, openDrawer, setOpenDrawer }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auction);
