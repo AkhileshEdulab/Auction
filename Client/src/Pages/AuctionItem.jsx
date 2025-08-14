@@ -255,8 +255,9 @@ const AuctionItem = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {auctionBidder?.length > 0 ? (
+                  {paginatedBidders?.length > 0 ? (
                     paginatedBidders.map((bidder, index) => (
+                      
                       <tr key={index} className="border-t">
                         <td className={`px-4 py-2 ${getRankColor((currentPage - 1) * itemsPerPage + index)} font-semibold`}>
                           {(currentPage - 1) * itemsPerPage + index + 1}{getRankSuffix((currentPage - 1) * itemsPerPage + index)}
@@ -270,18 +271,18 @@ const AuctionItem = () => {
                           {bidder.userName}
                         </td>
                         <td className="px-4 py-2">${bidder.amount}</td>
-                        <td className="px-4 py-2 whitespace-nowrap">
-                          {bidder.createdAt
-                            ? new Date(bidder.createdAt).toLocaleString('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric',
-                                hour: 'numeric',
-                                minute: 'numeric',
-                                hour12: true,
-                              })
-                            : '-'}
-                        </td>
+                       <td className="px-4 py-2 whitespace-nowrap">
+                       {bidder?.createdAt
+                         ? new Date(bidder.createdAt).toLocaleString('en-US', {
+                             year: 'numeric',
+                             month: 'short',
+                             day: 'numeric',
+                             hour: 'numeric',
+                             minute: 'numeric',
+                             hour12: true,
+                           })
+                         : 'N/A'}
+                     </td>
                       </tr>
                     ))
                   ) : (

@@ -96,7 +96,7 @@ const Header = () => {
         <div className="mx-auto max-w-screen-xl flex items-center justify-between gap-4 px-4">
           <div className="flex items-center justify-between w-full md:w-auto">
             <Link to="/">
-              <img src="logo.png" alt="Logo" className="h-16 p-2 lg:h-20" />
+              <img src="/logo.png" alt="Logo" className="h-16 p-2 lg:h-20" />
             </Link>
             <button onClick={() => setMenuOpen((prev) => !prev)} className="md:hidden p-2 rounded-full hover:bg-gray-300">
               {menuOpen ? <HiX className="text-3xl" /> : <HiMenu className="text-3xl" />}

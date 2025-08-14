@@ -37,7 +37,6 @@ export const postBid =(id,data)=> async(dispatch)=>{
         },
       });
       dispatch(bidSlice.actions.bidSuccess(response.data))
-      console.log("Bid success:", response.data);
       toast.success(response.data?.message || 'Bid placed.');
       dispatch(bidSlice.actions.clearBid());
  } catch (error) {
