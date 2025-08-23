@@ -2,11 +2,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import {
-  MdOutlineSupportAgent, MdAccessTime, MdOutlineLeaderboard, MdOutlineSell,
-} from 'react-icons/md';
+import { MdOutlineSupportAgent, MdAccessTime, MdOutlineLeaderboard, MdOutlineSell,} from 'react-icons/md';
 import { AiOutlineMail } from 'react-icons/ai';
-import { LiaSearchSolid } from 'react-icons/lia';
+import { LiaSearchSolid, LiaUserCircle } from 'react-icons/lia';
 import { HiMenu, HiX } from 'react-icons/hi';
 import Divider from '@mui/material/Divider';
 import { FaAngleDown } from 'react-icons/fa6';
@@ -15,11 +13,8 @@ import { logout } from '../Stores/Slices/userSlices';
 // components/MobileMenu.jsx
 import Button from '@mui/material/Button';
 import { IoIosTimer } from "react-icons/io";
-import {
-  PiGavel, PiHandCoinsLight, PiEye,
-} from 'react-icons/pi';
+import {PiGavel, PiHandCoinsLight, PiEye,} from 'react-icons/pi';
 import { BsQuestionCircle, BsInfoCircle, BsPlus, BsDash } from 'react-icons/bs';
-import { FaRegCircleUser } from 'react-icons/fa6';
 import { IoCreateOutline } from "react-icons/io5";
 import { RxDashboard } from 'react-icons/rx';
 
@@ -267,17 +262,25 @@ const MobileMenu = ({
   return menuOpen ? (
     <div className="md:hidden px-4 pb-4 flex flex-col gap-3 text-base">
 
-      {renderNavLink({ label: 'Auctions', to: '/auctions', Icon: PiGavel })}
+      {/* {renderNavLink({ label: 'Auctions', to: '/auctions', Icon: PiGavel })} */}
+      <>
+      <button onClick={toggleAuction} 
+      className="flex justify-between items-center w-full px-3 py-2 rounded-md text-left transition-colors duration-200 hover:bg-red-100 hover:text-red-600"
+      >
+       <span className="font-medium"> Auction</span>
+            {auctionOpen ? <BsDash  className="text-[30px]"/> : <BsPlus  className="text-[30px]"/>} 
+      </button>
+      {auctionOpen && (
+            <div className="ml-4 flex flex-col gap-2">
+              {[{ label: 'Upcomming', to: '/upcoming', },
+                { label: 'Live Auction', to: '/Live-Auctions',},
+                { label: 'Auction', to: '/auctions', },
+              ].map(renderNavLink)}
+            </div>
+          )}
 
-      {isAuthenticated && user?.role === 'Auctioneer' && (
+            {isAuthenticated && user?.role === 'Auctioneer' && (
         <>
-          <button
-            onClick={toggleAuction}
-            className="flex justify-between items-center w-full px-3 py-2 rounded-md text-left transition-colors duration-200 hover:bg-red-100 hover:text-red-600"
-          >
-            <span className="font-medium">All Auction</span>
-            {auctionOpen ? <BsDash  className="text-[30px]"/> : <BsPlus  className="text-[30px]"/>}
-          </button>
           {auctionOpen && (
             <div className="ml-4 flex flex-col gap-2">
               {[{ label: 'Submit Commission', to: '/submit-commission', Icon: PiHandCoinsLight },
@@ -288,11 +291,15 @@ const MobileMenu = ({
           )}
         </>
       )}
+      </>
+
+    
+
 
       {renderNavLink({ label: 'Leaderboard', to: '/leaderboard', Icon: MdOutlineLeaderboard })}
       {isAuthenticated && user?.role === 'Super Admin' && renderNavLink({ label: 'Dashboard', to: '/dashboard', Icon: RxDashboard })}
       {renderNavLink({ label: 'About', to: '/about-us', Icon: BsInfoCircle })}
-      {renderNavLink({ label: 'Contact', to: '/contact-us', Icon: FaRegCircleUser })}
+      {renderNavLink({ label: 'Contact', to: '/contact-us', Icon: LiaUserCircle })}
 
       {/* Help & Info */}
       <>

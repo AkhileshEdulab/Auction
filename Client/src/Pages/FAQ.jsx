@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { AiOutlineMail } from "react-icons/ai";
 import {
   Accordion,
   AccordionSummary,
@@ -91,7 +92,7 @@ const FAQ = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleTabChange = ( newValue) => {
+  const handleTabChange = (event,newValue) => {
     setValue(newValue);
   };
 
@@ -112,10 +113,11 @@ const FAQ = () => {
             gap:4
           }}
         >
-          <Tabs
+         <div className="">
+           <Tabs
             orientation={isMobile ? 'horizontal' : 'vertical'}
-             variant="standard"
-             scrollButtons={isMobile ? 'auto' : false}
+            variant="standard"
+            scrollButtons={isMobile ? 'auto' : false}
             value={value}
             onChange={handleTabChange}
             aria-label="FAQ categories"
@@ -125,12 +127,13 @@ const FAQ = () => {
               },
             }}
             sx={{
-              borderRadius: 2,
+              borderTopLeftRadius: 6,
+              borderTopRightRadius: 6,
               p: 2,
               borderRight: isMobile ? 0 : 1,
               borderBottom: isMobile ? 1 : 0,
-              borderColor: 'divider',
-              height: isMobile ? '100%' : 420,
+              borderColor: 'transparent',
+              height: isMobile ? '100%' : 'auto',
               backgroundColor: '#fef3c7',
               overflowY: 'hidden',
               overflowX: 'hidden',
@@ -156,21 +159,21 @@ const FAQ = () => {
                 }}
               />
             ))}
-
-            <div className="hidden sm:block bg-purple-100 p-4 text-center mt-6">
-              <p className="font-semibold mb-2">Ask the help community<br />write now!</p>
-              <div className="flex justify-center mb-2">
-                <div className="w-10 h-10 rounded-full border border-teal-400 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m8 0l-4 4m4-4l-4-4m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+          </Tabs>
+          <div className="hidden sm:block bg-purple-100 p-4 text-center ">
+              <div className="flex flex-col gap-6">
+                <p className="font-semibold  text-2xl">Ask the help community<br />write now!</p>
+              <div className="flex justify-center ">
+                <div className="w-14 h-14 rounded-full border border-red-400 flex items-center justify-center">
+                <AiOutlineMail className="h-6 w-6 text-red-500" />
                 </div>
               </div>
-              <p className="text-sm text-gray-500">To Send Mail</p>
-              <a href="mailto:info@example.com" className="text-sm font-bold text-gray-800">info@example.com</a>
-            </div>
-          </Tabs>
-
+              <p className="text-md text-gray-500">To Send Mail</p>
+              <a href="mailto:info@example.com" className="text-xl font-bold text-gray-800 ">info@example.com</a>
+              </div>
+          </div>
+         </div>
+          
           <Box sx={{ flexGrow: 1 }}>
             {categories.map((cat, index) => (
               <TabPanel value={value} index={index} key={cat}>
