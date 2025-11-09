@@ -38,7 +38,7 @@ const SignUp = () => {
   const [bankAccountNumber, setBankAccountNumber] = useState('');
   const [bankName, setBankName] = useState('');
   const [paypalEmail, setPaypalEmail] = useState('');
-  const [easyPaisaAccountNumber, setEasyPaisaAccountNumber] = useState('');
+  const [razorPayAccountNumber, setRazorPayAccountNumber] = useState('');
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -69,7 +69,7 @@ const SignUp = () => {
       formData.append('bankAccountNumber', bankAccountNumber);
       formData.append('bankName', bankName);
       formData.append('paypalEmail', paypalEmail);
-      formData.append('easyPaisaAccountNumber', easyPaisaAccountNumber);
+      formData.append('razorPayAccountNumber', razorPayAccountNumber);
       
     }
 
@@ -258,9 +258,9 @@ const SignUp = () => {
       <TextField
         fullWidth
         color="error"
-        label="EasyPaisa Account Number"
-        value={easyPaisaAccountNumber}
-        onChange={(e) => setEasyPaisaAccountNumber(e.target.value)}
+        label="Razor Pay Account Number"
+        value={razorPayAccountNumber}
+        onChange={(e) => setRazorPayAccountNumber(e.target.value)}
       />
     </div>
   </div>
