@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 export const connectDB = () => {
     mongoose.connect(process.env.MONGODB_URI, {
         dbName: "MEARN_AUCTION_PLATEFORM",
-        useNewUrlParser: true,
-        useUnifiedTopology: true
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true
     })
     .then(() => {
         console.log("✅ Database connected.");

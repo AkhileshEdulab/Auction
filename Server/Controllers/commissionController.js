@@ -7,19 +7,6 @@ import {v2 as cloudinary} from 'cloudinary';
 import { Auction } from "../Models/auctionSchema.js";
 
 
-// export  const calculateCommission = async(auctionId)=>{
-        
-// const auction = await Auction.findById({auctionId});
-// if(!mongoose.Types.ObjectId.isValid(auctionId)){
-//     return next(new errorHandler("Invalid Auction ID formate.",400))
-// }
-
-//     const commissionRate = 0.05;
-//     const commission = auction.currentBid * commissionRate;
-//     return commission;
-// } ;
-
-
 export const calculateCommission = async (auctionId, next) => {
   try {
     // Validate ObjectId before querying

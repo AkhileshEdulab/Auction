@@ -28,7 +28,7 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
             bankAccountNumber,
             bankName,
             paypalEmail,
-            easyPaisaAccountNumber
+            razorPayAccountNumber
 
         }=req.body;
 
@@ -44,7 +44,7 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
          if(!paypalEmail){
          return next(new errorHandler("please provide your paypal email .",400))
         }
-         if(!easyPaisaAccountNumber){
+         if(!razorPayAccountNumber){
          return next(new errorHandler("please provide your easyPaisa .",400))
         }
 
@@ -82,8 +82,8 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
             payPal:{
                 paypalEmail,
             },
-            easyPaisa:{
-                easyPaisaAccountNumber,
+            razorPay:{
+                razorPayAccountNumber,
             }
           },
          })

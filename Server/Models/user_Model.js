@@ -35,8 +35,8 @@ export const userSchema =new mongoose.Schema({
         payPal:{
             paypalEmail:String,
         },
-        easyPaisa:{
-            easyPaisaAccountNumber:Number,
+        razorPayAccountNumber:{
+            razorPayAccountNumber:Number,
         }
     },
 

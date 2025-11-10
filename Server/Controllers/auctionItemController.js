@@ -8,8 +8,6 @@ import { Bid } from "../Models/bidSchema.js";
 import { Auction } from "../Models/auctionSchema.js";
 import { proofOfCommission } from "./commissionController.js";
 
-// import { Auction } from "../models/auctionSchema.js";
-// import { Bid } from "../models/bidSchema.js";
 export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
     if(!req.files || Object.keys(req.files).length===0){
         return next(new errorHandler("Auction Image are required.",400))
@@ -216,3 +214,4 @@ export const republishAuctionItem = catchAsyncErrors(async(req,res,next)=>{
         createdBy
     })
 });
+

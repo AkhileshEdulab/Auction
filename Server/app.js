@@ -16,7 +16,7 @@ import { verifyCommissionCron } from './automation/verifyCommissionCron.js';
 
 const app = express();
 config({
-    path:"./Config/config.env"
+    path:"./Config/config.env",quiet:true
 })
 
 app.use(cors({
