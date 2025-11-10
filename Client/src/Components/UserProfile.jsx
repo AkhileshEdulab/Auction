@@ -108,8 +108,8 @@ const UserProfile = () => {
             {[
               { name: 'userName', label: 'Name', disabled: true },
               { name: 'email', label: 'Email', disabled: true },
-              { name: 'phone', label: 'Phone', disabled:true },
-              { name: 'address', label: 'Address', disabled:true },
+              { name: 'phone', label: 'Phone', disabled: true },
+              { name: 'address', label: 'Address', disabled: true },
               { name: 'role', label: 'Role', disabled: true },
               { name: 'joined', label: 'Joined On', disabled: true },
               { name: 'bio', label: 'Bio', isTextarea: true },
@@ -196,7 +196,7 @@ const UserProfile = () => {
                 type="text"
                 placeholder="EasyPaisa Number"
                 disabled
-                value={user.paymentMethods?.easyPaisa?.easyPaisaAccountNumber || ''}
+                value={user.paymentMethods?.razorPayAccountNumber?.razorPayAccountNumber || ''}
                 className="border border-gray-300 px-4 py-2 rounded"
               />
               <input

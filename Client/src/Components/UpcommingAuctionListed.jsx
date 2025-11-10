@@ -13,6 +13,7 @@ import {
   OutlinedInput,
 } from "@mui/material";
 
+
 // === Countdown Timer ===
 const Countdown = ({ startTime, endTime }) => {
   const calculateTimeLeft = () => {
@@ -135,6 +136,7 @@ const MenuProps = {
   },
 };
 
+
 const FilterDrawer = ({
   isOpen,
   toggleDrawer,
@@ -147,6 +149,15 @@ const FilterDrawer = ({
     "Furniture", "Mobile Phones", "Computers & Tablets", "Gaming", "Motorcycles",
     "Bicycles", "Movies & TV Memorabilia"
   ];
+
+  
+  
+  const handleDelete = (chipToDelete) => {
+    console.log("Deleting:", chipToDelete);
+    setSelectedCategories((prev) =>
+    prev.filter((chip) => chip !== chipToDelete)
+  );
+};
 
   const handleChange = (event) => {
     const { target: { value } } = event;
@@ -198,7 +209,13 @@ const FilterDrawer = ({
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                 {selected.map((value) => (
-                  <Chip key={value} label={value} />
+                  // <Chip key={value} label={value} />
+                  <Chip
+                    key={value}
+                    label={value}
+                    onMouseDown={(event) => event.stopPropagation()} // ✅ FIXED
+                    onDelete={() => handleDelete(value)}             // ✅ FIXED
+                  />
                 ))}
               </Box>
             )}

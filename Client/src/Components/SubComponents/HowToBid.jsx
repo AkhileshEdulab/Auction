@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FaUser, FaSearch, FaTrophy, FaCreditCard, FaGavel } from 'react-icons/fa'; // Icons
 
 const steps = [

@@ -99,21 +99,6 @@ export const getAllAuction = () =>async (dispatch) =>{
     }
 }
 
-// export const getAuctionDetails = (id) =>async (dispatch) =>{
-//     dispatch(auctionSlice.actions.getAuctionDetailsRequest())
-//     console.log("getAuctionDetails called with ID:", id);
-//     try {
-//         const response = await axios.get(`http://localhost:5000/api/v1/auction/item/${id}`,{withCredentials:true})
-//         console.log("API Response:", response.data);
-
-//         dispatch(auctionSlice.actions.getAuctionDetailsSuccess(response.data))
-//         dispatch(auctionSlice.actions.resetAuction())
-//     } catch (error) {
-//         dispatch(auctionSlice.actions.getAuctionDetailsFailed())
-//         dispatch(auctionSlice.actions.resetAuction())
-//     }
-// }
-
 export const getAuctionDetails = (id) => async (dispatch) => {
   if (!id) {
     console.warn("getAuctionDetails called without an id");
