@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row flex-wrap justify-between gap-10">
         {/* Category */}
         <div>
-          <h3 className="font-semibold text-lg mb-4">Category</h3>
-          <ul className="space-y-2 text-sm">
+          <h3 className="font-bold text-3xl mb-4">Category</h3>
+          <ul className="space-y-2 text-xl">
             {["Gadget", "Antiques", "Digital Art", "Automotive", "Old Coin", "Books & Comics"].map((item) => (
               <li key={item}>
                 <a
@@ -23,8 +23,8 @@ const Footer = () => {
 
         {/* Company */}
         <div>
-          <h3 className="font-semibold text-lg mb-4">Company</h3>
-          <ul className="space-y-2 text-sm">
+          <h3 className="font-bold text-3xl mb-4">Company</h3>
+          <ul className="space-y-2 text-lg">
            
               <li>
                 <Link to="/How to Bid"
@@ -59,13 +59,13 @@ const Footer = () => {
 
         {/* Logo & Social */}
         <div className=" md:text-left">
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-3xl font-bold">
             AUCTION<span className="bg-black text-white px-1">BidMarko</span>
           </h1>
-          <p className="text-sm mt-1">Bid High, Win Big, Smile Bigger</p>
+          <p className="text-lg mt-1">Bid High, Win Big, Smile Bigger</p>
           <p className="mt-4 font-medium">Social Just You Connected Us!</p>
-          <p className="text-xs text-gray-600">All of update in social</p>
-          <div className="flex md:justify-start gap-4 mt-4 text-sm flex-wrap">
+          <p className="text-lg text-gray-600">All of update in social</p>
+          <div className="flex md:justify-start gap-4 mt-4 text-md flex-wrap">
             {["LinkedIn", "Facebook", "Twitter", "Instagram"].map((item) => (
               <a
                 key={item}
@@ -80,7 +80,7 @@ const Footer = () => {
 
         {/* Newsletter */}
         <div className="w-full md:w-1/2 lg:w-1/3">
-          <h3 className="font-semibold text-lg mb-4">
+          <h3 className="font-bold text-3xl mb-4">
             Join Our Newsletter &<br /> More information.
           </h3>
           <div className="flex items-center w-full">
@@ -93,8 +93,8 @@ const Footer = () => {
               →
             </button>
           </div>
-          <div className="mt-4">
-            <p className="text-sm font-medium mb-2">Secured Payment Gateways</p>
+          <div className="mt-4  ">
+            <p className="text-3xl font-semibold mb-2">Secured Payment Gateways</p>
             <div className="flex gap-3 flex-wrap">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg"
@@ -121,10 +121,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="text-center text-sm text-gray-600 mt-10 border-t pt-4">
+      <div className="text-center text-xl text-gray-600 mt-10 border-t pt-4">
         © 2024 <span className="font-semibold text-black">Probid</span> | Design By{" "}
         <span className="font-semibold">Egens Lab</span>
-        <div className="mt-2 flex justify-center gap-6 text-xs flex-wrap">
+        <div className="mt-2 flex justify-center gap-6 text-sm flex-wrap">
           {["Support Center", "Terms & Conditions", "Privacy Policy"].map((item) => (
             <a
               key={item}
