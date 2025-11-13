@@ -90,7 +90,7 @@ const About = () => {
     };
 
   return (
-   <section className="px-4 sm:px-8 md:px-16 lg:px-30 py-16 ">
+   <section className="px-4  sm:px-8 md:px-16 lg:px-30 py-16 ">
     <h2 className="text-3xl md:text-4xl text-center font-bold text-gray-900 mb-16">
       About <span className="italic text-red-600">Us</span>
     </h2>

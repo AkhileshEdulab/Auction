@@ -95,7 +95,7 @@ export const register = (data) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/user/register',
+      'https://online-auction-plateform.onrender.com/api/v1/user/register',
       data,
       {
         withCredentials: true,
@@ -121,7 +121,7 @@ export const login = (data) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/user/login',
+      'https://online-auction-plateform.onrender.com/api/v1/user/login',
       data,
       {
         withCredentials: true,
@@ -143,7 +143,7 @@ export const login = (data) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/user/logout",
+      "https://online-auction-plateform.onrender.com/api/v1/user/logout",
       {
         withCredentials: true, 
       }
@@ -166,7 +166,7 @@ export const logout = () => async (dispatch) => {
 export const fetchUser = () => async (dispatch) => {
   dispatch(userSlice.actions.featchRequest());
   try {
-    const response = await axios.get('http://localhost:5000/api/v1/user/me', {
+    const response = await axios.get('https://online-auction-plateform.onrender.com/api/v1/user/me', {
       withCredentials: true,
     });
 
@@ -182,7 +182,7 @@ export const fetchUser = () => async (dispatch) => {
 export const featchLeaderboard = () => async (dispatch) => {
   dispatch(userSlice.actions.featchLeaderboardRequest());
   try {
-    const response = await axios.get('http://localhost:5000/api/v1/user/leaderboard', {
+    const response = await axios.get('https://online-auction-plateform.onrender.com/api/v1/user/leaderboard', {
       withCredentials: true,
     });
 
