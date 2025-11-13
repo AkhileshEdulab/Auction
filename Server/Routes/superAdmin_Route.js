@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.delete('/auctionItem/delete/:id',isAuthenticated,isAuthorized("Super Admin"),deleteAuctionItem);
 router.get('/paymentProof/getAll',isAuthenticated,isAuthorized("Super Admin"),getAllPaymentProof);
-router.get('/paymentProof/:id',getPaymentProofDetail);//removed  isAuthenticated,isAuthorized("Super Admin") is line se
+router.get('/paymentProof/:id',getPaymentProofDetail,isAuthenticated,isAuthorized("Super Admin"));//removed  isAuthenticated,isAuthorized("Super Admin") is line se
 router.put('/paymentProof/status/update/:id',isAuthenticated,isAuthorized("Super Admin"),updateProofStatus);
-router.delete('/paymentProof/delete/:id',deletePaymentProof); //removed  isAuthenticated,isAuthorized("Super Admin") is line se
+router.delete('/paymentProof/delete/:id',deletePaymentProof,isAuthenticated,isAuthorized("Super Admin")); //removed  isAuthenticated,isAuthorized("Super Admin") is line se
 router.get('/user/getAll',isAuthenticated,isAuthorized("Super Admin"),fetchAllUsers);
 router.get('/monthlyincome',isAuthenticated,isAuthorized("Super Admin"),monthlyRevenue);
 

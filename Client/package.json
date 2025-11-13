@@ -32,6 +32,7 @@
     "react-router-dom": "^7.6.3",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
+    "server": "file:..",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.19",
     "swiper": "^11.2.10",
