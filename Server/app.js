@@ -43,8 +43,31 @@ app.use('/api/v1/superAdmin/',superAdminRouter);
 
 
 
- endedAuctionCron();
- verifyCommissionCron();
-connectDB();
-app.use(errorMiddleware)
+//  endedAuctionCron();
+//  verifyCommissionCron();
+//  connectDB();
+//  app.use(errorMiddleware)
+
+// ✅ Error middleware
+app.use(errorMiddleware);
+
+// ✅ Connect DB first, then start cron jobs
+const startServer = async () => {
+  try {
+    await connectDB(); // waits until DB connection successful
+    console.log('✅ MongoDB Connected Successfully');
+
+    // 🕒 Start cron jobs only after DB connection
+    endedAuctionCron();
+    verifyCommissionCron();
+
+    console.log('✅ Cron Jobs Started');
+  } catch (err) {
+    console.error('❌ MongoDB Connection Failed:', err.message);
+    process.exit(1);
+  }
+};
+
+startServer();
+
 export default app;

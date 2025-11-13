@@ -8,7 +8,6 @@ export const connectDB = () => {
     })
     .then(() => {
         console.log("✅ Database connected.");
-       
     })
     .catch((error) => {
         console.error("❌ Error connecting to the database:", error.message);
