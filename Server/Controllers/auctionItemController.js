@@ -66,7 +66,6 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
         }
 
         try {
-             console.log("Uploading to cloudinary...");
          const cloudinaryResponse = await cloudinary.uploader.upload(image.tempFilePath,{
             folder:"MERN_AUCTION_PLATEFORM_AUCTION"
          })
@@ -75,7 +74,6 @@ export const addAuctionItem = catchAsyncErrors(async(req , res , next)=>{
             console.error("Cloudinary error:",cloudinaryResponse.error||'unknown cloudinary error.')
             return next(new errorHandler("failed to auction image to cloudinary."))
          }
-            console.log("Creating auction item...");
 
           const auctionItem = await Auction.create({
             title,

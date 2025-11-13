@@ -51,7 +51,6 @@ const UserProfile = () => {
 
   const handleSave = () => {
     setEditMode(false);
-    console.log('Saved Data:', formData);
   };
 
   const handleProfileImageChange = (e) => {

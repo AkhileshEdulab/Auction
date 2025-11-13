@@ -9,22 +9,15 @@ import { sendEmail } from '../Utils/sendEmail.js';
 export const endedAuctionCron = () => {
     cron.schedule("*/1 * * * *", async () => {
         const now = new Date();
-        console.log("Cron endedAuction is running now...");
-        console.log("Current time:", now);
 
         const endedAuction = await Auction.find({
             endTime: { $lt: now },
             commissionCalculated: false,
         });
-        console.log("Found ended auctions:", endedAuction.length);
 
         for (const auction of endedAuction) {
-            console.log("Processing auction:", auction.title);
-            console.log("Found ended auctions:", endedAuction.map(a => a.title));
-
             try {
                 const commissionAmount = await calculateCommission(auction._id);
-                console.log("Commission calculated:", commissionAmount);
                 auction.commissionCalculated = true;
                 auction.isActive = false; // ✅ Mark auction ended
                 await auction.save();
@@ -32,8 +25,6 @@ export const endedAuctionCron = () => {
                     auctionItem: auction._id,
                     amount: auction.currentBid,
                 });
-
-                console.log("Highest bidder:", highestBidder?.bidder?.id);
 
                 const auctioneer = await userModel.findById(auction.createdBy);
                 auctioneer.unpaidCommission = commissionAmount;
@@ -79,9 +70,7 @@ export const endedAuctionCron = () => {
                      ${auctioneer.paymentMethods.payPal.paypalEmail}\n\n4. **Cash on Delivery (COD)**\n- 20% upfront payment required via any method above\n- 80% due upon delivery\n\nFor questions, contact your auctioneer:
                      ${auctioneer.email}\n\nPlease complete your payment by [Payment Due Date]. Once we confirm the payment, the item will be shipped.\n\nThank you for participating!\n\nBest regards,\nEdulab Auction Team`;
 
-                    console.log("Sending email to highest bidder:", bidder.email);
                     await sendEmail({ email: bidder.email, subject, message });
-                    console.log("✅ Email successfully sent to highest bidder");
                 } else {
                     await auction.save();
                 }

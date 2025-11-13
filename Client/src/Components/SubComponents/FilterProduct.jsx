@@ -150,7 +150,6 @@ const FilterDrawer = ({
 
 
   const handleDelete = (chipToDelete) => {
-    console.log("Deleting:", chipToDelete);
     setSelectedCategories((prev) =>
       prev.filter((chip) => chip !== chipToDelete)
     );
@@ -228,7 +227,6 @@ const FilterDrawer = ({
         <button
           className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
           onClick={() => {
-            console.log("Filters Applied:", selectedCategories);
             toggleDrawer();
           }}
         >

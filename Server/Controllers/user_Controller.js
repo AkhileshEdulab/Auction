@@ -15,7 +15,6 @@ export const register =catchAsyncErrors( async (req,res,next)=>{
         if(!allowFormates.includes(profileImage.mimetype)){
             return next (new errorHandler("image formate not support.",400))
         }
-            console.log("Uploaded mimetype:", req.file?.mimetype);
 
         const {
             userName,

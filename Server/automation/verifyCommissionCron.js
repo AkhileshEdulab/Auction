@@ -7,7 +7,6 @@ import { sendEmail } from '../Utils/sendEmail.js';
 
 export const verifyCommissionCron = () => {
   cron.schedule("*/1 * * * *", async () => {
-    console.log("✅ verifyCommissionCron is running...");
 
     const approvedProofs = await PaymentProof.find({ status: "Approved" });
 
@@ -45,7 +44,6 @@ export const verifyCommissionCron = () => {
 
         await sendEmail({ email: user.email, subject, message });
 
-        console.log(`✔️ User ${user._id} settled commission of ${amount}`);
       } catch (err) {
         console.error(`❌ Error processing commission for user ${proof.userId}: ${err.message}`);
       }
