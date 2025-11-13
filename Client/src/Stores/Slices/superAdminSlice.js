@@ -115,7 +115,7 @@ const superAdminSlice = createSlice({
 export const monthlyRevenue = ()=>async(dispatch)=>{
     dispatch(superAdminSlice.actions.getMonthlyRevenueRequest());
     try {
-        const response =await axios.get('https://online-auction-plateform.onrender.com/api/v1/superAdmin/monthlyincome',
+        const response =await axios.get('https://auction-gee2.onrender.com/api/v1/superAdmin/monthlyincome',
             {withCredentials:true});
             dispatch(superAdminSlice.actions.getMonthlyRevenueSuccess( response.data.totalMonthlyRevenue))
     } catch (error) {
@@ -127,7 +127,7 @@ export const monthlyRevenue = ()=>async(dispatch)=>{
 export const fetchAllUser = (id)=>async(dispatch)=>{
     dispatch(superAdminSlice.actions.allUserRequest());
     try {
-        const response = await axios.get('https://online-auction-plateform.onrender.com/api/v1/superAdmin/user/getAll',
+        const response = await axios.get('https://auction-gee2.onrender.com/api/v1/superAdmin/user/getAll',
             {withCredentials:true})
             dispatch(superAdminSlice.actions.allUserSuccess(response.data))
     } catch (error) {
@@ -139,7 +139,7 @@ export const fetchAllUser = (id)=>async(dispatch)=>{
 export const deletePaymentProof = (id)=>async(dispatch)=>{
     dispatch(superAdminSlice.actions.deleteAuctionRequest())
     try {
-        const response = await axios.delete(`https://online-auction-plateform.onrender.com/api/v1/superAdmin/paymentProof/delete/${id}`)
+        const response = await axios.delete(`https://auction-gee2.onrender.com/api/v1/superAdmin/paymentProof/delete/${id}`)
         dispatch(superAdminSlice.actions.deletePaymentProofSuccess());
         dispatch(getAllPaymentProof())
         toast.success(response.data.message)
@@ -154,7 +154,7 @@ export const getSinglePaymentProof = (id)=>async(dispatch)=>{
     dispatch(superAdminSlice.actions.singlePaymentProofRequest())
     
     try {
-        const response = await axios.get(`https://online-auction-plateform.onrender.com/api/v1/superAdmin/paymentProof/${id}`,
+        const response = await axios.get(`https://auction-gee2.onrender.com/api/v1/superAdmin/paymentProof/${id}`,
         )
         dispatch(superAdminSlice.actions.singlePaymentProofSuccess(response.data.paymentProofDetail));
     } catch (error) {
@@ -168,7 +168,7 @@ export const getSinglePaymentProof = (id)=>async(dispatch)=>{
 export const getAllPaymentProof = () => async (dispatch) => {
     dispatch(superAdminSlice.actions.paymentProofRequest());
     try {
-        const response = await axios.get("https://online-auction-plateform.onrender.com/api/v1/superAdmin/paymentProof/getAll", {
+        const response = await axios.get("https://auction-gee2.onrender.com/api/v1/superAdmin/paymentProof/getAll", {
             withCredentials: true
         });
         dispatch(superAdminSlice.actions.paymentProofSuccess(response.data.paymentProof));
@@ -183,7 +183,7 @@ export const updatePaymentProof = (id, status , amount) => async (dispatch) => {
     dispatch(superAdminSlice.actions.updatePaymentProofRequest());
     try {
         const response = await axios.put(
-            `https://online-auction-plateform.onrender.com/api/v1/superAdmin/paymentProof/status/update/${id}`,
+            `https://auction-gee2.onrender.com/api/v1/superAdmin/paymentProof/status/update/${id}`,
             {status , amount},
             {
                 withCredentials: true,headers:{"Content-Type":"application/json"}
@@ -204,7 +204,7 @@ export const deleteAuction = (id) => async (dispatch) => {
     dispatch(superAdminSlice.actions.deleteAuctionRequest());
     try {
         const response = await axios.delete(
-            `https://online-auction-plateform.onrender.com/api/v1/superAdmin/auctionItem/delete/${id}`,
+            `https://auction-gee2.onrender.com/api/v1/superAdmin/auctionItem/delete/${id}`,
             { withCredentials: true }
         );
         dispatch(superAdminSlice.actions.deleteAuctionSuccess());

@@ -30,7 +30,7 @@ export default bidSlice.reducer;
 export const postBid =(id,data)=> async(dispatch)=>{
  dispatch(bidSlice.actions.bidRequest());
  try {
-    const response = await axios.post(`https://online-auction-plateform.onrender.com/api/v1/bid/place/${id}`,data, {
+    const response = await axios.post(`https://auction-gee2.onrender.com/api/v1/bid/place/${id}`,data, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json', 

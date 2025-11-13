@@ -90,7 +90,7 @@ const auctionSlice = createSlice({
 export const getAllAuction = () =>async (dispatch) =>{
     dispatch(auctionSlice.actions.getAllAuctionRequest())
     try {
-        const response = await axios.get("https://online-auction-plateform.onrender.com/api/v1/auction/getAll",{withCredentials:true})
+        const response = await axios.get("https://auction-gee2.onrender.com/api/v1/auction/getAll",{withCredentials:true})
         dispatch(auctionSlice.actions.getAllAuctionSuccess(response.data.items))
         dispatch(auctionSlice.actions.resetAuction())
     } catch (error) {
@@ -107,7 +107,7 @@ export const getAuctionDetails = (id) => async (dispatch) => {
 
   dispatch(auctionSlice.actions.getAuctionDetailsRequest());
   try {
-    const response = await axios.get(`https://online-auction-plateform.onrender.com/api/v1/auction/item/${id}`, {
+    const response = await axios.get(`https://auction-gee2.onrender.com/api/v1/auction/item/${id}`, {
       withCredentials: true
     });
     dispatch(auctionSlice.actions.getAuctionDetailsSuccess(response.data));
@@ -122,7 +122,7 @@ export const createAuction = (data) => async (dispatch) => {
   try {
    
     const response = await axios.post(
-      'https://online-auction-plateform.onrender.com/api/v1/auction/create',
+      'https://auction-gee2.onrender.com/api/v1/auction/create',
       data,
       {
         withCredentials: true,
@@ -151,7 +151,7 @@ export const getMyAuction = () => async (dispatch) => {
  
   dispatch(auctionSlice.actions.MyAuctionRequest());
   try {
-    const response = await axios.get(`https://online-auction-plateform.onrender.com/api/v1/auction/myitems`, {
+    const response = await axios.get(`https://auction-gee2.onrender.com/api/v1/auction/myitems`, {
       withCredentials: true
     });
     dispatch(auctionSlice.actions.MyAuctionSuccess(response.data.items));
@@ -164,7 +164,7 @@ export const getMyAuction = () => async (dispatch) => {
 export const republishAuctionItems =(id,data)=>async(dispatch)=>{
   dispatch(auctionSlice.actions.republishAuctionRequest());
   try {
-    const response = await axios.put(`https://online-auction-plateform.onrender.com/api/v1/auction/republish/item/${id}`,data,
+    const response = await axios.put(`https://auction-gee2.onrender.com/api/v1/auction/republish/item/${id}`,data,
       {withCredentials:true,headers:{"Content-Type":"application/json"}});
     dispatch(auctionSlice.actions.republishAuctionSuccess());
     toast.success(response.data.message);
@@ -182,7 +182,7 @@ export const republishAuctionItems =(id,data)=>async(dispatch)=>{
 export const deleteAuctionItems =(id)=>async(dispatch)=>{
   dispatch(auctionSlice.actions.deleteAuctionRequest());
   try {
-    const response = await axios.delete(`https://online-auction-plateform.onrender.com/api/v1/auction/item/delete/${id}`,
+    const response = await axios.delete(`https://auction-gee2.onrender.com/api/v1/auction/item/delete/${id}`,
       {withCredentials:true,});
     dispatch(auctionSlice.actions.deleteAuctionSuccess());
     toast.success(response.data.message);
