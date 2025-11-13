@@ -127,7 +127,7 @@ const About = () => {
     <div className="flex-1 w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
       <div className="relative w-full max-w-lg">
         <img
-          src="https://probid-wp.egenstheme.com/wp-content/uploads/2024/10/home5-about-img.webp"
+          src="about-img.png"
           alt="Main"
           className="rounded-2xl w-full h-auto object-cover"
         />
@@ -146,7 +146,7 @@ const About = () => {
     <div className="flex flex-col lg:flex-row gap-12 mt-20">
     <div className="flex-1">
       <img
-        src="https://probid-wp.egenstheme.com/wp-content/uploads/2024/10/home1-about-img1.webp"
+        src="about-img1.jpg"
         alt="Lawyer"
         className="rounded-xl w-full h-auto object-cover shadow-md"
       />
@@ -209,7 +209,7 @@ const About = () => {
     </div>
     <div className="lg:w-1/2">
       <img
-        src="https://probid-wp.egenstheme.com/wp-content/uploads/2024/10/home1-about-img2.webp"
+        src="about-img2.jpg"
         alt="Gallery"
         className="rounded-lg shadow-md w-full h-auto object-cover"
       />
