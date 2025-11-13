@@ -194,7 +194,7 @@ const UserProfile = () => {
               />
               <input
                 type="text"
-                placeholder="EasyPaisa Number"
+                placeholder="razorPayAccountNumber"
                 disabled
                 value={user.paymentMethods?.razorPayAccountNumber?.razorPayAccountNumber || ''}
                 className="border border-gray-300 px-4 py-2 rounded"
