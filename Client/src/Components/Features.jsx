@@ -20,7 +20,7 @@ const Features = () => {
 
   return (
     <section className="relative">
-      <div className="my-8 px-5 sm:px-6 lg:px-30">
+      <div className="my-8 px-5 sm:px-6 lg:px-28">
         {/* Top Section: Title + Buttons */}
         <div className="flex justify-between items-start mb-4">
           {/* Left Side - Title & Description */}
@@ -40,13 +40,13 @@ const Features = () => {
           <div className="flex gap-2">
             <button
               ref={prevRef}
-              className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
+              className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition cursor-pointer"
             >
               <FaArrowLeft />
             </button>
             <button
               ref={nextRef}
-              className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
+              className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition cursor-pointer"
             >
               <FaArrowRight />
             </button>
@@ -54,7 +54,7 @@ const Features = () => {
         </div>
 
         {/* Slide Preview */}
-        <div className="text-sm text-gray-500 mb-2">
+        <div className="text-md text-gray-500 mb-2">
           Showing {Math.min(slidesPerView, allAuction.length)} of {allAuction.length} featured auctions
         </div>
 

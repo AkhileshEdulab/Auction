@@ -1,6 +1,6 @@
 import React from 'react'
 import Features from '../Components/Features';
-import UpcommingAuction from '../Components/UpcommingAuction';
+import UpcommingAuction from '../Components/AuctionStartToday';
 import HeroSlider from '../Components/SubComponents/HeroSlider';
 import FAQ from './FAQ';
 import AboutUs from './AboutUs';
@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
    <>
     <div>
-       <HeroSlider />
+          <HeroSlider />
           <UpcommingAuction/>
           <Features/>
           <FAQ/>

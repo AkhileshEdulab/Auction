@@ -1,7 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Pagination, Autoplay } from 'swiper/modules';
-import { LuMoveUpLeft, LuMoveUpRight } from "react-icons/lu";
+import { LuMoveUpRight } from "react-icons/lu";
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
@@ -9,16 +9,19 @@ import { Link } from 'react-router-dom';
 
 const HeroSlider = () => {
   return (
-    <div className="relative mt-6 flex flex-col md:flex-row items-center justify-between px-6 lg:px-32 py-4 overflow-hidden ">
+    <div className="relative mt-6 flex flex-col md:flex-row items-center justify-between px-6 lg:px-28 py-4 overflow-hidden ">
       {/* Left Content */}
       <div className="w-full md:w-1/2 text-center md:text-left space-y-6 z-20">
-        <p className="text-red-600 font-semibold text-base sm:text-lg">Welcome To <span className='text-2xl font-bold font-serif italic bg-gradient-to-br from-yellow-600 to-slate-900 bg-clip-text text-transparent'> BidMarko</span> Auction</p>
+        <p className="text-red-600 font-semibold text-base sm:text-2xl">Welcome To <span className='text-2xl font-bold font-serif italic bg-gradient-to-br from-yellow-600 to-slate-900 bg-clip-text text-transparent'> BidMarko</span> Auction</p>
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
-        Select, <span className="text-red-600">Our Product </span> At Our Auction.
+          Select, <span className="text-red-600">Our Product </span> At Our Auction.
         </h1>
-        <p className="text-gray-600 text-sm md:text-base max-w-md mx-auto md:mx-0">
-          Nulla facilisi. Maecenas ac tellus ut ligula interdum convallis. Nullam dapibus on erat in dolor posuere, none hendrerit lectus ornare. Suspendisse sit amet turpina sagittis, ultrices dui et, aliquam.
-        </p>
+       
+          <p className="text-gray-600 text-md md:text-base max-w-md mx-auto md:mx-0">
+            Discover rare finds and exclusive collectibles in real time. Bid, win, and own the items you love with ease and transparency. Join our global community of buyers and sellers and experience the thrill of live auctions like never before.
+          </p>
+
+        
         <Link to={'/upcoming'} className="bg-red-600 text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-red-700 transition-all mx-auto md:mx-0 w-fit">
           Start Exploring <span className="text-lg transition-all duration-200 hover:scale-150 inline-block"> <LuMoveUpRight /></span>
         </Link>

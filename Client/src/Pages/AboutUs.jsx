@@ -76,24 +76,34 @@ const step2 = [
     desc: 'Whether you are looking to buy, sell, or simply explore, PrimeBid invites you to join our growing community of auction enthusiasts. Discover new opportunities, uncover hidden gems, and experience the thrill of winning your next great find.',
   },
 ];
+
+
 const About = () => {
-     const { user, loading } = useSelector(state => state.user);
-      const [hoveredIndex, setHoveredIndex] = useState(null);
+    const { user} = useSelector(state => state.user);
+    const { leaderboard = [] } = useSelector((state) => state.user);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const totalBidders = leaderboard.length;
+    const formatNumber = (num) => {
+    if (num >= 1000) return (num / 1000).toFixed(1) + "k";
+    return num;
+    };
 
   return (
    <section className="px-4 sm:px-8 md:px-16 lg:px-30 py-16 ">
-  <h2 className="text-3xl md:text-4xl text-center font-bold text-gray-900 mb-16">
-    About <span className="italic text-red-600">Us</span>
-  </h2>
+    <h2 className="text-3xl md:text-4xl text-center font-bold text-gray-900 mb-16">
+      About <span className="italic text-red-600">Us</span>
+    </h2>
 
-  {/* Section 1 */}
-  <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
-    <div className="flex-1">
+    {/* Section 1 */}
+    <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
+      <div className="flex-1">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         Who We <span className="italic text-red-600">Are</span>
       </h2>
       <p className="text-gray-600 mb-8 text-base md:text-lg">
-        Welcome to <strong className='text-red-600'>{user?.userName || "Our Platform"}</strong>,the ultimate destination for online auctions
+            Welcome to <strong className='text-red-600'>{user?.userName || "Our Platform"}</strong>,
+            the ultimate destination for online auctions
             and bidding excitement. Founded in 2025, we are dedicated to
             providing a dynamic and user-friendly platform for buyers and
             sellers to connect, explore, and transact in a secure and seamless
@@ -103,15 +113,15 @@ const About = () => {
       {/* Features */}
       <div className="space-y-6">
         {step2.map((item, idx) => (
-          <div key={idx} className="flex items-start gap-4">
+          <div key={idx} className="flex items-start gap-4 text-lg">
             <div>
-              <h4 className="font-semibold text-lg text-gray-900">{item.title}</h4>
-              <p className="text-gray-600">{item.desc}</p>
+              <h4 className="font-bold  text-gray-900">{item.title}</h4>
+              <p className="text-gray-600 ">{item.desc}</p>
             </div>
           </div>
         ))}
       </div>
-    </div>
+      </div>
 
     {/* Image with badge */}
     <div className="flex-1 w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
@@ -124,16 +134,16 @@ const About = () => {
         <div className="absolute top-6 right-4 bg-white p-4 rounded-xl shadow-md flex items-center gap-3 w-48 sm:w-52">
           <ImHammer2 className="text-2xl" />
           <div>
-            <h3 className="text-lg font-semibold">5.6k <span className="text-sm font-medium">Bidder</span></h3>
+            <h3 className="text-lg font-semibold">{formatNumber(totalBidders)}{" "} <span className="text-sm font-medium">Bidder</span></h3>
             <p className="text-xs text-gray-500">Number Of Total Bidder</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    </div>
 
-  {/* Section 2 */}
-  <div className="flex flex-col lg:flex-row gap-12 mt-20">
+    {/* Section 2 */}
+    <div className="flex flex-col lg:flex-row gap-12 mt-20">
     <div className="flex-1">
       <img
         src="https://probid-wp.egenstheme.com/wp-content/uploads/2024/10/home1-about-img1.webp"
@@ -147,11 +157,11 @@ const About = () => {
         Get In <span className="italic text-red-600">Know</span>
       </h2>
 
-      <p className="text-gray-600">
+      <p className="text-gray-600 text-lg">
         Welcome to <strong className='text-red-600'>{user?.userName || "Our Platform"}</strong>, where digital innovation meets strategic excellence...
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-lg">
         {[
           "Ready to boost your online presence",
           "Transform your business our Auction",
@@ -175,8 +185,8 @@ const About = () => {
           <div key={idx} className="flex items-center gap-2">
             <span className="text-xl">{stat.icon}</span>
             <div>
-              <h4 className="font-bold text-lg">{stat.count} <span className="text-sm font-normal">{stat.label}</span></h4>
-              <p className="text-xs text-gray-500">{stat.sub}</p>
+              <h4 className="font-bold text-lg">{stat.count} <span className="text-md font-normal">{stat.label}</span></h4>
+              <p className="text-md text-gray-500">{stat.sub}</p>
             </div>
           </div>
         ))}
@@ -186,10 +196,11 @@ const About = () => {
         About us More →
       </button>
     </div>
-  </div>
 
-  {/* Testimonials */}
-  <div className="mt-20 flex flex-col lg:flex-row items-start gap-10">
+    </div>
+
+    {/* Testimonials */}
+    <div className="mt-20 flex flex-col lg:flex-row items-start gap-10">
     <div className="lg:w-1/2 bg-green-50 p-6 rounded-lg">
       <p className="italic text-gray-700">
         "I work with Alguneeb Johnl on many projects..."
@@ -203,13 +214,12 @@ const About = () => {
         className="rounded-lg shadow-md w-full h-auto object-cover"
       />
     </div>
-  </div>
+    </div>
 
-  <section className="bg-[#f8f4fc] py-20 px-4 sm:px-8 md:px-20 mt-20 ">
+    <section className="bg-[#f8f4fc] py-20 px-4 sm:px-8 md:px-20 mt-20 ">
       <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-14">
         Select <span className="italic text-red-600">Our Product</span> At Our Auction.
       </h2>
-
       {/* Step Indicators */}
       <div className="relative flex justify-between items-center mb-16 max-w-6xl mx-auto px-4 overflow-hidden hover:overflow-visible">
         {steps.map((step, index) => (
@@ -258,7 +268,7 @@ const About = () => {
         ))}
       </div>
     </section>
-</section>
+   </section>
 
   );
 };

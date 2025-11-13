@@ -9,7 +9,6 @@ import {
   Legend,
   LineElement,
   PointElement,
-  plugins,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';

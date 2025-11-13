@@ -148,7 +148,7 @@ const [loading, setLoading] = useState(false);
         </div>
 
         <button  type="submit"disabled={loading}
-        className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-md transition duration-300">
+        className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-md transition duration-300 cursor-pointer">
           {loading ? 'Sending...' : 'Send Message'}
           </button>
       </form>

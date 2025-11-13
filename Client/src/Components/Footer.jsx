@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row flex-wrap justify-between gap-10">
         {/* Category */}
         <div>
-          <h3 className="font-bold text-3xl mb-4">Category</h3>
+          <h3 className="font-bold text-xl mb-4">Category</h3>
           <ul className="space-y-2 text-xl">
             {["Gadget", "Antiques", "Digital Art", "Automotive", "Old Coin", "Books & Comics"].map((item) => (
               <li key={item}>
@@ -23,7 +23,7 @@ const Footer = () => {
 
         {/* Company */}
         <div>
-          <h3 className="font-bold text-3xl mb-4">Company</h3>
+          <h3 className="font-bold text-xl mb-4">Company</h3>
           <ul className="space-y-2 text-lg">
            
               <li>
@@ -59,7 +59,7 @@ const Footer = () => {
 
         {/* Logo & Social */}
         <div className=" md:text-left">
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-xl font-bold">
             AUCTION<span className="bg-black text-white px-1">BidMarko</span>
           </h1>
           <p className="text-lg mt-1">Bid High, Win Big, Smile Bigger</p>
@@ -80,7 +80,7 @@ const Footer = () => {
 
         {/* Newsletter */}
         <div className="w-full md:w-1/2 lg:w-1/3">
-          <h3 className="font-bold text-3xl mb-4">
+          <h3 className="font-bold text-xl mb-4">
             Join Our Newsletter &<br /> More information.
           </h3>
           <div className="flex items-center w-full">
@@ -94,7 +94,7 @@ const Footer = () => {
             </button>
           </div>
           <div className="mt-4  ">
-            <p className="text-3xl font-semibold mb-2">Secured Payment Gateways</p>
+            <p className="text-xl font-semibold mb-2">Secured Payment Gateways</p>
             <div className="flex gap-3 flex-wrap">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg"

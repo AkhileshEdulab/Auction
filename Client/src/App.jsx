@@ -30,6 +30,7 @@ import UserProfile from './Components/UserProfile';
 import HowItWorks from './Components/SubComponents/HowItsWork';
 import NotFoundPage from './Pages/NotFoundPage';
 import ScrollToTopButton from './Components/SubComponents/ScrollToTopButton';
+import LiveAuction from './Components/LiveAuction';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const App = () => {
       <Route path="/sign-up" element={<SignUp/>} />
       <Route path="/submit-commission" element={<CommissionProof/>} />
       <Route path="/upcoming" element={<UpcommingAuctionListed/>} />
+      <Route path="/live-auction" element={<LiveAuction/>} />
       <Route path="/leaderboard" element={<LeaderboardPage/>} />
       <Route path="/auctions" element={<Auctions/>} />
       <Route path="/auction/item/:id" element={<AuctionItem />} />

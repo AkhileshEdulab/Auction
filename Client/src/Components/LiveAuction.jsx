@@ -6,13 +6,15 @@ import {
   Select,
   FormControl,
 } from "@mui/material";
-import { AuctionCard, FilterDrawer } from "./SubComponents/FilterProduct.jsx";
-import Spinner from "./SubComponents/Spinner.jsx";
+
+import { AuctionCard, FilterDrawer } from "./SubComponents/FilterProduct";
+import Spinner from "./SubComponents/Spinner";
+
 
 
 
 // === Main Component ===
-const UpcomingAuctionList = () => {
+const LiveAuction= () => {
   const { allAuction,loading } = useSelector((state) => state.auction);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -23,14 +25,13 @@ const UpcomingAuctionList = () => {
   const start = new Date(item.startTime);
   const end = new Date(item.endTime);
 
+  // Live auction = current time is between start and end
   const isLive = now >= start && now <= end;
-  const isUpcoming = now < start; // abhi start nahi hua
 
   const matchesCategory =
     selectedCategories.length === 0 || selectedCategories.includes(item.category);
 
-  // 👇 return both live and upcoming
-  return (isLive || isUpcoming) && matchesCategory;
+  return isLive && matchesCategory;
 }) || [];
   const [sortOption, setSortOption] = useState(10); // default = "Default Sorting"
 
@@ -39,13 +40,13 @@ const UpcomingAuctionList = () => {
   };
 
   return (
-    <>
-    {loading?(<Spinner/>):(
-      <div className="max-w-7xl mx-auto px-4 py-8 relative">
+   <>
+   {loading ? (<Spinner/>):(
+     <div className="max-w-7xl mx-auto px-4 py-8 relative">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <p className="text-lg text-gray-600">
-          Showing {filteredAuctions.length} Auctions Starting Today
+          Showing {filteredAuctions.length} Live Auctions
         </p>
 
         <div className="flex flex-wrap gap-4 md:gap-6 items-center">
@@ -108,9 +109,12 @@ const UpcomingAuctionList = () => {
         setSelectedCategories={setSelectedCategories}
       />
     </div>
-    )}
-    </>
+   )}
+   </>
   );
 };
 
-export default UpcomingAuctionList;
+export default LiveAuction;
+
+
+

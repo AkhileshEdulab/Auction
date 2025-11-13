@@ -45,13 +45,13 @@ const UpcommingAuction = () => {
          <div className="flex gap-2">
                     <button
                       ref={prevRef}
-                      className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
+                      className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition cursor-pointer"
                     >
                       <FaArrowLeft />
                     </button>
                     <button
                       ref={nextRef}
-                      className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition"
+                      className="p-2 bg-gray-200 hover:bg-red-500 hover:text-white rounded-full transition cursor-pointer"
                     >
                       <FaArrowRight />
                     </button>
@@ -59,7 +59,7 @@ const UpcommingAuction = () => {
       </div>
 
       {/* ✅ Slide Preview (Optional) */}
-      <div className="text-sm text-gray-500 mb-2">
+      <div className="text-md text-gray-500 mb-2">
         Showing {Math.min(slidesPerView, auctionStartToday.length)} of {auctionStartToday.length} auctions starting today
       </div>
 

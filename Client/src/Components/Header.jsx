@@ -2,18 +2,18 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import { MdOutlineSupportAgent, MdAccessTime, MdOutlineLeaderboard, MdOutlineSell,} from 'react-icons/md';
+import { MdOutlineSupportAgent, MdAccessTime, MdOutlineLeaderboard, MdOutlineSell, } from 'react-icons/md';
 import { AiOutlineMail } from 'react-icons/ai';
 import { LiaSearchSolid, LiaUserCircle } from 'react-icons/lia';
 import { HiMenu, HiX } from 'react-icons/hi';
-import Divider from '@mui/material/Divider';
+import  Divider from '@mui/material/Divider';
 import { FaAngleDown } from 'react-icons/fa6';
 import ProfileMenu from './SubComponents/ProfileMenu';
 import { logout } from '../Stores/Slices/userSlices';
 // components/MobileMenu.jsx
 import Button from '@mui/material/Button';
 import { IoIosTimer } from "react-icons/io";
-import {PiGavel, PiHandCoinsLight, PiEye,} from 'react-icons/pi';
+import { PiGavel, PiHandCoinsLight, PiEye, } from 'react-icons/pi';
 import { BsQuestionCircle, BsInfoCircle, BsPlus, BsDash } from 'react-icons/bs';
 import { IoCreateOutline } from "react-icons/io5";
 import { RxDashboard } from 'react-icons/rx';
@@ -66,15 +66,15 @@ const Header = () => {
             <Link to="/how to sell" className="px-2 py-1 font-medium rounded-full hover:bg-red-500 hover:text-white transition">SELL YOUR ITEM</Link>
             <Divider orientation="vertical" flexItem />
             <div className="relative">
-              <button onClick={() => setShowModal(true)} className="flex items-center gap-2 px-4 py-2 bg-white border rounded-md hover:bg-gray-50 transition">
+              <button onClick={() => setShowModal(true)} className="flex items-center gap-2 px-4 py-2 bg-white border rounded-md hover:bg-gray-50 transition cursor-pointer">
                 <LiaSearchSolid /> Search
               </button>
 
               {showModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#080808c4] bg-opacity-50">
                   <div className="relative bg-white w-full max-w-md p-6 rounded shadow-lg">
-                    <button onClick={() => setShowModal(false)} className="absolute top-2 right-3 text-2xl hover:bg-red-500 hover:text-white rounded-full px-1.5">
-                      &times;
+                    <button onClick={() => setShowModal(false)} className="absolute top-2 right-3 text-2xl hover:bg-red-500 hover:text-white rounded-full p-1 cursor-pointer">
+                      <HiX/>
                     </button>
                     <h2 className="text-xl font-semibold mb-4">What are you looking for?</h2>
                     <input type="text" placeholder="Search something..." className="w-full px-4 py-2 border-b focus:outline-none" />
@@ -101,45 +101,43 @@ const Header = () => {
           {/* Desktop Links */}
           <div className="hidden md:flex gap-6 items-center text-lg font-semibold text-slate-700">
             {/* Auctions Dropdown */}
-    <div
-  className="relative"
-  onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
->
-  {/* Trigger Button */}
-  <div
-    className="px-2 py-1 gap-2 hover:text-red-500 transition-all duration-700 ease-in-out flex items-center cursor-pointer"
-  >
-    Auctions
-    <FaAngleDown
-      className={`ml-1 transition-transform duration-700 ease-in-out ${
-        isHovered ? 'rotate-180' : ''
-      }`}
-    />
-  </div>
+            <div
+              className="relative"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              {/* Trigger Button */}
+              <div
+                className="px-2 py-1 gap-2 hover:text-red-500 transition-all duration-700 ease-in-out flex items-center cursor-pointer"
+              >
+                Auctions
+                <FaAngleDown
+                  className={`ml-1 transition-transform duration-700 ease-in-out ${isHovered ? 'rotate-180' : ''
+                    }`}
+                />
+              </div>
 
-  {/* Dropdown */}
-  <div
-    className={`absolute left-0 top-full w-48 bg-white shadow-md rounded z-50 overflow-hidden transition-all duration-700 ease-in-out
+              {/* Dropdown */}
+              <div
+                className={`absolute left-0 top-full w-48 bg-white shadow-md rounded z-50 overflow-hidden transition-all duration-700 ease-in-out
       ${isHovered ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}
     `}
-  >
-    <ul className="flex flex-col text-sm py-2">
-      {['Live-Auctions', 'Upcoming', 'Auctions'].map((path) => (
-        <li key={path}>
-          <NavLink
-            to={`/${path}`}
-            className={({ isActive }) =>
-              `block px-4 py-2 transition duration-300 hover:bg-gray-200 ${
-                isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'
-              }`
-            }
-          >
-            {path}
-           </NavLink>
-        </li>
-      ))}
-      {isAuthenticated && user?.role === 'Auctioneer' && (
+              >
+                <ul className="flex flex-col text-sm py-2">
+                  {['live-Auction', 'Upcoming', 'Auctions'].map((path) => (
+                    <li key={path}>
+                      <NavLink
+                        to={`/${path}`}
+                        className={({ isActive }) =>
+                          `block px-4 py-2 transition duration-300 hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'
+                          }`
+                        }
+                      >
+                        {path}
+                      </NavLink>
+                    </li>
+                  ))}
+                  {isAuthenticated && user?.role === 'Auctioneer' && (
                     ['Submit-Commission', 'Create-Auction', 'View-Auction'].map((path) => (
                       <li key={path}>
                         <NavLink to={`/${path}`} className={({ isActive }) =>
@@ -150,9 +148,9 @@ const Header = () => {
                       </li>
                     ))
                   )}
-            </ul>
-          </div>
-        </div>
+                </ul>
+              </div>
+            </div>
 
             <NavLink to="/leaderboard" className={({ isActive }) =>
               `px-2 py-1 transition hover:text-red-500 ${isActive ? 'border-b-2 border-red-500 font-bold' : ''}`
@@ -174,38 +172,37 @@ const Header = () => {
 
             {/* More Dropdown */}
 
-     <div className="relative " onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)} >
-       <div
-       className="px-2 py-1 gap-2 hover:text-red-500 transition-all duration-[700ms] ease-in-out  flex items-center cursor-pointer "
-       onClick={() => setDropdown(!isDropdown)}
-     >
-       More..
-        <FaAngleDown
-           className={`ml-1 transition-all duration-[700ms] ease-in-out transform ${
-             isDropdown ? 'rotate-180' : 'rotate-0'
-           }`}
-         />
-     </div>
-       <div
-         className={`absolute left-0 top-full mt-2 w-48 bg-white shadow-md rounded transition-all duration-1000 ease-in-out z-50
+            <div className="relative " onMouseEnter={() => setDropdown(true)} onMouseLeave={() => setDropdown(false)} >
+              <div
+                className="px-2 py-1 gap-2 hover:text-red-500 transition-all duration-[700ms] ease-in-out  flex items-center cursor-pointer "
+                onClick={() => setDropdown(!isDropdown)}
+              >
+                More..
+                <FaAngleDown
+                  className={`ml-1 transition-all duration-[700ms] ease-in-out transform ${isDropdown ? 'rotate-180' : 'rotate-0'
+                    }`}
+                />
+              </div>
+              <div
+                className={`absolute left-0 top-full mt-2 w-48 bg-white shadow-md rounded transition-all duration-1000 ease-in-out z-50
          ${isDropdown ? 'opacity-100 visible' : 'opacity-0 invisible'}
        `}
-       >
-        <ul className="flex flex-col  text-sm py-2">
-          {['How It Works', 'How To Sell', 'How To Bid', 'Faq'].map((path) => (
-          <li key={path}>
-            <NavLink
-              to={`/${path}`}
-              className={({ isActive }) =>
-              ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
-            >
-             {path}
-            </NavLink>
-        </li>
- ))}
-         </ul>
-       </div>
-     </div>
+              >
+                <ul className="flex flex-col  text-sm py-2">
+                  {['How It Works', 'How To Sell', 'How To Bid', 'Faq'].map((path) => (
+                    <li key={path}>
+                      <NavLink
+                        to={`/${path}`}
+                        className={({ isActive }) =>
+                          ` block px-4 py-2 transition-all duration-[700ms] ease-in-out hover:bg-gray-200 ${isActive ? 'border-b-2 border-red-500 font-bold' : 'hover:text-red-500'}`}
+                      >
+                        {path}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* Login/Profile */}
@@ -250,12 +247,11 @@ const MobileMenu = ({
       to={to}
       onClick={() => setMenuOpen(false)}
       className={({ isActive }) =>
-        `flex items-center gap-2 px-3 py-2 text-[18px] rounded-md transition-colors duration-200 ${
-          isActive ? 'bg-red-600 text-white' : 'hover:bg-red-100 hover:text-red-600'
+        `flex items-center gap-2 px-3 py-2 text-[18px] rounded-md transition-colors duration-200 ${isActive ? 'bg-red-600 text-white' : 'hover:bg-red-100 hover:text-red-600'
         }`
       }
     >
-      {Icon && <Icon  className="text-[22px]"/>} {label}
+      {Icon && <Icon className="text-[22px]" />} {label}
     </NavLink>
   );
 
@@ -264,36 +260,36 @@ const MobileMenu = ({
 
       {/* {renderNavLink({ label: 'Auctions', to: '/auctions', Icon: PiGavel })} */}
       <>
-      <button onClick={toggleAuction} 
-      className="flex justify-between items-center w-full px-3 py-2 rounded-md text-left transition-colors duration-200 hover:bg-red-100 hover:text-red-600"
-      >
-       <span className="font-medium"> Auction</span>
-            {auctionOpen ? <BsDash  className="text-[30px]"/> : <BsPlus  className="text-[30px]"/>} 
-      </button>
-      {auctionOpen && (
-            <div className="ml-4 flex flex-col gap-2">
-              {[{ label: 'Upcomming', to: '/upcoming', },
-                { label: 'Live Auction', to: '/Live-Auctions',},
-                { label: 'Auction', to: '/auctions', },
-              ].map(renderNavLink)}
-            </div>
-          )}
+        <button onClick={toggleAuction}
+          className="flex justify-between items-center w-full px-3 py-2 rounded-md text-left transition-colors duration-200 hover:bg-red-100 hover:text-red-600"
+        >
+          <span className="font-medium"> Auction</span>
+          {auctionOpen ? <BsDash className="text-[30px]" /> : <BsPlus className="text-[30px]" />}
+        </button>
+        {auctionOpen && (
+          <div className="ml-4 flex flex-col gap-2">
+            {[{ label: 'Upcoming', to: '/upcoming', },
+            { label: 'Live Auction', to: '/live-auction', },
+            { label: 'Auction', to: '/auctions', },
+            ].map(renderNavLink)}
+          </div>
+        )}
 
-            {isAuthenticated && user?.role === 'Auctioneer' && (
-        <>
-          {auctionOpen && (
-            <div className="ml-4 flex flex-col gap-2">
-              {[{ label: 'Submit Commission', to: '/submit-commission', Icon: PiHandCoinsLight },
+        {isAuthenticated && user?.role === 'Auctioneer' && (
+          <>
+            {auctionOpen && (
+              <div className="ml-4 flex flex-col gap-2">
+                {[{ label: 'Submit Commission', to: '/submit-commission', Icon: PiHandCoinsLight },
                 { label: 'Create Auction', to: '/create-auction', Icon: IoCreateOutline },
                 { label: 'View Auction', to: '/view-auction', Icon: PiEye },
-              ].map(renderNavLink)}
-            </div>
-          )}
-        </>
-      )}
+                ].map(renderNavLink)}
+              </div>
+            )}
+          </>
+        )}
       </>
 
-    
+
 
 
       {renderNavLink({ label: 'Leaderboard', to: '/leaderboard', Icon: MdOutlineLeaderboard })}
@@ -308,14 +304,14 @@ const MobileMenu = ({
           className="flex justify-between items-center w-full px-3 py-2 rounded-md text-left transition-colors duration-200 hover:bg-red-100 hover:text-red-600"
         >
           <span className="font-medium">Help & Info</span>
-          {helpOpen ? <BsDash className="text-[30px]"/> : <BsPlus className="text-[30px]"/>}
+          {helpOpen ? <BsDash className="text-[30px]" /> : <BsPlus className="text-[30px]" />}
         </button>
         {helpOpen && (
           <div className="ml-4 flex flex-col gap-2">
             {[{ label: 'How To Bid', to: '/How To Bid', Icon: PiGavel },
-              { label: 'How To Sell', to: '/How To Sell', Icon: MdOutlineSell },
-              { label: 'How It Works', to: '/How It Works', Icon: IoIosTimer },
-              { label: 'FAQ', to: '/Faq', Icon: BsQuestionCircle },
+            { label: 'How To Sell', to: '/How To Sell', Icon: MdOutlineSell },
+            { label: 'How It Works', to: '/How It Works', Icon: IoIosTimer },
+            { label: 'FAQ', to: '/Faq', Icon: BsQuestionCircle },
             ].map(renderNavLink)}
           </div>
         )}
