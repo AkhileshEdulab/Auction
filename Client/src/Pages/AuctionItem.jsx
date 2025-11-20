@@ -126,7 +126,7 @@ const AuctionItem = () => {
   }
 
   return (
-    <section className="px-4 sm:px-6 md:px-10 bg-white lg:px-30 py-8 text-gray-800 mx-auto ">
+    <section className="px-4 sm:px-6 md:px-10 bg-white lg:px-30 py-8 text-gray-800  ">
       {/* Breadcrumb */}
       <nav className="flex flex-wrap items-center gap-2 mb-8 text-xl text-gray-600 select-none">
         <Link to="/" className="hover:text-red-500">Home</Link>
@@ -155,14 +155,14 @@ const AuctionItem = () => {
           <p className="text-gray-700 mb-6 truncate">{auctionDetails.description}</p>
 
           <div className="mb-6 space-y-2">
-            <p><strong>Current Bid:</strong> <span className="text-red-600">${auctionDetails.currentBid || auctionDetails.startingBid}</span></p>
+            <p><strong>Current Bid:</strong> <span className="text-red-600">₹ {auctionDetails.currentBid || auctionDetails.startingBid}</span></p>
             <p><strong>Condition:</strong> <span className="uppercase text-gray-500">{auctionDetails.condition}</span></p>
           </div>
 
           {/* Countdown */}
           <div className="mb-6">
             <h2 className="text-xl font-semibold mb-3">Time Left</h2>
-            <div className="flex gap-3 text-center max-w-xs flex-wrap">
+            <div className="flex gap-2 text-center max-w-xs flex-wrap">
               {isAuctionEnded
                 ? ['E', 'N', 'D', 'S'].map((l, i) => (
                   <div key={i} className="bg-gray-50 rounded-md px-4 py-4 shadow w-16 h-16 flex items-center justify-center text-2xl font-extrabold">
@@ -184,29 +184,46 @@ const AuctionItem = () => {
           {/* Bidding Input */}
           <div className="flex flex-col items-start gap-4 mt-auto w-full max-w-sm">
             <h1 className="font-semibold text-lg ">Your Max Bid:</h1>
-            <div className="flex items-center gap-2 w-full">
-              <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="text-center border rounded-md py-2 px-3 sm:px-4 flex-1 text-sm sm:text-base focus:outline-none"
-                disabled={isAuctionEnded}
-                min="0"
-              />
-              <button
-                onClick={handleBidSubmit}
-                disabled={isAuctionEnded}
-                className="bg-red-600 hover:bg-red-700 text-white px-3 sm:px-6 py-2 rounded-md font-semibold disabled:opacity-50 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base"
-              >
-                {isAuctionEnded ? (
-                  'Closed'
-                ) : (
-                  <>
-                    <RiAuctionFill className="text-base sm:text-lg" /> <span>Place Bid</span>
-                  </>
-                )}
-              </button>
-            </div>
+            <div className="flex items-center w-full gap-4 max-sm:gap-4">
+  <input
+    type="number"
+    value={amount}
+    onChange={(e) => setAmount(e.target.value)}
+    className="
+      flex-1 text-center border rounded-md
+      py-2 px-2 w-
+      text-sm
+      max-sm:py-1.5 max-sm:px-2 max-sm:text-xs
+      focus:outline-none
+    "
+    disabled={isAuctionEnded}
+    min="0"
+  />
+
+  <button
+    onClick={handleBidSubmit}
+    disabled={isAuctionEnded}
+    className="
+      bg-red-600 hover:bg-red-700 text-white rounded-md font-semibold
+      flex items-center justify-center
+      gap-1
+      px-3 py-2 text-sm
+      max-sm:px-2 max-sm:py-1.5 max-sm:text-xs
+      disabled:opacity-50
+    "
+  >
+    {isAuctionEnded ? (
+      "Closed"
+    ) : (
+      <>
+        <RiAuctionFill className="text-sm max-sm:text-xs" />
+        <span className="">Place Bid</span>
+         {/* Shorter text on mobile */}
+      </>
+    )}
+  </button>
+</div>
+
 
           </div>
         </div>

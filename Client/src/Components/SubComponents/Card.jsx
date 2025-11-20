@@ -70,7 +70,7 @@ const Card = ({ imgSrc, title, startTime, endTime, statingBid, id, }) => {
   {statingBid && (
     <p className="text-sm text-gray-600">
       Starting Bid:{' '}
-      <span className="text-red-600 font-bold">${statingBid}</span>
+      <span className="text-red-600 font-bold">₹ {statingBid}</span>
     </p>
   )}
 

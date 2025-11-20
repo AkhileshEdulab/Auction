@@ -122,8 +122,8 @@ const Footer = () => {
       </div>
 
       <div className="text-center text-xl text-gray-600 mt-10 border-t pt-4">
-        © 2024 <span className="font-semibold text-black">Probid</span> | Design By{" "}
-        <span className="font-semibold">Egens Lab</span>
+        © 2025 <span className="font-semibold text-black">Edulab</span> | Design By{" "}
+        <span className="font-semibold">Akhilesh Yadav</span>
         <div className="mt-2 flex justify-center gap-6 text-sm flex-wrap">
           {["Support Center", "Terms & Conditions", "Privacy Policy"].map((item) => (
             <a
