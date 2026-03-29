@@ -1,5 +1,25 @@
-client/node_modules
-server/node_modules
-server/config/
+# dependencies
+node_modules/
+
+# environment variables
 .env
-node_modules
+
+# config (if contains secrets)
+server/config/
+
+# build files
+dist/
+build/
+client/dist/
+
+# logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
