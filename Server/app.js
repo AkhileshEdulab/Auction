@@ -15,8 +15,8 @@ import { verifyCommissionCron } from './automation/verifyCommissionCron.js';
 import path from "path"
 
 const app = express();
-dotenv.config({quiet:true});
 
+dotenv.config({quiet:true});
 const _dirname = path.resolve();
 
 app.use(cors({
