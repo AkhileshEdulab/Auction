@@ -31,14 +31,19 @@ import HowItWorks from './Components/SubComponents/HowItsWork';
 import NotFoundPage from './Pages/NotFoundPage';
 import ScrollToTopButton from './Components/SubComponents/ScrollToTopButton';
 import LiveAuction from './Components/LiveAuction';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+
 
 const App = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(fetchUser()),
     dispatch(getAllAuction()),
     dispatch(featchLeaderboard())
-  },[dispatch])
+  },[dispatch]);
   return (
    <>
    <Router>
