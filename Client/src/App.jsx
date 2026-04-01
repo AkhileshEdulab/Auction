@@ -44,6 +44,9 @@ const App = () => {
    <Router>
     <Header />
     <Routes>
+      <Route path="/dashboard"element={isAuthenticated && user?.role === "Super Admin" ?
+      (<Dashboard /> ) : (<Navigate to="/login" />)}
+     />
       <Route path="/" element={<HomePage/>} />
       <Route path="/faq" element={<FAQ/>} />
       <Route path="/about-us" element={<AboutUs/>} />
@@ -57,7 +60,7 @@ const App = () => {
       <Route path="/auction/item/:id" element={<AuctionItem />} />
       <Route path='/create-auction' element={<CreateAuction/>}/>
       <Route path='/view-auction' element={<ViewMyAuction/>}/>
-      <Route path='/dashboard' element={<Dashboard/>}/>
+      {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
       <Route path='/how to bid' element={<HowToBid/>}/>
       <Route path='/how to sell' element={<HowToSell/>}/>
       <Route path='/how it works' element={<HowItWorks/>}/>

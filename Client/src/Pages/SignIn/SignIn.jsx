@@ -14,7 +14,7 @@ import { login } from '../../Stores/Slices/userSlices';
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, loading } = useSelector(state => state.user);
+  const { isAuthenticated, loading,user } = useSelector(state => state.user);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -56,6 +56,16 @@ const SignIn = () => {
       navigate('/');
     }
   }, [isAuthenticated, navigate]);
+
+useEffect(() => {
+  if (isAuthenticated && user) {
+    if (user.role === "Super Admin") {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
+  }
+}, [isAuthenticated, user, navigate]);
 
   return (
     <section className="min-h-screen">
