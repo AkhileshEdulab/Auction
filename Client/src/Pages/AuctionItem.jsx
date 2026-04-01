@@ -155,7 +155,7 @@ const AuctionItem = () => {
           <p className="text-gray-700 mb-6 truncate">{auctionDetails.description}</p>
 
           <div className="mb-6 space-y-2">
-            <p><strong>Current Bid:</strong> <span className="text-red-600">₹ {auctionDetails.currentBid || auctionDetails.startingBid}</span></p>
+            <p><strong>Current Bid:</strong> <span className="text-red-600">₹ {Number(auctionDetails.currentBid || auctionDetails.startingBid).toLocaleString('en-IN')}</span></p>
             <p><strong>Condition:</strong> <span className="uppercase text-gray-500">{auctionDetails.condition}</span></p>
           </div>
 
@@ -288,7 +288,7 @@ const AuctionItem = () => {
                           />
                           {bidder.userName}
                         </td>
-                        <td className="px-4 py-2">${bidder.amount}</td>
+                        <td className="px-4 py-2">₹{Number(bidder.amount).toLocaleString('en-IN')}</td>
                         <td className="px-4 py-2 whitespace-nowrap">
                           {bidder?.createdAt
                             ? new Date(bidder.createdAt).toLocaleString('en-US', {

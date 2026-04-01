@@ -58,7 +58,7 @@ const AuctionItemDelete = () => {
                   {auction.title}
                 </td>
                 <td className="py-2 px-2 sm:px-4 text-gray-700 font-medium">
-                  ${auction.startingBid}
+                  ₹{Number(auction.startingBid).toLocaleString('en-IN')}
                 </td>
                 <td className="py-2 px-2 sm:px-4 text-gray-600">{auction.condition}</td>
                 <td className="py-2 px-2 sm:px-4">
